@@ -6,4 +6,4 @@ RETURNING id
 
 insert into users (id, name) 
 values((select id from first_insert), ${name})
-RETURNING id, name 
+RETURNING id, name ;
