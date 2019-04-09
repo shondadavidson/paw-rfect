@@ -1,7 +1,9 @@
-insert into users_auth (email, password)
-values (${email}, ${password});
-returning id;
-insert into users (id, name)
-values (${id}, ${name})
+with first_insert as (
+insert into user_auth (email, password)
+VALUES (${email}, ${password})
+RETURNING id
+)
 
-returning id, email
+insert into users (id, name) 
+values((select id from first_insert), ${name})
+RETURNING id, name 
