@@ -14,14 +14,14 @@ CREATE TABLE users (
 	"experience" TEXT
 );
 
-CREATE TABLE "DOG" (
-	"DOG_ID" serial Primary Key,
-	"NAME" varchar,
-	"dog_picture" TEXT,
-	"breed" varchar,
-	"WEIGHT" integer,
-	"SPECIAL_NOTES" TEXT,
-	"owner_id" TEXT
+CREATE TABLE dog (
+	dog_id serial Primary Key,
+	dog_name varchar,
+	dog_picture TEXT,
+	breed varchar,
+	weight integer,
+	special_notes TEXT,
+	owner_id TEXT
 );
 
 CREATE TABLE "owner_client" (
@@ -31,13 +31,13 @@ CREATE TABLE "owner_client" (
 	"provider_approve" varchar
 );
 
-CREATE TABLE "Walk" (
-    "WALK_ID" serial Primary Key,
-	"provider_id" integer,
-	"OWNER_ID" integer,
-	"dog_ID" integer,
-	"START_TIME" TIMESTAMP,
-	"END_TIME" TIMESTAMP
+CREATE TABLE walk (
+    walk_id serial Primary Key,
+	provider_id integer,
+	owner_id integer,
+	dog_id integer,
+	start_time TIMESTAMP,
+	end_time TIMESTAMP
 	
 );
 
@@ -50,11 +50,16 @@ CREATE TABLE "review" (
 	"date_time" TIMESTAMP
 );
 
-CREATE TABLE "Chat" (
+CREATE TABLE chat (
     chat_id serial primary key,
-	"room_id" integer,
-	"user_id" integer,
-	"name" varchar,
-	"message" TEXT,
-	"date_time" TIMESTAMP
+	room_id integer,
+	user_id integer,
+	name varchar,
+	message  TEXT,
+	date_time TIMESTAMP
 );
+
+drop table if exists Chat
+
+insert into dog (dog_name, breed, weight, special_notes, owner_id)
+values ('Beacon', 'mix', '20', 'likes to play', 1); 
