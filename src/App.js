@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import routes from './Routes/Routes'
+import { withRouter } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Welcome to paw-rfect</h1>
+      <div className='routes'>{routes}</div>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
