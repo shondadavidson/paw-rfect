@@ -2,6 +2,8 @@
   "name": "paw-rfect",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
+  "main": "server/index.js",
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",

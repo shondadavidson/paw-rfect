@@ -24,7 +24,7 @@ CREATE TABLE dog (
 	owner_id TEXT
 );
 
-CREATE TABLE "owner_client" (
+CREATE TABLE owner_client (
 	"owner_id" integer,
 	"provider_id" integer,
 	"client_request" varchar,
@@ -41,7 +41,7 @@ CREATE TABLE walk (
 	
 );
 
-CREATE TABLE "review" (
+CREATE TABLE review (
 	"review_id" serial Primary Key,
 	"rating" integer,
 	"owner_id" integer,
