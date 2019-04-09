@@ -1,0 +1,11 @@
+{
+    "restartable": "rs",
+    "watch": [
+      "server/",
+      "db/"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js json sql"
+  }

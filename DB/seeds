@@ -14,7 +14,7 @@ CREATE TABLE users (
 	"experience" TEXT
 );
 
-CREATE TABLE "DOG" (
+CREATE TABLE dog (
 	"DOG_ID" serial Primary Key,
 	"NAME" varchar,
 	"dog_picture" TEXT,
@@ -24,14 +24,14 @@ CREATE TABLE "DOG" (
 	"owner_id" TEXT
 );
 
-CREATE TABLE "owner_client" (
+CREATE TABLE owner_client (
 	"owner_id" integer,
 	"provider_id" integer,
 	"client_request" varchar,
 	"provider_approve" varchar
 );
 
-CREATE TABLE "Walk" (
+CREATE TABLE walk (
     "WALK_ID" serial Primary Key,
 	"provider_id" integer,
 	"OWNER_ID" integer,
@@ -41,7 +41,7 @@ CREATE TABLE "Walk" (
 	
 );
 
-CREATE TABLE "review" (
+CREATE TABLE review (
 	"review_id" serial Primary Key,
 	"rating" integer,
 	"owner_id" integer,
@@ -50,7 +50,7 @@ CREATE TABLE "review" (
 	"date_time" TIMESTAMP
 );
 
-CREATE TABLE "Chat" (
+CREATE TABLE chat (
     chat_id serial primary key,
 	"room_id" integer,
 	"user_id" integer,
