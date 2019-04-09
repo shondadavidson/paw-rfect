@@ -1,0 +1,70 @@
+CREATE TABLE users (
+	"ID" serial Primary Key,
+	"name" varChar,
+	"email" varChar,
+	"password" varChar,
+	"picture" text,
+	"dog_owner" varChar,
+	"provider_walker" varChar,
+	"provider_sitter" BOOLEAN,
+	"provider_boarder" BOOLEAN,
+	"zip" integer,
+	"short_desc" varchar(255),
+	"bio" TEXT,
+	"experience" TEXT
+);
+
+
+
+CREATE TABLE "DOG" (
+	"DOG_ID" serial Primary Key,
+	"NAME" varchar,
+	"dog_picture" TEXT,
+	"breed" varchar,
+	"WEIGHT" integer,
+	"SPECIAL_NOTES" TEXT,
+	"owner_id" TEXT
+);
+
+
+
+CREATE TABLE "owner_client" (
+	"owner_id" integer,
+	"provider_id" integer,
+	"client_request" varchar,
+	"provider_approve" varchar
+);
+
+
+
+CREATE TABLE "Walk" (
+    "WALK_ID" serial Primary Key,
+	"provider_id" integer,
+	"OWNER_ID" integer,
+	"dog_ID" integer,
+	"START_TIME" TIMESTAMP,
+	"END_TIME" TIMESTAMP
+	
+);
+
+
+
+CREATE TABLE "review" (
+	"review_id" serial Primary Key,
+	"rating" integer,
+	"owner_id" integer,
+	"provider_id" integer,
+	"comment" TEXT,
+	"date_time" TIMESTAMP
+);
+
+
+
+CREATE TABLE "Chat" (
+    chat_id serial primary key,
+	"room_id" integer,
+	"user_id" integer,
+	"name" varchar,
+	"message" TEXT,
+	"date_time" TIMESTAMP
+);
