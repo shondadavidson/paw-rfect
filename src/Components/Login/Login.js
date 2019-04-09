@@ -29,8 +29,14 @@ class Login extends Component {
             this.props.history.push('/home')
         }
     }
+    handleChange(prop, val) {
+        this.setState({
+          [prop]: val
+        })
+      }
 
     login = async (e) => {
+        console.log('click')
         e.preventDefault()
         let user = {
             email: this.state.email,
@@ -41,7 +47,7 @@ class Login extends Component {
             this.props.updateUser(res.data)
             this.props.history.push('/home')
         } catch (err) {
-            alert('incorrect username or password')
+            alert('incorrect email or password')
         }
     }
     render() {
@@ -58,7 +64,7 @@ class Login extends Component {
                 value={password}
                 onChange={e => this.handleChange("password", e.target.value)}
                 />
-                <button onClick={() => this.login}>Login</button>
+                <button onClick={this.login}>Login</button>
             </div>
         )
     }
