@@ -7,6 +7,7 @@ const pg = require ('pg')
 const pgSession = require('connect-pg-simple')(session)
 
 const ac = require('./controllers/auth_controller')
+const uc = require('./controllers/user_controller')
 
 const app = express()
 
@@ -35,8 +36,14 @@ massive(CONNECTION_STRING).then(db => {
     app.listen(SERVER_PORT, () => console.log('Sweeettt'))
 })
 
+//Auth_controller
 app.post('/auth/register', ac.register)
 app.post('/auth/login', ac.login)
 app.post('/auth/logout', ac.logout)
 
 app.get('/api/current', ac.getUser)
+
+//user_controller
+
+app.get('/api/getMyProviders/:id', uc.getMyProviders)
+// app.get('/api/provider/:id', uc.provider)
