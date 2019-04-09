@@ -9,7 +9,7 @@ class AddDog extends Component {
     render(){
         return(
             <>
-
+                <h1>AddDog</h1>
             </>
         )
     }
