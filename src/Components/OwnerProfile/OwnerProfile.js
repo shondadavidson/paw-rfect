@@ -32,7 +32,7 @@ class OwnerProfile extends Component{
 
     }
 
-    render(){
+    render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
         return(
             <>
                 <div>
@@ -48,7 +48,7 @@ class OwnerProfile extends Component{
                 {!this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
                     <input placeholder={'Name'} value={this.state.ownerName} readOnly/>
                     <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly/>
-                    <img src={this.state.ownerPicture} />
+                    <img src={this.state.ownerPicture} alt=''/>
                     <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly/>
                 </div>}
 
@@ -63,7 +63,8 @@ class OwnerProfile extends Component{
                 </div>
                 <div>
                     <button onClick={()=>(this.props.history.push('/home'))}>Back</button>
-                    <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Save' : 'Edit Profile'} </button>
+                    {!this.state.editing && save}
+                    <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
                 {/* <div> 
                     This div and it's children to be deleted for production
