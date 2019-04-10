@@ -60,6 +60,10 @@ module.exports = {
         ).catch(err => {
             res.status(400).send(err)
         })
+    },
+    owner: (req, res) => {
+        console.log('hit')
     }
+
 
 }

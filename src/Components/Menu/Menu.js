@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateUser, clearUser } from '../../ducks/reducer'
+import { Link } from 'react-router-dom'
 
 class Menu extends Component {
     constructor(props){
@@ -43,11 +44,12 @@ class Menu extends Component {
           const { name } = this.props
         return(
             <div>
-                <h5>Welcome {name}</h5>
+                <h5>Welcome{name}</h5>
                 <div className='toggle' onClick={() => this.toggle()}>
                     <i className="fa fa-bars"></i>
                 </div>
                 <ul className={ this.state.show ? 'menu show': 'menu'}>
+                    <Link to='/home'><li>Home</li></Link>
                     <li>Owner's Profile</li>
                     <li>Walker's Profile</li>
                     <li>Payment</li>
