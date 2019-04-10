@@ -43,7 +43,7 @@ class Menu extends Component {
           const { name } = this.props
         return(
             <div>
-                <h5>Welcome {name}</h5>
+                <h5>Welcome{name}</h5>
                 <div className='toggle' onClick={() => this.toggle()}>
                     <i className="fa fa-bars"></i>
                 </div>

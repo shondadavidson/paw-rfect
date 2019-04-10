@@ -1,0 +1,10 @@
+.home-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.home-inner-container {
+    width: 300px;
+    border: 2px solid teal;
+    padding: 50px;
+    margin: 20px;
+}
