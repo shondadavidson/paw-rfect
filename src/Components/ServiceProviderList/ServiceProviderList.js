@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 
 class ServiceProviderList extends Component {
     constructor(props) {
@@ -59,6 +59,6 @@ function mapStateToProps({id}){
     }
 }
 
-// export default connect(mapStateToProps, {})(ServiceProviderList);
+export default connect(mapStateToProps, {})(ServiceProviderList);
 
-export default ServiceProviderList 
+
