@@ -1,5 +1,5 @@
 const initialState = {
-    id: 0,
+    id: null,
     name: ''
 }
 
@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
             const { id, name } = payload
             return { ...state, id, name }
         case CLEAR_USER:
-            return { ...state, id:0, username: ''}
+            return { ...state, id:null, username: ''}
         default: 
             return state
     }
