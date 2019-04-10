@@ -20,7 +20,7 @@ class AddDog extends Component {
         })
     }
 
-    
+
 
     render(){ console.log(this.state.dogName,this.state.dogAge, this.state.dogWeight, this.state.dogBreed, this.state.dogSpecialNotes, this.state.dogPicture)
         return(
@@ -38,7 +38,7 @@ class AddDog extends Component {
                 </div>
 
                 <div>
-                    <button onClick={this.props.history.push('/ownerprofile')}>←</button>
+                    <button onClick={()=> {this.props.history.push('/ownerprofile')}}>←</button>
                     <button> | Save</button>
                 </div>
                 
