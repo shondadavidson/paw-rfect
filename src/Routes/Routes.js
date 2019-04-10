@@ -6,11 +6,13 @@ import ServiceProviderList from '../Components/ServiceProviderList/ServiceProvid
 import DetailedServiceProvider from '../Components/ServiceProviderList/DetailedServiceProvider'
 import ClientList from '../Components/ClientList/ClientList';
 import SearchForProvider from '../Components/SearchForProvider/SearchForProvider';
+import Splash from '../Components/Splash/Splash'
 
 
 export default (
     <Switch>
-        <Route exact path='/dashboard' component={Dashboard} />
+        <Route exact path='/' component={Splash} />
+        <Route  path='/dashboard' component={Dashboard} />
         <Route path='/home' component={Home} />
         <Route path='/serviceProviders' component={ServiceProviderList} />
         <Route path='/detailedProvider/:provider_id' component={DetailedServiceProvider} />
