@@ -8,7 +8,8 @@ class Register extends Component {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            name: ''
         }
         this.register = this.register.bind(this)
     }
@@ -39,7 +40,8 @@ class Register extends Component {
     async register() {
         let user = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            name: this.state.name
         }
         try {
             let res = await axios.post('/auth/register', user)
@@ -51,9 +53,14 @@ class Register extends Component {
     }
 
     render() {
-        const { email, password } = this.state
+        const { email, password, name } = this.state
         return (
             <div>
+                <input type="text"
+                placeholder='Name'
+                value={name}
+                onChange={ e => this.handleChange('name', e.target.value)}
+                />
                 <input type="text"
                 placeholder='Email'
                 value={email}

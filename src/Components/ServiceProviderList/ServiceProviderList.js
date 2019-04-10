@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+// import {connect} from 'react-redux'
 
 class ServiceProviderList extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             myProviders: []
         }
@@ -17,7 +18,7 @@ class ServiceProviderList extends Component {
     //Hard coded a user
 
     getMyProviders = () => {
-        axios.get(`/api/getMyProviders/1`).then(res => {
+        axios.get(`/api/getMyProviders/{this.props.id}`).then(res => {
             console.log(res.data)
             this.setState({
                 myProviders: res.data
@@ -34,7 +35,7 @@ class ServiceProviderList extends Component {
                     <p>{provider.name}</p>
                     <p>{provider.experience}</p>
                     <p>{provider.short_desc}</p>
-                    <i class="fas fa-user-slash"></i>
+                    <i className="fas fa-user-slash"></i>
                     <p>--------------</p>
 
                 </div>
@@ -52,4 +53,12 @@ class ServiceProviderList extends Component {
     }
 }
 
-export default ServiceProviderList;
+function mapStateToProps({id}){
+    return {
+        id
+    }
+}
+
+// export default connect(mapStateToProps, {})(ServiceProviderList);
+
+export default ServiceProviderList 
