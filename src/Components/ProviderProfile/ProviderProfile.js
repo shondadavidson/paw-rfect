@@ -11,16 +11,26 @@ class ProviderProfile extends Component{
             providerBio:'',
             providerPicture:'',
             providerZip:0,
-            dogWalkService:false,
-            dogSitService:false,
-            dogBoardService:false,
+            dogWalkService:"",
+            dogSitService:"",
+            dogBoardService:"",
             editing:false
         }
     }
 
+    toggleEditing = () => {
+        this.setState({
+            editing: !this.state.editing
+        })
+    }
+
     toggle = (prop) => {
+        let newVal = ""
+        if(this.state[prop] === ""){
+            newVal = "checked"
+        }
         this.setState({        
-            [prop]: !this.state[prop]            
+            [prop]: newVal            
         })
     }
 
@@ -66,21 +76,21 @@ class ProviderProfile extends Component{
 
 
                 {editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <input placeholder={'Name'} onChange={e=>{this.handleInput('providerName', e.target.value)}} />
-                    <input placeholder={'Short Description'} onChange={e=>{this.handleInput('providerShortDescription', e.target.value)}} />
-                    <input placeholder={'Experience'} onChange={e=>{this.handleInput('providerExperience', e.target.value)}} />
-                    <input placeholder={'Bio'} onChange={e=>{this.handleInput('providerBio', e.target.value)}} />
-                    <input placeholder={'Picture'} onChange={e=>{this.handleInput('providerPicture', e.target.value)}} />
-                    <input placeholder={'Zip Code'} onChange={e=>{this.handleInput('providerZip', e.target.value)}} />
+                    <input placeholder={providerName ? providerName : 'Name'} onChange={e=>{this.handleInput('providerName', e.target.value)}} />
+                    <input placeholder={providerShortDescription ? providerShortDescription :'Short Description'} onChange={e=>{this.handleInput('providerShortDescription', e.target.value)}} />
+                    <input placeholder={providerExperience ? providerExperience : 'Experience'} onChange={e=>{this.handleInput('providerExperience', e.target.value)}} />
+                    <input placeholder={providerBio ? providerBio : 'Bio'} onChange={e=>{this.handleInput('providerBio', e.target.value)}} />
+                    <input placeholder={providerPicture ? providerPicture : 'Picture'} onChange={e=>{this.handleInput('providerPicture', e.target.value)}} />
+                    <input placeholder={providerZip ? providerZip : 'Zip Code'} onChange={e=>{this.handleInput('providerZip', e.target.value)}} />
                     
                     <div> 
-                        <input type='checkbox' onChange={()=>{this.toggle('dogWalkService')}}/> Dog Walking
+                        <input type='checkbox' checked={ dogWalkService } onChange={()=>{this.toggle('dogWalkService')}}/> Dog Walking
                     </div>
                     <div> 
-                        <input type='checkbox' onChange={()=>{this.toggle('dogSitService')}}/> Dog Sitting
+                        <input type='checkbox' checked={ dogSitService } onChange={()=>{this.toggle('dogSitService')}}/> Dog Sitting
                     </div>
                     <div> 
-                        <input type='checkbox' onChange={()=>{this.toggle('dogBoardService')}}/> Dog Boarding
+                        <input type='checkbox' checked={ dogBoardService } onChange={()=>{this.toggle('dogBoardService')}}/> Dog Boarding
                     </div>
                 </div>}
 
@@ -93,13 +103,13 @@ class ProviderProfile extends Component{
                     <input placeholder={'Zip Code'} value={providerZip} readOnly/>
                     
                     <div> 
-                        <input type='checkbox' checked=''/> Dog Walking
+                        <input type='checkbox' checked={ dogWalkService }/> Dog Walking
                     </div>
                     <div> 
-                        <input type='checkbox' checked={dogSitService ? "checked" : ""}/> Dog Sitting
+                        <input type='checkbox' checked={ dogSitService }/> Dog Sitting
                     </div>
                     <div> 
-                        <input type='checkbox' checked={ dogBoardService ? "checked" : "unchecked"}/> Dog Boarding
+                        <input type='checkbox' checked={ dogBoardService }/> Dog Boarding
                     </div>
                 </div>}
 
@@ -107,7 +117,7 @@ class ProviderProfile extends Component{
 
                 <div>
                     {!editing && save}
-                    <button onClick={()=> this.toggle('editing')}> {editing ? 'Update' : 'Edit Profile'} </button>
+                    <button onClick={()=> this.toggleEditing()}> {editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
 
             </>

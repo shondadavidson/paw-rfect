@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { updateUser } from './../../ducks/reducer';
 
 class OwnerProfile extends Component{
     constructor(){
@@ -14,12 +16,16 @@ class OwnerProfile extends Component{
         }
     }
 
+    componentDidMount(){
+        this.setState({
+            ownerName: this.props.name
+        })
+    }
+
     toggle = (prop) => {
-        console.log(this.state[prop])
         this.setState({        
             [prop]: !this.state[prop]            
         })
-        console.log(this.state[prop])    
     }
 
     handleInput = (prop, val) => {
@@ -33,6 +39,7 @@ class OwnerProfile extends Component{
     }
 
     render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
+    console.log(this)
         return(
             <>
                 <div>
@@ -62,21 +69,21 @@ class OwnerProfile extends Component{
                     <button onClick={()=>{this.props.history.push('/adddog')}}>+ Add Dog</button>
                 </div>
                 <div>
-                    <button onClick={()=>(this.props.history.push('/home'))}>Back</button>
+                    {!this.state.editing && <button onClick={()=>(this.props.history.push('/home'))}>Back</button>}
+                    {this.state.editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
                     {!this.state.editing && save}
                     <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
-                {/* <div> 
-                    This div and it's children to be deleted for production
-                    <div>{this.state.editing  ? 'true' : 'false'}</div>
-                    <div>{this.state.ownerName}</div>
-                    <div>{this.state.ownerShortDescription}</div>
-                    <div>{this.state.ownerPicture}</div>
-                    <div>{this.state.ownerZip}</div>
-                </div> */}
+
             </>
         )
     }
 }
 
-export default OwnerProfile;
+const mapStateToProps = reduxState => {
+    return {
+        name: reduxState.name
+    }
+}
+
+export default connect(mapStateToProps) (OwnerProfile);
