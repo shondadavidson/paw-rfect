@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-function Splash() {
-
+class Splash extends Component{
+    render(){
         return(
             <>
             <div>Welcome to Paw-rfect</div>
@@ -13,6 +13,7 @@ function Splash() {
             <div>pictures of dogs go here</div>
             </>
         )
+    }
 }
 
 export default Splash;
