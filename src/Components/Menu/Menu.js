@@ -48,6 +48,7 @@ class Menu extends Component {
                     <i className="fa fa-bars"></i>
                 </div>
                 <ul className={ this.state.show ? 'menu show': 'menu'}>
+                    <li>Home</li>
                     <li>Owner's Profile</li>
                     <li>Walker's Profile</li>
                     <li>Payment</li>
