@@ -15,11 +15,26 @@ module.exports = {
     },
 
     provider: (req, res) => {
+        
         console.log(req.params)
         const db = req.app.get('db')
         let {id} = req.params
         id = parseInt(id)
         db.users.get_provider({id:id}).then(
+            resp => {
+                res.status(200).send(resp)
+            }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
+    },
+    searchProviders: (req, res) => {
+        console.log('hit')
+        console.log(req.params)
+        const db = req.app.get('db')
+        let {zip} = req.params
+        zip = parseInt(zip)
+        db.users.search_providers({zip:zip}).then(
             resp => {
                 res.status(200).send(resp)
             }
