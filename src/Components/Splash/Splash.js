@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 
 class Splash extends Component{
-    constructor(){
-        super()
-    }
+    
     render(){
         return(
             <>
@@ -11,7 +10,7 @@ class Splash extends Component{
             <div>The Paw-rfect way to find the best care for your good boy(or girl).</div>
             <div>Connecting you to the best local dog walkers, sitters, and boarders.</div>
             <div>
-                <button onClick={e=>{this.props.history.push('/Dashboard')}}>Login/Register</button>
+              <Link to='/dashboard'><button>Login/Register</button></Link>
             </div>
             <div>pictures of dogs go here</div>
             </>
