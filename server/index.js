@@ -46,5 +46,6 @@ app.get('/api/current', ac.getUser)
 //user_controller
 
 app.get('/api/getMyProviders/:id', uc.getMyProviders)
-app.get('/api/provider/:id', uc.provider)
+app.post('/api/provider/:id', uc.provider)
 app.get('/api/searchProviders/:zip', uc.searchProviders)
+app.post('/api/addProvider/:id', uc.addProvider)
