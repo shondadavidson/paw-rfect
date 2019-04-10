@@ -13,9 +13,9 @@ class DetailedServiceProvider extends Component {
   componentDidMount(){
     this.getProvider()
   }
-//Hard Coded Provider
+
   getProvider = () => {
-    axios.get(`/api/provider/3`).then(res => {
+    axios.get(`/api/provider/${this.props.match.params.provider_id}`).then(res => {
 
       this.setState({
         provider: res.data

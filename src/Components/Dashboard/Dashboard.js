@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Login from '../Login/Login'
 import Register from '../Register/Register'
 import { withRouter } from 'react-router-dom'
+import Dalmatian from '../Images/dalmatian.png'
+import Beagle from '../Images/beagle.png'
+import Rot from '../Images/rot.png'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -27,6 +30,12 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
+        <h1>Welcome to Paw-rfect</h1>
+        <div>
+          <img src={Beagle} alt="Beagle"/>
+          <img src={Rot} alt="Rot"/>
+          <img src={Dalmatian} alt="Dalmatian"/>
+        </div>
         <div
          className={"controller " + (this.state.isLoginOpen
             ? "selected-controller"

@@ -47,3 +47,4 @@ app.get('/api/current', ac.getUser)
 
 app.get('/api/getMyProviders/:id', uc.getMyProviders)
 app.get('/api/provider/:id', uc.provider)
+app.get('/api/searchProviders/:zip', uc.searchProviders)
