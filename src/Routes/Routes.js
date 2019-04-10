@@ -13,7 +13,7 @@ import SearchForProvider from '../Components/SearchForProvider/SearchForProvider
 
 export default (
     <Switch>
-        <Route path='/' component={Splash} />
+        <Route exact path='/' component={Splash} />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/home' component={Home} />
         <Route path='/ownerprofile' component={OwnerProfile} />
