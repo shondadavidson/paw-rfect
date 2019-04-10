@@ -1,2 +1,2 @@
-select * from users
+select * from user_auth
 where email = ${email}

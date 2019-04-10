@@ -1,2 +1,2 @@
-select count(*) from users
+select count(*) from user_auth
 where email = ${email}
