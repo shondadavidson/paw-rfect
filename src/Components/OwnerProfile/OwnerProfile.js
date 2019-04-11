@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from './../../ducks/reducer';
+import {Link} from 'react-router-dom';
 
 class OwnerProfile extends Component{
     constructor(){
@@ -66,10 +67,16 @@ class OwnerProfile extends Component{
                     <div>DOG</div>
                 </div>
                 <div>
-                    <button onClick={()=>{this.props.history.push('/adddog')}}>+ Add Dog</button>
+                    <Link to='/adddog'>
+                        <button>+ Add Dog</button>
+                    </Link>
                 </div>
                 <div>
-                    {!this.state.editing && <button onClick={()=>(this.props.history.push('/home'))}>Back</button>}
+                    {!this.state.editing && 
+                        <Link to='/home'>
+                            <button>Back</button>
+                        </Link>
+                    }
                     {this.state.editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
                     {!this.state.editing && save}
                     <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
