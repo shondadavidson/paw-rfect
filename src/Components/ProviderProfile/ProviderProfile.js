@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class ProviderProfile extends Component{
     constructor(){
@@ -116,6 +117,12 @@ class ProviderProfile extends Component{
 
 
                 <div>
+                    {!editing && 
+                            <Link to='/home'>
+                                <button>Back</button>
+                            </Link>
+                    }
+                    {editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
                     {!editing && save}
                     <button onClick={()=> this.toggleEditing()}> {editing ? 'Update' : 'Edit Profile'} </button>
                 </div>

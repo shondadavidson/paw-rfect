@@ -50,8 +50,8 @@ class Menu extends Component {
                 </div>
                 <ul className={ this.state.show ? 'menu show': 'menu'}>
                     <Link to='/home'><li>Home</li></Link>
-                    <li>Owner's Profile</li>
-                    <li>Walker's Profile</li>
+                    <Link to='/ownerprofile'><li>Owner's Profile</li></Link>
+                    <Link to='/providerprofile'><li>Walker's Profile</li></Link>
                     <li>Payment</li>
                     <Link to='/contact'><li>Contact Us</li></Link>
                     <Link to='/faq'><li>FAQ</li></Link>
