@@ -28,7 +28,7 @@ CREATE TABLE dog (
 	weight integer,
 	dog_gender varcahr(10),
 	special_notes TEXT,
-	owner_id TEXT
+	owner_id INTEGER
 );
 
 CREATE TABLE owner_client (
@@ -59,8 +59,8 @@ CREATE TABLE review (
 
 CREATE TABLE chat (
     chat_id serial primary key,
-	room_id integer,
-	user_id integer,
+	room integer,
+	user_name varChar,
 	name varchar,
 	message  TEXT,
 	date_time TIMESTAMP
