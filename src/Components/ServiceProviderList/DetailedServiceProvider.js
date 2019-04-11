@@ -44,7 +44,7 @@ class DetailedServiceProvider extends Component {
       <div className="DetailedServiceProvider">
         <h1>Welcome to detailed service provider</h1>
         <i className="far fa-comment-dots"></i>
-          image: {user.image}
+          {/* image: {user.image} */}
           <p>name: {user.name}</p>
           <p>{user.short_desc}</p>
           <p>experience {user.experience}</p>
@@ -53,9 +53,9 @@ class DetailedServiceProvider extends Component {
           <p>Boarder? {user.provider_boarder ? "yes" : 'no' }</p>
           <p>Sitter? {user.provider_sitter ? "yes" : 'no' }</p>
           <p>walker? {user.provider_walker ? "yes" : 'no' }</p>
-          <p>request sent? {user.client_request = 'approved' ? 'request sent' : 'send request'}</p>
+          <p>request sent? {user.client_request = 'approved' ? 'request sent' : <button onClick={this.addProvider}>Hire</button>}</p>
           <p>provider approved? {user.provider_approve}</p>
-          <button onClick={this.addProvider}>Hire</button>
+          
           <i className="fas fa-user-slash"></i>
 
           <h6>Past Ratings</h6>
