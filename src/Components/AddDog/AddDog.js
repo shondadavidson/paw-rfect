@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 class AddDog extends Component {
     constructor(){
@@ -38,7 +39,9 @@ class AddDog extends Component {
                 </div>
 
                 <div>
-                    <button onClick={()=> {this.props.history.push('/ownerprofile')}}>←</button>
+                    <Link to='/ownerprofile'>
+                        <button>←</button>
+                    </Link>
                     <button> | Save</button>
                 </div>
                 
