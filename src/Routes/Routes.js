@@ -13,6 +13,7 @@ import SearchForProvider from '../Components/SearchForProvider/SearchForProvider
 import Faq from '../Components/Faq/Faq';
 import Contact from '../Components/Contact/Contact';
 import ImageUpload from '../Components/ImageUpload/ImageUpload'
+import Chat from '../Components/Chat/Chat'
 
 
 export default (
@@ -30,5 +31,6 @@ export default (
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />
+        <Route path='/chat' component={Chat} />
     </Switch>
 )

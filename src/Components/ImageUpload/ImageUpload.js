@@ -10,6 +10,7 @@ class ImageUpload extends Component {
     this.state = {
       isUploading: false,
       url: 'http://via.placeholder.com/450x450',
+      img: ''
     };
   }
 
@@ -45,10 +46,12 @@ class ImageUpload extends Component {
     axios
       .put(signedRequest, file, options)
       .then(response => {
-        this.setState({ isUploading: false, url });
+        console.log(response)
+        this.setState({ isUploading: false, img: url });
         // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
       })
       .catch(err => {
+        console.log(err)
         this.setState({
           isUploading: false,
         });
@@ -72,7 +75,7 @@ class ImageUpload extends Component {
         <h1>{url}</h1>
         <img src={url} alt="" width="450px" />
 
-        {/* <Dropzone
+        <Dropzone
           onDropAccepted={this.getSignedRequest}
           style={{
             position: 'relative',
@@ -92,7 +95,7 @@ class ImageUpload extends Component {
           multiple={false}
         >
           <div>{isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}</div>
-        </Dropzone> */}
+        </Dropzone>
       </div>
     );
   }

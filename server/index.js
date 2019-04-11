@@ -5,6 +5,7 @@ const session = require ('express-session')
 const massive = require ('massive')
 const pg = require ('pg')
 const pgSession = require('connect-pg-simple')(session)
+const socket = require('socket.io')
 
 const ac = require('./controllers/auth_controller')
 const uc = require('./controllers/user_controller')
@@ -36,7 +37,7 @@ app.use(session({
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
-    app.listen(SERVER_PORT, () => console.log('Sweeettt'))
+    
 })
 
 //Amazon s-3
@@ -87,3 +88,30 @@ app.get('/api/getMyProviders/:id', uc.getMyProviders)
 app.post('/api/provider/:id', uc.provider)
 app.get('/api/searchProviders/:zip', uc.searchProviders)
 app.post('/api/addProvider/:id', uc.addProvider)
+
+// SOCKETS
+
+const io = socket(app.listen(SERVER_PORT, () => console.log('Sweeettt')))
+
+io.on('connection', function(socket) {
+
+  socket.on('joinRoom', room => {
+    console.log('join room',room)
+    socket.join(room)
+  })
+
+  socket.on('leaveRoom', function(roomName){
+    socket.leave(roomName)
+  })
+
+  socket.on('sendMsg', async data => {
+    console.log('data received', data)
+    const {room, msg, user} = data
+    const db = app.get('db')
+    await db.chat.create_message({room: room, message: msg, user_name: user})
+    let messages = await db.chat.get_message_history({room:room})
+    io.to(data.room).emit('sendMsg', messages)
+    console.log(messages)
+  })
+
+})
