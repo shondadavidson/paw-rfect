@@ -8,8 +8,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Menu location={this.props.location}/>
-      <div className='routes'>{routes}</div>
+        <div className='container'>
+          <div className='col-12'>
+            <Menu location={this.props.location} />
+            <div className='routes'>{routes}</div>
+          </div>
+        </div>
       </div>
     );
   }
