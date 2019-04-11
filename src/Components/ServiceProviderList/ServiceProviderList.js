@@ -26,6 +26,7 @@ class ServiceProviderList extends Component {
         })
     }
 
+
     render() {
         console.log(this.state.myProviders)
         console.log(this.props)
@@ -38,7 +39,6 @@ class ServiceProviderList extends Component {
                     <p>{provider.name}</p>
                     <p>{provider.experience}</p>
                     <p>{provider.short_desc}</p>
-                    <i className="fas fa-user-slash"></i>
                     <p>--------------</p>
 
                 </div>

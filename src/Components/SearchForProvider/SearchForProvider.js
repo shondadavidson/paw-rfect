@@ -20,7 +20,6 @@ const SearchForProvider = () => {
                     <p>{provider.name}</p>
                     <p>{provider.experience}</p>
                     <p>{provider.short_desc}</p>
-                    <i className="fas fa-user-slash"></i>
                     <p>--------------</p>
 
                 </div>
@@ -31,6 +30,7 @@ const SearchForProvider = () => {
     return (
         <div className="SearchForProvider">
             <h1>Search For Provider</h1>
+            <p>Search by zip code:</p>
             <input type='integer' placeholder='zip' maxLength={5} onChange={(e) => setZip(e.target.value)}value={zip}
             />
             <button onClick={() => getProviders()}>Search</button>
