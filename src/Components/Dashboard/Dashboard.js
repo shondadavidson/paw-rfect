@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import Dalmatian from '../Images/dalmatian.png'
 import Beagle from '../Images/beagle.png'
 import Rot from '../Images/rot.png'
+import '../CSS/Dashboard.css'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class Dashboard extends Component {
           <img src={Rot} alt="Rot"/>
           <img src={Dalmatian} alt="Dalmatian"/>
         </div>
+        <div className='box-controller'>
         <div
          className={"controller " + (this.state.isLoginOpen
             ? "selected-controller"
@@ -56,6 +58,7 @@ class Dashboard extends Component {
          Register
        </div>
        {this.state.isRegisterOpen && <Register history={this.props.history}/>}
+       </div>
       </div>
     );
   }

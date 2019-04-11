@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { updateUser } from './../../ducks/reducer'
+import '../CSS/Dashboard.css'
 
 class Register extends Component {
     constructor(props) {
@@ -55,7 +56,7 @@ class Register extends Component {
     render() {
         const { email, password, name } = this.state
         return (
-            <div>
+            <div className='input-group'>
                 <input type="text"
                 placeholder='Name'
                 value={name}

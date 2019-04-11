@@ -53,8 +53,8 @@ class Menu extends Component {
                     <li>Owner's Profile</li>
                     <li>Walker's Profile</li>
                     <li>Payment</li>
-                    <li>Contact Us</li>
-                    <li>FAQ</li>
+                    <Link to='/contact'><li>Contact Us</li></Link>
+                    <Link to='/faq'><li>FAQ</li></Link>
                     <button onClick={this.logout}>Logout</button>
                     {/* <li>Log Out</li> */}
                 </ul>
