@@ -22,9 +22,11 @@ create table user_auth (
 CREATE TABLE dog (
 	dog_id serial Primary Key,
 	dog_name varchar,
+	dog_age integer,
 	dog_picture TEXT,
 	breed varchar,
 	weight integer,
+	dog_gender varcahr(10),
 	special_notes TEXT,
 	owner_id TEXT
 );
