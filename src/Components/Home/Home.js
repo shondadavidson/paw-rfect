@@ -14,7 +14,9 @@ export default function() {
           <div className='home-inner-container'>Current Providers</div>
         </div>
         <div>
-          <button className="btn btn-success">Owner Profile</button>
+          <Link to='/ownerprofile'>
+            <button className="btn btn-success">Owner Profile</button>
+          </Link>
         </div>
         <div>
           <h1>Service Providers</h1>
@@ -24,7 +26,9 @@ export default function() {
           <div className='home-inner-container'>New requests</div>
         </div>
         <div>
-          <button className="btn btn-success">Provider Profile</button>
+          <Link to='/providerprofile'>
+            <button className="btn btn-success">Provider Profile</button>
+          </Link>
         </div>
       </div>
     </div>
