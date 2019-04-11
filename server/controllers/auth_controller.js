@@ -21,7 +21,7 @@ module.exports = {
     const { email, password } = req.body;
     const { session } = req;
     const db = req.app.get("db");
-    let user = await db.login({ email });
+    let user = await db.login({ email: email });
     user = user[0];
     if (!user) {
       return res.sendStatus(404);

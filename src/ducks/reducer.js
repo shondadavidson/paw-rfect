@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
             const { id, name } = payload
             return { ...state, id, name }
         case CLEAR_USER:
-            return { ...state, id:null, username: ''}
+            return { ...state, id:null, name: ''}
         default: 
             return state
     }

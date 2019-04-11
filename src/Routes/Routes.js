@@ -10,9 +10,9 @@ import ServiceProviderList from '../Components/ServiceProviderList/ServiceProvid
 import DetailedServiceProvider from '../Components/ServiceProviderList/DetailedServiceProvider';
 import ClientList from '../Components/ClientList/ClientList';
 import SearchForProvider from '../Components/SearchForProvider/SearchForProvider';
-import Splash from '../Components/Splash/Splash'
 import Faq from '../Components/Faq/Faq';
 import Contact from '../Components/Contact/Contact';
+import ImageUpload from '../Components/ImageUpload/ImageUpload'
 
 
 export default (
@@ -29,5 +29,6 @@ export default (
         <Route path='/searchProviders' component={SearchForProvider} />
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
+        <Route path='/imageupload' component={ImageUpload} />
     </Switch>
 )
