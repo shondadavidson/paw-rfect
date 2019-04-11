@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class Splash extends Component {
+function Splash(){
 
-    render() {
+
         return(
             <>
             <h1>Welcome to Paw-rfect</h1>
@@ -13,7 +13,6 @@ class Splash extends Component {
             <div>pictures of dogs go here</div>
             </>
         )
-    }
 }
 
 export default Splash;
