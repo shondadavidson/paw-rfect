@@ -9,7 +9,8 @@ CREATE TABLE users (
 	zip integer,
 	short_desc varchar(255),
 	bio TEXT,
-	experience TEXT
+	experience TEXT,
+	dogs_are_on_walk boolean
 );
 
 create table user_auth (
@@ -29,6 +30,7 @@ CREATE TABLE dog (
 	dog_gender varcahr(10),
 	special_notes TEXT,
 	owner_id INTEGER
+	
 );
 
 CREATE TABLE owner_client (
@@ -36,12 +38,14 @@ CREATE TABLE owner_client (
 	"provider_id" integer,
 	"client_request" varchar,
 	"provider_approve" varchar
+	
 );
 
 CREATE TABLE walk (
     walk_id serial Primary Key,
 	provider_id integer,
 	owner_id integer,
+	owner_name, varchar,
 	dog_id integer,
 	start_time TIMESTAMP,
 	end_time TIMESTAMP
