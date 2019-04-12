@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { updateOwnersDogs } from '../../ducks/reducer'
 
 class AddDog extends Component {
     constructor(){
@@ -25,7 +26,7 @@ class AddDog extends Component {
 
     save = async() => { 
         // console.log(this.props.id)
-        const {id} = this.props;
+        const { id, updateOwnersDogs } = this.props;
         let newDog ={
             dogName: this.state.dogName,
             dogAge: this.state.dogAge,
@@ -37,6 +38,7 @@ class AddDog extends Component {
         }
         let dogs = await axios.post(`/api/addDog/${id}`, newDog);
         console.log({dogs: dogs})
+        updateOwnersDogs(dogs)
     }
 
     render(){ console.log(this.state.dogName, this.state.dogAge, this.state.dogWeight, this.state.dogBreed, this.state.dogGender,  this.state.dogSpecialNotes, this.state.dogPicture,{this:this}, {id:this.props.id})
@@ -70,8 +72,12 @@ class AddDog extends Component {
 
 const mapStateToProps = reduxState => {
     return {
-        id: reduxState.id
+        id: reduxState.id,
+        ownersDogs: reduxState.ownersDogs
     }
 }
 
-export default connect(mapStateToProps) (AddDog);
+const mapDispatchToProps = {
+    updateOwnersDogs
+}
+export default connect(mapStateToProps, mapDispatchToProps) (AddDog);
