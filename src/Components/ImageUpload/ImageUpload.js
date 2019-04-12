@@ -40,7 +40,7 @@ class ImageUpload extends Component {
   // when clicked it upload
   sendPhoto(event) {
     return axios.post('/api/s3', this.state).then(response => {
-      this.setState({ img: response.data.location });
+      this.setState({ img: response.data.Location });
     });
   }
 

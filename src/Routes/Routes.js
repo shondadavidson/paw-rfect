@@ -27,7 +27,7 @@ export default (
         <Route path='/serviceProviders' component={ServiceProviderList} />
         <Route path='/detailedProvider/:provider_id' component={DetailedServiceProvider} />
         <Route path='/clientlist' component={ClientList} />
-        <Route path='/searchProviders' component={SearchForProvider} />
+        <Route path='/searchproviders' component={SearchForProvider} />
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />

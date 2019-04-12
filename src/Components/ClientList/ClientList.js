@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class ClientList extends Component {
 
@@ -11,7 +12,7 @@ class ClientList extends Component {
                 </div>
                 <div>
                     <div>
-                    <i className="far fa-comment-dots"></i>
+                    <Link to='/chat'><i className="far fa-comment-dots"></i></Link>
                     </div>
                     <div>
                         <h5>Owner Name</h5>

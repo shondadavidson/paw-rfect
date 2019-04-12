@@ -15,17 +15,6 @@ const AWS = require('aws-sdk');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
-const aws = require("aws-sdk");
-
-const {
-  SERVER_PORT,
-  CONNECTION_STRING,
-  SESSION_SECRET,
-  S3_BUCKET,
-  AWS_ACCESS_KEY_ID,
-  AWS_SECRET_ACCESS_KEY
-} = process.env;
-
 const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
 })
@@ -72,10 +61,11 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.post('/api/s3', (req, res) => {
   // the body contains the string that is the photo
   const photo = req.body;
-
+  let file = photo.file.replace(/^data:image\/\w+;base64,/, '')
+  console.log(req.body)
   // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
   // console.log(photo.file.replace(/^data:image\/\w+;base64,/, ''))
-  const buf = new Buffer(photo.file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+  const buf = new Buffer.from(file, 'base64');
 
   // this is the object that we will end to s3 with all the info about the photo, and the photo itself.
   const params = {
