@@ -10,7 +10,7 @@ export default function() {
           <h1>Dog Owners</h1>
         </div>
         <div className='home-container'>
-          <div className='home-inner-container'>Find Providers</div>
+          <Link to='/searchproviders'><div className='home-inner-container'>Search for Providers</div></Link>
           <div className='home-inner-container'>Current Providers</div>
         </div>
         <div>
