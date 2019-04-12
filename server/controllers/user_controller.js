@@ -62,7 +62,37 @@ module.exports = {
         })
     },
     owner: (req, res) => {
-        console.log('hit')
+        console.log('hit user_controller owner')
+    },
+    addDog: (req, res) => {
+        console.log('hit user_controller addDog')
+        console.log(req.params)
+        console.log(req.body)
+        let { id } = req.params
+        let {dogName, dogAge, dogWeight, dogBreed, dogGender, dogSpecialNotes, dogPicture} = req.body;
+        id = parseInt(id);
+        dogAge = parseInt(dogAge);
+        dogWeight = parseInt(dogWeight);
+        const owner_id = id
+        const newDog = {
+            dog_name: dogName, 
+            dog_age : dogAge, 
+            weight: dogWeight, 
+            breed: dogBreed,
+            dog_gender: dogGender, 
+            special_notes: dogSpecialNotes, 
+            dog_picture: dogPicture,
+            owner_id: id
+        }
+        const db = req.app.get('db')
+        db.users.add_dog(newDog).then(
+            dogs => {
+                console.log({dogs: dogs})
+                res.status(200).send(dogs)
+            }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
     }
 
 
