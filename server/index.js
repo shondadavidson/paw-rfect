@@ -101,6 +101,7 @@ app.get("/api/current", ac.getUser);
 app.get('/api/getClients/:id', pc.getClients)
 app.get('/api/getClientRequests/:id', pc.getClientRequests)
 app.get('/api/getRequestCount/:id', pc.getRequestCount)
+app.post('/api/pickup/:id', pc.pickup)
 
 //user_controller
 
@@ -108,6 +109,7 @@ app.get('/api/getMyProviders/:id', uc.getMyProviders)
 app.post('/api/provider/:id', uc.provider)
 app.get('/api/searchProviders/:zip', uc.searchProviders)
 app.post('/api/addProvider/:id', uc.addProvider)
+app.post('/api/dropoff/:id', pc.dropoff)
 
 app.post('/api/addDog/:id', uc.addDog)
 // SOCKETS

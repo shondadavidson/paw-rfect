@@ -6,10 +6,13 @@ import axios from 'axios'
 const ClientList = (props) => {
     const [clients, setClients] = useState([])
     const [requests, setRequests] = useState(0)
+    const [walking, setWalking] = useState({})
+  
 
     useEffect(() => {
         getClients()
         getRequests()
+        // getWalking()
     }, [])
 
     const getClients = () => {
@@ -24,21 +27,37 @@ const ClientList = (props) => {
         })
     }
 
-    const mappedClients = clients.map((client, i) => {
-        const mappedDogs = client.clients.dogs.map((dog, i) => {
+    const pickup = (val) => {
+        console.log(val)
+        axios.post(`/api/pickup/${props.id}`, {ownerId: val} ).then(res => {
+            setClients(res.data)
+            console.log(clients)
+        })
+    }
+
+    // const getWalking = () => {
+    //     axios.get(`/api/pickup/${props.id}`).then(res => {
+    //         setWalking(res.data)
+    //     })
+    // }
+
+    const mappedClients = clients.map((client) => {
+        const mappedDogs = client.clients.dogs.map((dog) => {
             return (
-                <div key={i}>
+                <div key={dog.god_id}>
                     <p>{dog.dog_name}</p>
 
                 </div>
             )
         })
         return (
-            <div key={i}>
+            <div key={client.clients.id}>
                 <h4>{client.clients.name}</h4>
                 <i className="far fa-comment-dots"></i>
                 {mappedDogs}
-                <button>Pickup</button>
+                <p>test</p>
+                {client.clients.walk}
+                <button onClick={() => pickup(client.clients.id)}>Pickup</button>
                 <button>Dropoff</button>
 
             </div>
