@@ -73,7 +73,6 @@ module.exports = {
         id = parseInt(id);
         dogAge = parseInt(dogAge);
         dogWeight = parseInt(dogWeight);
-        const owner_id = id
         const newDog = {
             dog_name: dogName, 
             dog_age : dogAge, 
