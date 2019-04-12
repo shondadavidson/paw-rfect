@@ -14,6 +14,7 @@ import Faq from '../Components/Faq/Faq';
 import Contact from '../Components/Contact/Contact';
 import ImageUpload from '../Components/ImageUpload/ImageUpload'
 import Chat from '../Components/Chat/Chat'
+import PendingClientList from '../Components/ClientList/PendingClientList'
 
 
 export default (
@@ -27,6 +28,7 @@ export default (
         <Route path='/serviceProviders' component={ServiceProviderList} />
         <Route path='/detailedProvider/:provider_id' component={DetailedServiceProvider} />
         <Route path='/clientlist' component={ClientList} />
+        <Route path='/pendingclients' component={PendingClientList} />
         <Route path='/searchProviders' component={SearchForProvider} />
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
