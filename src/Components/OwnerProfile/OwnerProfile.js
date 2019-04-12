@@ -9,9 +9,9 @@ class OwnerProfile extends Component{
 
         this.state={
             editing:false,
-            ownerName:'Test Owner',
-            ownerShortDescription:'Test Owner loves dogs',
-            ownerPicture:'https://robohash.org/borris?set=set4',
+            ownerName:'',
+            ownerShortDescription:'',
+            ownerPicture:'',
             ownerZip:0
 
         }
@@ -40,7 +40,8 @@ class OwnerProfile extends Component{
     }
 
     render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
-    console.log(this)
+    // console.log(this)
+    console.log({testImage:'https://robohash.org/borris?set=set4'})
         return(
             <>
                 <div>

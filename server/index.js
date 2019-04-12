@@ -16,7 +16,7 @@ const AWS = require('aws-sdk');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
-
+const aws = require("aws-sdk");
 
 const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
@@ -91,11 +91,11 @@ app.post('/api/s3', (req, res) => {
 
 
 //Auth_controller
-app.post('/auth/register', ac.register)
-app.post('/auth/login', ac.login)
-app.post('/auth/logout', ac.logout)
+app.post("/auth/register", ac.register);
+app.post("/auth/login", ac.login);
+app.post("/auth/logout", ac.logout);
 
-app.get('/api/current', ac.getUser)
+app.get("/api/current", ac.getUser);
 
 //provider_controller
 app.get('/api/getClients/:id', pc.getClients)
@@ -109,6 +109,7 @@ app.post('/api/provider/:id', uc.provider)
 app.get('/api/searchProviders/:zip', uc.searchProviders)
 app.post('/api/addProvider/:id', uc.addProvider)
 
+app.post('/api/addDog/:id', uc.addDog)
 // SOCKETS
 
 const io = socket(app.listen(SERVER_PORT, () => console.log('Sweeettt')))
