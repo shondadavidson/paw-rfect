@@ -15,7 +15,16 @@ const AWS = require('aws-sdk');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
+const aws = require("aws-sdk");
 
+const {
+  SERVER_PORT,
+  CONNECTION_STRING,
+  SESSION_SECRET,
+  S3_BUCKET,
+  AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY
+} = process.env;
 
 const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
@@ -98,11 +107,11 @@ app.post('/api/s3', (req, res) => {
 
 
 //Auth_controller
-app.post('/auth/register', ac.register)
-app.post('/auth/login', ac.login)
-app.post('/auth/logout', ac.logout)
+app.post("/auth/register", ac.register);
+app.post("/auth/login", ac.login);
+app.post("/auth/logout", ac.logout);
 
-app.get('/api/current', ac.getUser)
+app.get("/api/current", ac.getUser);
 
 //user_controller
 
