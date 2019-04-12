@@ -36,12 +36,12 @@ class AddDog extends Component {
             dogSpecialNotes: this.state.dogSpecialNotes,
             dogPicture: this.state.dogPicture
         }
-        let dogs = await axios.post(`/api/addDog/${id}`, newDog);
-        console.log({dogs: dogs})
-        updateOwnersDogs(dogs)
+        let res = await axios.post(`/api/addDog/${id}`, newDog);
+        updateOwnersDogs(res.data)
     }
 
-    render(){ console.log(this.state.dogName, this.state.dogAge, this.state.dogWeight, this.state.dogBreed, this.state.dogGender,  this.state.dogSpecialNotes, this.state.dogPicture,{this:this}, {id:this.props.id})
+    render(){ 
+        // console.log(this.state.dogName, this.state.dogAge, this.state.dogWeight, this.state.dogBreed, this.state.dogGender,  this.state.dogSpecialNotes, this.state.dogPicture,{this:this}, {id:this.props.id})
         return(
             <>
                 <h1>AddDog</h1>

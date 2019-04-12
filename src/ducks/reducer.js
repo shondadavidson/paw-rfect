@@ -22,9 +22,9 @@ export function clearUser() {
 }
 
 export function updateOwnersDogs(dogs){
-    console.log('hit update owners dogs')
+    // console.log(dogs)
     return {
-        type: updateOwnersDogs,
+        type: UPDATE_OWNERS_DOGS,
         payload: dogs
     }
 }
@@ -38,8 +38,8 @@ export default function reducer(state = initialState, action) {
         case CLEAR_USER:
             return { ...state, id:null, name: ''}
         case UPDATE_OWNERS_DOGS:
-            const {dogs} = payload;
-            return {...state, dogs: dogs}
+            // console.log(payload)
+            return {...state, ownersDogs: payload }
         default: 
             return state
     }

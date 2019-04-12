@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateUser } from './../../ducks/reducer';
-import {Link} from 'react-router-dom';
+// import { updateUser } from './../../ducks/reducer';
+import { Link } from 'react-router-dom';
+import Dogs from '../Dogs/Dogs';
 
 class OwnerProfile extends Component{
     constructor(){
@@ -65,8 +66,12 @@ class OwnerProfile extends Component{
 
 
                 <div>
-                    <div>DOG</div>
+                    <Dogs/>
+                    <div></div>
                 </div>
+
+
+
                 <div>
                     <Link to='/adddog'>
                         <button>+ Add Dog</button>
@@ -90,7 +95,8 @@ class OwnerProfile extends Component{
 
 const mapStateToProps = reduxState => {
     return {
-        name: reduxState.name
+        name: reduxState.name,
+        ownersDogs: reduxState.ownersDogs
     }
 }
 
