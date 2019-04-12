@@ -6,14 +6,7 @@
   list-style: none;
   display: none;
 }
-.show {
-  margin-top: -20px;
-  display: block;
-  height: 140px;
-}
-.fa {
-  margin-left: -315px;
-}
+
 
 .dead-link {
   text-decoration: none !important;

@@ -24,7 +24,7 @@ module.exports = {
         ownerId = parseInt(ownerId)
         db.users.get_provider({ id: id, owner_id: ownerId }).then(
             resp => {
-                res.status(200).send(resp)
+                res.status(200).send(resp[0])
             }
         ).catch(err => {
             res.status(400).send(err)

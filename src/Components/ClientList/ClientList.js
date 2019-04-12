@@ -7,7 +7,6 @@ class ClientList extends Component {
         return(
             <div>
                 <div>
-                    <h1>Welcome{this.props.name}</h1>
                     <h4>Client List</h4>
                 </div>
                 <div>
