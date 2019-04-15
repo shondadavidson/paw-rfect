@@ -1,10 +1,12 @@
 const initialState = {
     id: null,
-    name: ''
+    name: '',
+    ownersDogs: []
 }
 
 const UPDATE_USER = 'UPDATE_USER'
 const CLEAR_USER = 'CLEAR_USER'
+const UPDATE_OWNERS_DOGS = 'UPDATE_OWNERS_DOGS'
 
 export function updateUser(user) {
     return {
@@ -19,6 +21,14 @@ export function clearUser() {
     }
 }
 
+export function updateOwnersDogs(dogs){
+    // console.log(dogs)
+    return {
+        type: UPDATE_OWNERS_DOGS,
+        payload: dogs
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const { type, payload } = action
     switch (type) {
@@ -27,6 +37,9 @@ export default function reducer(state = initialState, action) {
             return { ...state, id, name }
         case CLEAR_USER:
             return { ...state, id:null, name: ''}
+        case UPDATE_OWNERS_DOGS:
+            // console.log(payload)
+            return {...state, ownersDogs: payload }
         default: 
             return state
     }

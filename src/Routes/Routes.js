@@ -33,6 +33,6 @@ export default (
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />
-        <Route path='/chat' component={Chat} />
+        <Route path='/chat/:userId/:providerId' component={Chat} />
     </Switch>
 )
