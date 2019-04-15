@@ -61,13 +61,65 @@ module.exports = {
             res.status(400).send(err)
         })
     },
-    owner: (req, res) => {
-        console.log('hit user_controller owner')
+    getOwner: (req, res) => {
+        // console.log('hit controller get owner')
+        // console.log({params:req.params})
+        let {id} = req.params
+        // console.log(id)
+        id = parseInt(id)
+        // console.log({getOwnerId: id})
+        const db = req.app.get('db')
+        db.users.get_owner({id: id}).then(
+            owner => {
+                // console.log({owner:owner})
+                res.status(200).send(owner)
+            }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
+    },
+    updateOwner: (req, res) => {
+        // console.log('hit user_controller owner')
+        const { id } = req.params;
+        // console.log(id)
+        // console.log(req.body)
+        const {ownerName, ownerShortDescription, ownerPicture, ownerZip} = req.body
+        const infoUpdate = {
+            name: ownerName,
+            picture: ownerPicture,
+            short_desc: ownerShortDescription,
+            zip: ownerZip,
+            id: id
+        }
+        // console.log(infoUpdate)
+        const db = req.app.get('db')
+        db.users.update_owner(infoUpdate).then(
+            res.sendStatus(200)
+        ).catch(err => {
+            res.status(400).send(err)
+        })
+
+    },
+    getDogs: (req, res) => {
+        // console.log('hit get dogs')
+        let { id } = req.params;
+        // console.log(id)
+        id = parseInt(id);
+        // console.log(id)
+        const db = req.app.get('db')
+        db.users.get_dogs({owner_id: id}).then(
+            dogs => {
+                // console.log({dogs: dogs})
+                res.status(200).send(dogs)
+            }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
     },
     addDog: (req, res) => {
-        console.log('hit user_controller addDog')
-        console.log(req.params)
-        console.log(req.body)
+        // console.log('hit user_controller addDog')
+        // console.log(req.params)
+        // console.log(req.body)
         let { id } = req.params
         let {dogName, dogAge, dogWeight, dogBreed, dogGender, dogSpecialNotes, dogPicture} = req.body;
         id = parseInt(id);
@@ -86,7 +138,7 @@ module.exports = {
         const db = req.app.get('db')
         db.users.add_dog(newDog).then(
             dogs => {
-                console.log({dogs: dogs})
+                // console.log({dogs: dogs})
                 res.status(200).send(dogs)
             }
         ).catch(err => {
