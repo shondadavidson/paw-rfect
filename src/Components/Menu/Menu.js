@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateUser, clearUser } from '../../ducks/reducer'
 import { Link } from 'react-router-dom'
+import { MenuList, MenuItem } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 
 class Menu extends Component {
     constructor(props){
@@ -42,25 +44,25 @@ class Menu extends Component {
 
       render() {
           const { name } = this.props
+          if (this.props.location.pathname !== '/' && this.props.location.pathname !=='/dashboard') {
         return(
             <div>
                 <h5>Welcome {name}</h5>
                 <div className='toggle' onClick={() => this.toggle()}>
                     <i className="fa fa-bars"></i>
                 </div>
-                <ul className={ this.state.show ? 'menu show': 'menu'}>
-                    <Link to='/home'><li>Home</li></Link>
-                    <Link to='/ownerprofile'><li>Owner's Profile</li></Link>
-                    <Link to='/providerprofile'><li>Walker's Profile</li></Link>
-                    <li>Payment</li>
-                    <Link to='/contact'><li>Contact Us</li></Link>
-                    <Link to='/faq'><li>FAQ</li></Link>
-                    <button onClick={this.logout}>Logout</button>
-                    {/* <li>Log Out</li> */}
-                </ul>
+                <MenuList className={ this.state.show ? 'menu show': 'menu'}>
+                  <MenuItem component={ Link } to='/home'>Home</MenuItem>
+                  <MenuItem component={ Link } to='/ownerprofile'>Owner's Profile</MenuItem>
+                  <MenuItem component={ Link } to='/providerprofile'>Provider Profile</MenuItem>
+                  <MenuItem component={ Link } to='/contact'>Contact Us</MenuItem>
+                  <MenuItem component={ Link } to='/faq'>FAQ</MenuItem>
+                  <MenuItem><Button onClick={this.logout}>Log Out</Button></MenuItem>
+                </MenuList>
             </div>
         )
-      }
+      } return null
+    }
 }
 
 const mapStateToProps = reduxState => {

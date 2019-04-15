@@ -9,7 +9,8 @@ CREATE TABLE users (
 	zip integer,
 	short_desc varchar(255),
 	bio TEXT,
-	experience TEXT
+	experience TEXT,
+	dogs_are_on_walk boolean
 );
 
 create table user_auth (
@@ -29,6 +30,7 @@ CREATE TABLE dog (
 	dog_gender varcahr(10),
 	special_notes TEXT,
 	owner_id INTEGER
+	
 );
 
 CREATE TABLE owner_client (
@@ -36,12 +38,14 @@ CREATE TABLE owner_client (
 	"provider_id" integer,
 	"client_request" varchar,
 	"provider_approve" varchar
+	
 );
 
 CREATE TABLE walk (
     walk_id serial Primary Key,
 	provider_id integer,
 	owner_id integer,
+	owner_name, varchar,
 	dog_id integer,
 	start_time TIMESTAMP,
 	end_time TIMESTAMP
@@ -85,3 +89,40 @@ values (1,2,'approved', 'approved')
 
 insert into users (name, email, dog_owner, provider_walker, provider_sitter, provider_boarder, zip, short_desc, bio, experience)
 values ('shonda', 'shonda@email.com', true, true, true, true, 84790, 'short desc', 'bio', 'experience')
+
+
+select *, (
+    select row_to_json(c)
+    from (
+        select *, (
+            select coalesce(json_agg(d), '[]'::json)
+            from (
+                select *
+                from dog
+                where owner_id = u.id
+            ) d
+        ) as dogs
+        from users u
+        where id = o.owner_id
+    ) c 
+) as clients
+from owner_client as o
+where provider_id = 2;
+
+select *, (
+    select json_agg(c)
+    from (
+        select *, (
+            select coalesce(json_agg(d), '[]'::json)
+            from (
+                select *
+                from dog
+                where owner_id = u.id
+            ) d
+        ) as dogs
+        from users u
+        where id = u.id
+    ) c
+) as clients
+from users u
+where id = 2

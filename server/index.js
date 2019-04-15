@@ -9,13 +9,12 @@ const socket = require('socket.io')
 
 const ac = require('./controllers/auth_controller')
 const uc = require('./controllers/user_controller')
+const pc = require('./controllers/provider_controller')
 
 const app = express()
 const AWS = require('aws-sdk');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
-
-const aws = require("aws-sdk");
 
 const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
@@ -42,12 +41,6 @@ massive(CONNECTION_STRING).then(db => {
 
 //Amazon s-3
 
-console.log({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
-})
-
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -63,10 +56,11 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.post('/api/s3', (req, res) => {
   // the body contains the string that is the photo
   const photo = req.body;
-
+  let file = photo.file.replace(/^data:image\/\w+;base64,/, '')
+  console.log(req.body)
   // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
   // console.log(photo.file.replace(/^data:image\/\w+;base64,/, ''))
-  const buf = new Buffer(photo.file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+  const buf = new Buffer.from(file, 'base64');
 
   // this is the object that we will end to s3 with all the info about the photo, and the photo itself.
   const params = {
@@ -77,11 +71,9 @@ app.post('/api/s3', (req, res) => {
     ACL: 'public-read',
   };
 
-  console.log('hit 74', params)
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
-    console.log('hit 76', err, data)
     let response, code;
     if (err) {
       response = err;
@@ -104,12 +96,19 @@ app.post("/auth/logout", ac.logout);
 
 app.get("/api/current", ac.getUser);
 
+//provider_controller
+app.get('/api/getClients/:id', pc.getClients)
+app.get('/api/getClientRequests/:id', pc.getClientRequests)
+app.get('/api/getRequestCount/:id', pc.getRequestCount)
+app.post('/api/pickup/:id', pc.pickup)
+
 //user_controller
 
 app.get('/api/getMyProviders/:id', uc.getMyProviders)
 app.post('/api/provider/:id', uc.provider)
 app.get('/api/searchProviders/:zip', uc.searchProviders)
 app.post('/api/addProvider/:id', uc.addProvider)
+app.post('/api/dropoff/:id', pc.dropoff)
 
 app.post('/api/addDog/:id', uc.addDog)
 app.get('/api/getDogs/:id', uc.getDogs)
