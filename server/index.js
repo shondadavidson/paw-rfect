@@ -8,6 +8,7 @@ const pgSession = require('connect-pg-simple')(session)
 const socket = require('socket.io')
 
 const ac = require('./controllers/auth_controller')
+const cc = require('./controllers/chat_controller')
 const uc = require('./controllers/user_controller')
 const pc = require('./controllers/provider_controller')
 
@@ -96,11 +97,16 @@ app.post("/auth/logout", ac.logout);
 
 app.get("/api/current", ac.getUser);
 
+// chat_controller
+app.get('/api/getChat/:id', cc.getChat)
+
 //provider_controller
 app.get('/api/getClients/:id', pc.getClients)
 app.get('/api/getClientRequests/:id', pc.getClientRequests)
 app.get('/api/getRequestCount/:id', pc.getRequestCount)
+app.get('/api/getWalking/:id', pc.getWalking)
 app.post('/api/pickup/:id', pc.pickup)
+app.put('/api/dropoff/:id', pc.dropoff)
 
 //user_controller
 

@@ -63,7 +63,7 @@ CREATE TABLE review (
 
 CREATE TABLE chat (
     chat_id serial primary key,
-	room integer,
+	room varchar,
 	user_name varChar,
 	name varchar,
 	message  TEXT,

@@ -1,5 +1,5 @@
 module.exports = {
-    getChat: (req, res){
+    getChat: (req, res) => {
     const db = req.app.get('db')
         let { id } = req.params
         db.chat.get_message_history({ room: id }).then(
