@@ -85,7 +85,8 @@ class OwnerProfile extends Component{
                 {this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
                     <input placeholder={'Name'} onChange={e=>{this.handleInput('ownerName', e.target.value)}}/>
                     <input placeholder={'Short Description'} onChange={e=>{this.handleInput('ownerShortDescription', e.target.value)}}/>
-                    <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/>
+                    {/* <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/> */}
+                    <ImageUpload />
                     <input placeholder={'Zip Code'} onChange={e=>{this.handleInput('ownerZip', e.target.value)}}/>
                 </div>}
 
