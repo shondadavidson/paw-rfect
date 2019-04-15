@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import { updateUser } from './../../ducks/reducer';
 import { Link } from 'react-router-dom';
 import Dogs from '../Dogs/Dogs';
+import { updateOwnersDogs } from '../../ducks/reducer';
+import axios from 'axios';
 
 class OwnerProfile extends Component{
     constructor(){
@@ -22,6 +24,8 @@ class OwnerProfile extends Component{
         this.setState({
             ownerName: this.props.name
         })
+        this.getOwner()
+        this.getDogs()
     }
 
     toggle = (prop) => {
@@ -35,14 +39,44 @@ class OwnerProfile extends Component{
             [prop]:val
         })
     }
+    
+    setOwner = (val) => {
+        this.setState({
+            ownerName: val.name,
+            ownerShortDescription: val.short_desc,
+            ownerPicture: val.picture,
+            ownerZip: val.zip
+        })
+    }
 
-    save = () => {
+    save = async() => {
+        const {id} = this.props
+        const {ownerName, ownerShortDescription, ownerPicture, ownerZip} = this.state
+        console.log({ownerId: this.props.id}, ownerName, ownerShortDescription, ownerPicture, ownerZip);
+        let infoUpdate = {ownerName, ownerShortDescription, ownerPicture, ownerZip};
+        let res = await axios.put(`/api/updateOwner/${id}`, infoUpdate);
+        this.setOwner(res.data)
+    }
 
+    getDogs = async() => {
+        const {id, updateOwnersDogs} = this.props
+        // console.log(id)
+        let res = await axios.get(`/api/getDogs/${id}`)
+        console.log({data:res.data})
+        updateOwnersDogs(res.data)
+    }
+
+    getOwner = async() => {
+        const {id} = this.props
+        console.log(id)
+        let res = await axios.get(`/api/getOwner/${id}`)
+        console.log({data:res.data})
+        this.setOwner(res.data[0])
     }
 
     render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
     // console.log(this)
-    console.log({testImage:'https://robohash.org/borris?set=set4'})
+    console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
         return(
             <>
                 <div>
@@ -56,9 +90,9 @@ class OwnerProfile extends Component{
                 </div>}
 
                 {!this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
+                    <img src={this.state.ownerPicture} alt='' style={{'width':'50vw'}}/>
                     <input placeholder={'Name'} value={this.state.ownerName} readOnly/>
                     <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly/>
-                    <img src={this.state.ownerPicture} alt=''/>
                     <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly/>
                 </div>}
 
@@ -96,8 +130,13 @@ class OwnerProfile extends Component{
 const mapStateToProps = reduxState => {
     return {
         name: reduxState.name,
+        id: reduxState.id,
         ownersDogs: reduxState.ownersDogs
     }
 }
 
-export default connect(mapStateToProps) (OwnerProfile);
+const mapDispatchToProps = {
+    updateOwnersDogs
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (OwnerProfile);
