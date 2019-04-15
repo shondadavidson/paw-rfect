@@ -12,18 +12,22 @@ const SearchForProvider = () => {
         })
     }
 
+
+
          const mappedProviders = providers.map(provider => {
             return (
-                <Link key={provider.id} to={`/detailedProvider/${provider.id}`} className="dead-link">
+                
                 <div >
-                    <i className="far fa-comment-dots"></i>
+                    
+                    <Link key={provider.id} to={`/detailedProvider/${provider.id}`} className="dead-link">
                     <p>{provider.name}</p>
                     <p>{provider.experience}</p>
                     <p>{provider.short_desc}</p>
+                    </Link>
                     <p>--------------</p>
 
                 </div>
-                </Link>
+              
             )
         })
 

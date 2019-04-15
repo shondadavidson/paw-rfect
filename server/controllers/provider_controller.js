@@ -33,6 +33,18 @@ module.exports = {
             })
     },
 
+    getWalking: (req, res) => {
+        const db = req.app.get('db')
+        let {id} = req.params
+        id = parseInt(id)
+        db.provider.get_walking({provider_id: id}).then(
+            resp => {
+                res.status(200).send(resp)
+            }
+        )
+
+    },
+
     pickup: (req, res) => {
         console.log(req.params)
         console.log(req.body)
@@ -52,12 +64,14 @@ module.exports = {
     },
 
     dropoff: (req, res) => {
+        console.log(req.params)
+        console.log(req.body)
         const db = req.app.get('db')
         let { id } = req.params
-        let { ownerId } = req.body
+        let {provider_id} = req.body
         id = parseInt(id)
-        ownerId = parseInt(ownerId)
-        db.provider.pickup({ provider_id: id, owner_id: ownerId }).then(
+        provider_id = parseInt(provider_id)
+        db.provider.dropoff({ walk_id: id, provider_id: provider_id}).then(
             resp => {
                 res.status(200).send(resp)
             }
