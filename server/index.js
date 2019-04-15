@@ -74,6 +74,8 @@ app.post('/api/s3', (req, res) => {
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
+    console.log(data)
+    
     let response, code;
     if (err) {
       response = err;

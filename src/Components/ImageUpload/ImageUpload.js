@@ -40,21 +40,21 @@ class ImageUpload extends Component {
   // when clicked it upload
   sendPhoto(event) {
     return axios.post('/api/s3', this.state).then(response => {
+      console.log(response.data)
       this.setState({ img: response.data.Location });
+      
     });
   }
 
   render() {
     return (
-      <div className="ImageUpload">
-        <header className="ImageUpload-header">
-          <h1 className="ImageUpload-title">Welcome to React</h1>
-        </header>
-        <input type="file" id="real" onChange={this.handlePhoto} />
+      <div className="ImageUpload" style={{display:'flex'}}>
+        <input type="file" id="real" onChange={this.handlePhoto}/>
         <button onClick={this.sendPhoto}>upload</button>
-        <div>
+        <div >
           <img src={this.state.img} alt="none" />
         </div>
+        
       </div>
     );
   }
