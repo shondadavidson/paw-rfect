@@ -38,6 +38,14 @@ class DetailedServiceProvider extends Component {
     })
   }
 
+  removeProvider = (id) => {
+    axios.post(`/api/removeProvider/${id}`, {user_id: this.props.id}).then(res => {
+      this.setState({
+        provider: res.data
+      })
+    })
+  }
+
   startChat = (myId, friendId) => {
     // console.log(myId, friendId)
 
@@ -65,7 +73,7 @@ class DetailedServiceProvider extends Component {
           <p>provider approved? {user.provider_approve}</p>
         
           
-          <i className="fas fa-user-slash"></i>
+          <i className="fas fa-user-slash" onClick={() => this.removeProvider(user.id)}></i>
 
           <h6>Past Ratings</h6>
       </div>

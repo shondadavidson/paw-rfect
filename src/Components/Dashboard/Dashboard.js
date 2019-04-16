@@ -30,8 +30,9 @@ class Dashboard extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Welcome to Paw-rfect</h1>
+      <div className='container'>
+      <div className='col-12'>
+        <h1>Paw-rfect</h1>
         <div>
           <img src={Beagle} alt="Beagle"/>
           <img src={Rot} alt="Rot"/>
@@ -58,6 +59,7 @@ class Dashboard extends Component {
          Register
        </div>
        {this.state.isRegisterOpen && <Register history={this.props.history}/>}
+       </div>
        </div>
       </div>
     );
