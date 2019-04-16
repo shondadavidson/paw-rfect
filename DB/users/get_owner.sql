@@ -1,3 +1,3 @@
-SELECT name, picture, zip, short_desc
+SELECT name, picture, zip, owner_desc
 FROM users
 WHERE id = ${id};
