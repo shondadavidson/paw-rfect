@@ -9,9 +9,10 @@ class Dogs extends Component{
             const { dog_picture, dog_name, dog_age, weight, breed, dog_gender, special_notes, dog_id } = dog 
             return(
                 <div key = {dog_id} style={{'overflow':'auto'}}>
-                    <img src={dog_picture} alt='' style={{'width':'85vw'}}/>
+                    <img src={dog_picture} alt='' style={{'width':'15vw'}}/>
                     <div style={{'display':'flex', 'justifyContent':'center'}}>
                         <div>
+                            {/* <p>Picture:</p> */}
                             <p>Name:</p>
                             <p>Age:</p>
                             <p>Weight:</p>
@@ -20,6 +21,7 @@ class Dogs extends Component{
                             <p>Special Notes:</p>
                         </div>
                         <div>
+                            {/* <img src={dog_picture} alt=""/> */}
                             <p>{dog_name}</p>
                             <p>{dog_age}</p>
                             <p>{weight}</p>
