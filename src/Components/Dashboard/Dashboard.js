@@ -31,36 +31,36 @@ class Dashboard extends Component {
   render() {
     return (
       <div className='container'>
-      <div className='col-12'>
-        <h1>Paw-rfect</h1>
-        <div>
-          <img src={Beagle} alt="Beagle"/>
-          <img src={Rot} alt="Rot"/>
-          <img src={Dalmatian} alt="Dalmatian"/>
-        </div>
-        <div className='box-controller'>
-        <div
-         className={"controller " + (this.state.isLoginOpen
-            ? "selected-controller"
-            : "")}
-            onClick={this
+        <div className='col-12 col-md-8 col-l-6 Dashboard'>
+          <h1>Paw-rfect</h1>
+          <div>
+            <img src={Beagle} alt="Beagle" />
+            <img src={Rot} alt="Rot" />
+            <img src={Dalmatian} alt="Dalmatian" />
+          </div>
+          <div className='box-controller'>
+            <div
+              className={"controller " + (this.state.isLoginOpen
+                ? "selected-controller"
+                : "")}
+              onClick={this
                 .showLoginBox
                 .bind(this)}>
-         Login
-                {this.state.isLoginOpen && <Login history={this.props.history}/>}
-       </div>
-       <div
-         className={"controller " + (this.state.isRegisterOpen
-            ? "selected-controller"
-            : "")}
-            onClick={this
+              Login
+                {this.state.isLoginOpen && <Login history={this.props.history} />}
+            </div>
+            <div
+              className={"controller " + (this.state.isRegisterOpen
+                ? "selected-controller"
+                : "")}
+              onClick={this
                 .showRegisterBox
                 .bind(this)}>
-         Register
+              Register
        </div>
-       {this.state.isRegisterOpen && <Register history={this.props.history}/>}
-       </div>
-       </div>
+            {this.state.isRegisterOpen && <Register history={this.props.history} />}
+          </div>
+        </div>
       </div>
     );
   }

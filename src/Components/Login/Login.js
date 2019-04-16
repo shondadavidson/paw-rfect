@@ -3,6 +3,7 @@ import axios from "axios"
 import { connect } from "react-redux"
 import { updateUser } from '../../ducks/reducer'
 
+
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -53,18 +54,22 @@ class Login extends Component {
     render() {
         const { email, password } = this.state
         return (
-            <div>
-                <input type='text'
-                placeholder='email'
-                value={email}
-                onChange={e => this.handleChange("email", e.target.value)}
+            <div className='Login'>
+                <input 
+                    className='input'
+                    type='text'
+                    placeholder='email'
+                    value={email}
+                    onChange={e => this.handleChange("email", e.target.value)}
                 />
-                <input type="password"
-                placeholder='password'
-                value={password}
-                onChange={e => this.handleChange("password", e.target.value)}
+                <input 
+                    className='input'
+                    type="password"
+                    placeholder='password'
+                    value={password}
+                    onChange={e => this.handleChange("password", e.target.value)}
                 />
-                <button onClick={this.login}>Login</button>
+                <button className='login-button' onClick={this.login}>Login</button>
             </div>
         )
     }
