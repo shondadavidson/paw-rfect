@@ -56,26 +56,34 @@ class Register extends Component {
     render() {
         const { email, password, name } = this.state
         return (
-            <div className='input-group'>
-                <input type="text"
-                placeholder='Name'
-                value={name}
-                onChange={ e => this.handleChange('name', e.target.value)}
-                />
-                <input type="text"
-                placeholder='Email'
-                value={email}
-                onChange={ e => this.handleChange('email', e.target.value)}
-                />
-                <input type="password"
-                placeholder='Password'
-                value={password}
-                onChange={e => this.handleChange("password", e.target.value)}
-                />
-                <button 
-                type='button'
-                className='login-btn'
-                onClick={this.register}>Register</button>
+            <div className='Login'>
+                <div className=''>
+                    <input
+                        className='input'
+                        type="text"
+                        placeholder='Name'
+                        value={name}
+                        onChange={e => this.handleChange('name', e.target.value)}
+                    />
+                    <input
+                        className='input'
+                        type="text"
+                        placeholder='Email'
+                        value={email}
+                        onChange={e => this.handleChange('email', e.target.value)}
+                    />
+                    <input
+                        className='input'
+                        type="password"
+                        placeholder='Password'
+                        value={password}
+                        onChange={e => this.handleChange("password", e.target.value)}
+                    />
+                    <button
+                        className='login-button'
+                        type='button'
+                        onClick={this.register}>Register</button>
+                </div>
             </div>
         )
     }
@@ -91,4 +99,4 @@ const mapDispatchToProps = {
     updateUser
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

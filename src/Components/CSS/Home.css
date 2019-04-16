@@ -1,10 +1,24 @@
-.home-container {
+.Home {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+   
+}
+
+/* .home-container {
     display: flex;
     justify-content: space-evenly;
-}
+} */
 .home-inner-container {
-    width: 300px;
+    width: 200px;
     border: 2px solid teal;
-    padding: 50px;
+    /* padding: 50px; */
     margin: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.home-inner-container:hover{
+    text-decoration: none !important;
+    color:#08756E;
 }

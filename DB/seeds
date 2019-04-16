@@ -3,6 +3,7 @@ CREATE TABLE users (
 	name varchar,
 	picture text,
 	dog_owner varChar,
+	owner_desc varChar(255),
 	provider_walker varChar,
 	provider_sitter varChar(10),
 	provider_boarder varChar(10),
