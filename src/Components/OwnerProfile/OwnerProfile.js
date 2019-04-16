@@ -19,7 +19,8 @@ class OwnerProfile extends Component{
             ownerName:'',
             ownerShortDescription:'',
             ownerPicture:'',
-            ownerZip:0
+            ownerZip:0,
+            edited:false
 
         }
     }
@@ -38,13 +39,14 @@ class OwnerProfile extends Component{
 
     toggle = (prop) => {
         this.setState({        
-            [prop]: !this.state[prop]            
+            [prop]: !this.state[prop]
         })
     }
 
     handleInput = (prop, val) => {
         this.setState({
-            [prop]:val
+            [prop]:val,
+            edited:true
         })
     }
     
@@ -64,6 +66,9 @@ class OwnerProfile extends Component{
         let infoUpdate = {ownerName, ownerShortDescription, ownerPicture, ownerZip};
         let res = await axios.put(`/api/updateOwner/${id}`, infoUpdate);
         this.setOwner(res.data[0])
+        this.setState({
+            edited: false
+        })
     }
 
     getDogs = async() => {
@@ -113,7 +118,8 @@ class OwnerProfile extends Component{
 
     render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
     // console.log(this)
-    console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
+    // console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
+    console.log({edited: this.state.edited})
         return(
             <>
                 <div>
@@ -160,7 +166,7 @@ class OwnerProfile extends Component{
                         </Link>
                     }
                     {this.state.editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
-                    {!this.state.editing && save}
+                    {!this.state.editing && this.state.edited && save}
                     <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
 
