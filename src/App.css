@@ -20,3 +20,7 @@
   text-decoration: none !important;
   color: black;
 }
+
+h1 {
+  word-wrap: normal
+}
