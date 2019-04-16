@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+// import { updateOwnersDogs } from '../../ducks/reducer';
+import axios from 'axios';
 
 class ProviderProfile extends Component{
     constructor(){
@@ -19,6 +22,17 @@ class ProviderProfile extends Component{
         }
     }
 
+    componentDidMount(){
+        this.getIdProp()
+        this.getProviderProfile()
+    }
+
+    getIdProp = () => {
+        this.setState({
+            ownerName: this.props.name
+        })
+    }
+
     toggleEditing = () => {
         this.setState({
             editing: !this.state.editing
@@ -28,7 +42,7 @@ class ProviderProfile extends Component{
     toggle = (prop) => {
         let newVal = ""
         if(this.state[prop] === ""){
-            newVal = "checked"
+            newVal = "defaultChecked"
         }
         this.setState({        
             [prop]: newVal            
@@ -41,9 +55,39 @@ class ProviderProfile extends Component{
         })
     }
 
-    save = () => {
-
+    save = async() => {
+        const {id} = this.props
+        const {providerName, providerShortDescription, providerExperience, providerBio, providerPicture, providerZip, dogWalkService, dogSitService, dogBoardService} = this.state
+        // console.log({providerId: id}, providerName, providerShortDescription, providerExperience, providerBio, providerPicture, providerZip, dogWalkService, dogSitService, dogBoardService)
+        let infoUpdate = {providerName, providerShortDescription, providerExperience, providerBio, providerPicture, providerZip, dogWalkService, dogSitService, dogBoardService}
+        let res = await axios.put(`/api/updateProviderProfile/${id}`, infoUpdate);
+        // console.log(res.data)
+        this.setProviderProfile(res.data[0])
     }
+
+    setProviderProfile = (val) => {
+        this.setState({
+            providerName: val.name,
+            providerPicture: val.picture,
+            providerShortDescription: val.short_desc,
+            providerZip: val.zip,
+            providerBio: val.bio,
+            providerExperience: val.experience,
+            dogWalkService: val.provider_walker,
+            dogSitService: val.provider_sitter, 
+            dogBoardService: val.provider_boarder
+        })
+    }
+
+    getProviderProfile = async()=>{
+        // console.log(this.props)
+        const {id} = this.props
+        // console.log(id)
+        let res = await axios.get(`/api/getProviderProfile/${id}`)
+        // console.log({resData:res.data[0]})
+        this.setProviderProfile(res.data[0])
+    }
+
 
     render(){             
         const{
@@ -58,17 +102,18 @@ class ProviderProfile extends Component{
             dogBoardService,
             editing
         } = this.state
-        console.log( 
-            providerName, 
-            providerShortDescription, 
-            providerExperience,
-            providerBio,
-            providerPicture,
-            providerZip,
-            dogWalkService,
-            dogSitService,
-            dogBoardService,
-            editing)
+        // console.log( 
+        //     providerName, 
+        //     providerShortDescription, 
+        //     providerExperience,
+        //     providerBio,
+            // providerPicture,
+        //     providerZip,
+        //     dogWalkService,
+        //     dogSitService,
+        //     dogBoardService,
+        //     editing
+        // )
         const save = <button onClick={e=> {this.save()}}>Save</button>
         return(
             <>
@@ -85,32 +130,32 @@ class ProviderProfile extends Component{
                     <input placeholder={providerZip ? providerZip : 'Zip Code'} onChange={e=>{this.handleInput('providerZip', e.target.value)}} />
                     
                     <div> 
-                        <input type='checkbox' checked={ dogWalkService } onChange={()=>{this.toggle('dogWalkService')}}/> Dog Walking
+                        <input type='checkbox' checked={dogWalkService} onChange={()=>{this.toggle('dogWalkService')}}/> Dog Walking
                     </div>
                     <div> 
-                        <input type='checkbox' checked={ dogSitService } onChange={()=>{this.toggle('dogSitService')}}/> Dog Sitting
+                        <input type='checkbox' checked={dogSitService} onChange={()=>{this.toggle('dogSitService')}}/> Dog Sitting
                     </div>
                     <div> 
-                        <input type='checkbox' checked={ dogBoardService } onChange={()=>{this.toggle('dogBoardService')}}/> Dog Boarding
+                        <input type='checkbox' checked={dogBoardService} onChange={()=>{this.toggle('dogBoardService')}}/> Dog Boarding
                     </div>
                 </div>}
 
                 {!editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
+                    <img src={providerPicture} alt='' style={{'width':'50vw'}}/>
                     <input placeholder={'Name'} value={providerName} readOnly/>
                     <input placeholder={'Short Description'} value={providerShortDescription} readOnly/>
                     <input placeholder={'Experience'} value={providerExperience} readOnly/>
                     <input placeholder={'Bio'} value={providerBio} readOnly/>
-                    <img src={providerPicture} alt=''/>
                     <input placeholder={'Zip Code'} value={providerZip} readOnly/>
                     
                     <div> 
-                        <input type='checkbox' checked={ dogWalkService }/> Dog Walking
+                        <input type='checkbox' checked={dogWalkService} value={dogWalkService} disabled={editing ? false : true}/> Dog Walking
                     </div>
                     <div> 
-                        <input type='checkbox' checked={ dogSitService }/> Dog Sitting
+                        <input type='checkbox' checked={dogSitService} value={dogSitService} disabled={editing ? false : true}/> Dog Sitting
                     </div>
                     <div> 
-                        <input type='checkbox' checked={ dogBoardService }/> Dog Boarding
+                        <input type='checkbox' checked={dogBoardService} value={dogBoardService} disabled={editing ? false : true}/> Dog Boarding
                     </div>
                 </div>}
 
@@ -132,4 +177,11 @@ class ProviderProfile extends Component{
     }
 }
 
-export default ProviderProfile;
+const mapStateToProps = reduxState => {
+    return {
+        name:reduxState.name,
+        id: reduxState.id
+    }
+}
+
+export default connect(mapStateToProps) (ProviderProfile);

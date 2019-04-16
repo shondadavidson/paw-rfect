@@ -19,35 +19,41 @@ class OwnerProfile extends Component{
             ownerName:'',
             ownerShortDescription:'',
             ownerPicture:'',
-            ownerZip:0
+            ownerZip:0,
+            edited:false
 
         }
     }
 
     componentDidMount(){
-        this.setState({
-            ownerName: this.props.name
-        })
+        this.getIdProp()
         this.getOwner()
         this.getDogs()
     }
 
+    getIdProp = () => {
+        this.setState({
+            ownerName: this.props.name
+        })
+    }
+
     toggle = (prop) => {
         this.setState({        
-            [prop]: !this.state[prop]            
+            [prop]: !this.state[prop]
         })
     }
 
     handleInput = (prop, val) => {
         this.setState({
-            [prop]:val
+            [prop]:val,
+            edited:true
         })
     }
     
     setOwner = (val) => {
         this.setState({
             ownerName: val.name,
-            ownerShortDescription: val.short_desc,
+            ownerShortDescription: val.owner_desc,
             ownerPicture: val.picture,
             ownerZip: val.zip
         })
@@ -56,25 +62,28 @@ class OwnerProfile extends Component{
     save = async() => {
         const {id} = this.props
         const {ownerName, ownerShortDescription, ownerPicture, ownerZip} = this.state
-        console.log({ownerId: this.props.id}, ownerName, ownerShortDescription, ownerPicture, ownerZip);
+        // console.log({ownerId: id}, ownerName, ownerShortDescription, ownerPicture, ownerZip);
         let infoUpdate = {ownerName, ownerShortDescription, ownerPicture, ownerZip};
         let res = await axios.put(`/api/updateOwner/${id}`, infoUpdate);
-        this.setOwner(res.data)
+        this.setOwner(res.data[0])
+        this.setState({
+            edited: false
+        })
     }
 
     getDogs = async() => {
         const {id, updateOwnersDogs} = this.props
         // console.log(id)
         let res = await axios.get(`/api/getDogs/${id}`)
-        console.log({data:res.data})
+        // console.log({data:res.data})
         updateOwnersDogs(res.data)
     }
 
     getOwner = async() => {
         const {id} = this.props
-        console.log(id)
+        // console.log(id)
         let res = await axios.get(`/api/getOwner/${id}`)
-        console.log({data:res.data})
+        // console.log({data:res.data})
         this.setOwner(res.data[0])
     }
 
@@ -109,7 +118,8 @@ class OwnerProfile extends Component{
 
     render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
     // console.log(this)
-    console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
+    // console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
+    console.log({edited: this.state.edited})
         return(
             <>
                 <div>
@@ -156,7 +166,7 @@ class OwnerProfile extends Component{
                         </Link>
                     }
                     {this.state.editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
-                    {!this.state.editing && save}
+                    {!this.state.editing && this.state.edited && save}
                     <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
 
