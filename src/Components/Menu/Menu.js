@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { updateUser, clearUser } from '../../ducks/reducer'
+import { updateUser, clearUser, toggleMenu, hideMenu } from '../../ducks/reducer'
 import { Link } from 'react-router-dom'
 import { MenuList, MenuItem } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -16,6 +16,8 @@ class Menu extends Component {
     }
 
     componentDidMount() {
+      // console.log({menuProps: this.props})
+      this.props.hideMenu()
         this.getUser()
     }
     getUser = async () => {
@@ -48,10 +50,23 @@ class Menu extends Component {
         return(
             <div>
                 <h5>Welcome {name}</h5>
-                <div className='toggle' onClick={() => this.toggle()}>
+                <div className='toggle' 
+                // onClick={() => this.toggle()} //old toggle that uses state
+                onClick={()=> this.props.toggleMenu()}
+                >
                     <i className="fa fa-bars"></i>
                 </div>
-                <MenuList className={ this.state.show ? 'menu show': 'menu'}>
+                {/* <MenuList className={ this.state.show ? 'menu show': 'menu'}> // old menu that uses state
+                  <MenuItem component={ Link } to='/home'>Home</MenuItem>
+                  <MenuItem component={ Link } to='/ownerprofile'>Owner's Profile</MenuItem>
+                  <MenuItem component={ Link } to='/providerprofile'>Provider Profile</MenuItem>
+                  <MenuItem component={ Link } to='/contact'>Contact Us</MenuItem>
+                  <MenuItem component={ Link } to='/faq'>FAQ</MenuItem>
+                  <MenuItem><Button onClick={this.logout}>Log Out</Button></MenuItem>
+                </MenuList> */}
+
+
+                <MenuList className={ this.props.show ? 'menu show': 'menu'} onClick={()=> this.props.toggleMenu()}>
                   <MenuItem component={ Link } to='/home'>Home</MenuItem>
                   <MenuItem component={ Link } to='/ownerprofile'>Owner's Profile</MenuItem>
                   <MenuItem component={ Link } to='/providerprofile'>Provider Profile</MenuItem>
@@ -70,7 +85,9 @@ const mapStateToProps = reduxState => {
   };
   const mapDispatchToProps = {
     updateUser,
-    clearUser
+    clearUser,
+    toggleMenu,
+    hideMenu
   };
   export default withRouter(connect(
     mapStateToProps,
