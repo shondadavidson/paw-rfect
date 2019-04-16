@@ -100,7 +100,7 @@ class OwnerProfile extends Component{
     
       // when clicked it upload
       sendPhoto = event => {
-        return axios.post('/api/s3', this.state).then(response => {
+        return axios.post('/api/uploadOwner', this.state).then(response => {
           console.log(response.data)
           this.setState({ ownerPicture: response.data.Location });
           
@@ -128,7 +128,7 @@ class OwnerProfile extends Component{
                 </div>}
 
                 {!this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <img src={this.state.ownerPicture} alt='' style={{'width':'50vw'}}/>
+                    <img src={this.state.ownerPicture} alt='' style={{'width':'10vw', height: '10vw', borderRadius:'50%'}}/>
                     <input placeholder={'Name'} value={this.state.ownerName} readOnly/>
                     <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly/>
                     <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly/>

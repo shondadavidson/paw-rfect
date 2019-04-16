@@ -54,11 +54,10 @@ const S3 = new AWS.S3();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-app.post('/api/s3', (req, res) => {
+app.post('/api/uploadOwner', (req, res) => {
   // the body contains the string that is the photo
   const photo = req.body;
   let file = photo.file.replace(/^data:image\/\w+;base64,/, '')
-  console.log(req.body)
   // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
   // console.log(photo.file.replace(/^data:image\/\w+;base64,/, ''))
   const buf = new Buffer.from(file, 'base64');
@@ -71,7 +70,6 @@ app.post('/api/s3', (req, res) => {
     ContentType: photo.filetype,
     ACL: 'public-read',
   };
-
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
@@ -90,6 +88,39 @@ app.post('/api/s3', (req, res) => {
   });
 });
 
+app.post('/api/uploadDog', (req, res) => {
+  // the body contains the string that is the photo
+  const photo = req.body;
+  let file = photo.file.replace(/^data:image\/\w+;base64,/, '')
+  // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
+  // console.log(photo.file.replace(/^data:image\/\w+;base64,/, ''))
+  const buf = new Buffer.from(file, 'base64');
+
+  // this is the object that we will end to s3 with all the info about the photo, and the photo itself.
+  const params = {
+    Bucket: process.env.AWS_BUCKET,
+    Body: buf,
+    Key: photo.filename,
+    ContentType: photo.filetype,
+    ACL: 'public-read',
+  };
+
+  // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
+  S3.upload(params, (err, data) => {
+    console.log(data)
+    
+    let response, code;
+    if (err) {
+      response = err;
+      code = 500;
+    } else {
+      response = data;
+      code = 200;
+    }
+    // if the upload was sucessfull give them the data, if not send them the error
+    res.status(code).send(response);
+  });
+});
 
 
 //Auth_controller
