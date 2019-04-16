@@ -1,12 +1,15 @@
 const initialState = {
     id: null,
     name: '',
-    ownersDogs: []
+    ownersDogs: [],
+    show: false
 }
 
 const UPDATE_USER = 'UPDATE_USER'
 const CLEAR_USER = 'CLEAR_USER'
 const UPDATE_OWNERS_DOGS = 'UPDATE_OWNERS_DOGS'
+const HIDE_MENU = 'HIDE_MENU'
+const TOGGLE_MENU = 'TOGGLE_MENU'
 
 export function updateUser(user) {
     return {
@@ -29,6 +32,18 @@ export function updateOwnersDogs(dogs){
     }
 }
 
+export function hideMenu(){
+    return {
+        type: HIDE_MENU
+    }
+}
+
+export function toggleMenu(){
+    return {
+        type: TOGGLE_MENU,
+    }
+}
+
 export default function reducer(state = initialState, action) {
     const { type, payload } = action
     switch (type) {
@@ -40,6 +55,10 @@ export default function reducer(state = initialState, action) {
         case UPDATE_OWNERS_DOGS:
             // console.log(payload)
             return {...state, ownersDogs: payload }
+        case HIDE_MENU: 
+            return {...state, show: false}
+        case TOGGLE_MENU:
+            return {...state, show: !state.show}
         default: 
             return state
     }
