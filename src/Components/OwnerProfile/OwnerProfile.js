@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom';
 import Dogs from '../Dogs/Dogs';
 import { updateOwnersDogs } from '../../ducks/reducer';
 import axios from 'axios';
+import ImageUpload from '../ImageUpload/ImageUpload'
 
 class OwnerProfile extends Component{
     constructor(){
         super()
 
         this.state={
+            file: '',
+            filename: '',
+            filetype: '',
             editing:false,
             ownerName:'',
             ownerShortDescription:'',
@@ -78,6 +82,35 @@ class OwnerProfile extends Component{
         this.setOwner(res.data[0])
     }
 
+    handlePhoto = event => {
+        // this makes a generic file reader that an convert files into strings that allows us to upload it to a server.
+        const reader = new FileReader();
+        // the file itself is located here
+        const file = event.target.files[0];
+    
+        // this is an event handeler and will not actaully run untill the code on line 39 finishes running
+        reader.onload = photo => {
+          // the photo param here is the processed image from the reader.
+          this.setState({
+            file: photo.target.result,
+            filename: file.name,
+            filetype: file.type,
+            ownerPicture: '',
+          });
+        };
+        // take the file from the input field and process it at a DataURL (a special way to interpret files)
+        reader.readAsDataURL(file);
+      }
+    
+      // when clicked it upload
+      sendPhoto = event => {
+        return axios.post('/api/s3', this.state).then(response => {
+          console.log(response.data)
+          this.setState({ ownerPicture: response.data.Location });
+          
+        });
+      }
+
     render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
     // console.log(this)
     console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
@@ -89,7 +122,12 @@ class OwnerProfile extends Component{
                 {this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
                     <input placeholder={'Name'} onChange={e=>{this.handleInput('ownerName', e.target.value)}}/>
                     <input placeholder={'Short Description'} onChange={e=>{this.handleInput('ownerShortDescription', e.target.value)}}/>
-                    <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/>
+                    {/* <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/> */}
+                    <ImageUpload 
+                        state={this.state}
+                        sendPhoto={this.sendPhoto}
+                        handlePhoto={this.handlePhoto}
+                    />
                     <input placeholder={'Zip Code'} onChange={e=>{this.handleInput('ownerZip', e.target.value)}}/>
                 </div>}
 

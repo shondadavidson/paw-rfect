@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
 
 
 class DetailedServiceProvider extends Component {
@@ -36,6 +38,19 @@ class DetailedServiceProvider extends Component {
     })
   }
 
+  removeProvider = (id) => {
+    axios.post(`/api/removeProvider/${id}`, {user_id: this.props.id}).then(res => {
+      this.setState({
+        provider: res.data
+      })
+    })
+  }
+
+  startChat = (myId, friendId) => {
+    // console.log(myId, friendId)
+
+  }
+
   render() {
     // const {user} = this.state.provider
     const {user, relation} = this.state.provider
@@ -43,7 +58,8 @@ class DetailedServiceProvider extends Component {
     return (
       <div className="DetailedServiceProvider">
         <h1>Welcome to detailed service provider</h1>
-        <i className="far fa-comment-dots"></i>
+        <Link to={`/chat/${this.props.id}/${user.id}`} className="dead-link">
+        <i className="far fa-comment-dots" onClick={() => this.startChat(this.props.id, user.id, user.name)}></i></Link>
           {/* image: {user.image} */}
           <p>name: {user.name}</p>
           <p>{user.short_desc}</p>
@@ -55,8 +71,9 @@ class DetailedServiceProvider extends Component {
           <p>walker? {user.provider_walker ? "yes" : 'no' }</p>
           <p>request sent? {user.client_request = 'approved' ? 'request sent' : <button onClick={this.addProvider}>Hire</button>}</p>
           <p>provider approved? {user.provider_approve}</p>
+        
           
-          <i className="fas fa-user-slash"></i>
+          <i className="fas fa-user-slash" onClick={() => this.removeProvider(user.id)}></i>
 
           <h6>Past Ratings</h6>
       </div>
