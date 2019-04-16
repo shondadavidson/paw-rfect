@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Dogs extends Component{
 
     render(){ 
-        console.log(this.props)
+        // console.log(this.props)
         const dogList = this.props.ownersDogs.map((dog, i)=>{
             const { dog_picture, dog_name, dog_age, weight, breed, dog_gender, special_notes, dog_id } = dog 
             return(
@@ -41,7 +41,7 @@ class Dogs extends Component{
 }
 
 const mapStateToProps = reduxState => {
-    console.log(reduxState)
+    // console.log(reduxState)
     return {
         ownersDogs: reduxState.ownersDogs
     }
