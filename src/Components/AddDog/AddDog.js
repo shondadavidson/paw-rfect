@@ -38,6 +38,7 @@ class AddDog extends Component {
         }
         let res = await axios.post(`/api/addDog/${id}`, newDog);
         updateOwnersDogs(res.data)
+        this.props.history.push('/ownerprofile');
     }
 
     render(){ 

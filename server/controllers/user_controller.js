@@ -87,14 +87,16 @@ module.exports = {
         const infoUpdate = {
             name: ownerName,
             picture: ownerPicture,
-            short_desc: ownerShortDescription,
+            owner_desc: ownerShortDescription,
             zip: ownerZip,
             id: id
         }
         // console.log(infoUpdate)
         const db = req.app.get('db')
         db.users.update_owner(infoUpdate).then(
-            res.sendStatus(200)
+            (resp)=>{
+                res.status(200).send(resp)
+            }
         ).catch(err => {
             res.status(400).send(err)
         })
@@ -141,6 +143,47 @@ module.exports = {
                 // console.log({dogs: dogs})
                 res.status(200).send(dogs)
             }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
+    },
+    getProviderProfile: (req, res) => {
+        // console.log('hit controller get provider profile')
+        // console.log({params:req.params})
+        let {id} = req.params
+        // console.log(id)
+        id = parseInt(id)
+        // console.log({getProviderId: id})
+        const db = req.app.get('db')
+        db.users.get_provider_profile({id: id}).then(
+            provider => {
+                // console.log({provider:provider})
+                res.status(200).send(provider)
+            }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
+    },
+    updateProviderProfile: (req, res) => {
+        // console.log('hit user_controller update provider profile')
+        const { id } = req.params;
+        // console.log(id)
+        const {providerName, providerShortDescription, providerExperience, providerBio, providerPicture, providerZip, dogWalkService, dogSitService, dogBoardService} = req.body
+        const db = req.app.get('db')
+        db.users.update_provider_profile({
+            name: providerName, 
+            short_desc: providerShortDescription, 
+            picture: providerPicture,
+            experience: providerExperience,
+            bio: providerBio,
+            zip: providerZip,
+            provider_walker: dogWalkService,
+            provider_sitter: dogSitService,
+            provider_boarder: dogBoardService,
+            id
+        }).then( (resp) => {
+            res.status(200).send(resp)
+        }
         ).catch(err => {
             res.status(400).send(err)
         })

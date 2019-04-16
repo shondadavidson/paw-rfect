@@ -122,6 +122,8 @@ app.post('/api/addDog/:id', uc.addDog)
 app.get('/api/getDogs/:id', uc.getDogs)
 app.put('/api/updateOwner/:id', uc.updateOwner)
 app.get('/api/getOwner/:id', uc.getOwner)
+app.get('/api/getProviderProfile/:id', uc.getProviderProfile)
+app.put('/api/updateProviderProfile/:id', uc.updateProviderProfile)
 // SOCKETS
 
 const io = socket(app.listen(SERVER_PORT, () => console.log('Sweeettt')))
