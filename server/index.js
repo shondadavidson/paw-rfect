@@ -173,9 +173,9 @@ io.on('connection', function (socket) {
 
   socket.on('sendMsg', async data => {
     console.log('data received', data)
-    const { room, msg, user } = data
+    const { room, msg, user, user_id, provider_id , author_id} = data
     const db = app.get('db')
-    await db.chat.create_message({ room: room, message: msg, user_name: user })
+    await db.chat.create_message({ room:room, message:msg, user_name:user, author_id:author_id, user_id:user_id, provider_id:provider_id })
     let messages = await db.chat.get_message_history({ room: room })
     io.to(data.room).emit('sendMsg', messages)
     console.log(messages)

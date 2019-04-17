@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className='container'>
-          <div className='col-12'>
+          <div className='col-11'>
             <BackButton location={this.props.location} />
             <Menu location={this.props.location} />
             <div className='routes'>{routes}</div>
