@@ -16,6 +16,7 @@ import ImageUpload from '../Components/ImageUpload/ImageUpload'
 import Chat from '../Components/Chat/Chat'
 import PendingClientList from '../Components/ClientList/PendingClientList'
 import ChatCenter from '../Components/ChatCenter/ChatCenter'
+import JoinChat from '../Components/JoinChat/JoinChat';
 
 
 export default (
@@ -34,7 +35,8 @@ export default (
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />
-        <Route path='/chat/:userId/:providerId' component={Chat} />
+        <Route path='/chat/:room/:providerId' component={Chat} />
         <Route path='/inbox' component={ChatCenter} />
+        <Route path='/joinchat/:providerId' component={JoinChat} />
     </Switch>
 )

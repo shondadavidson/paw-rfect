@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const SearchForProvider = () => {
     const [providers, setProviders] = useState([])
     const [zip, setZip] = useState('')
+    // const [room, setRoom] = useState(null)
 
     const getProviders = () => {
         axios.get(`/api/searchProviders/${zip}`).then(res => {
