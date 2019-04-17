@@ -133,6 +133,8 @@ app.get("/api/current", ac.getUser);
 
 // chat_controller
 app.get('/api/getChat/:id', cc.getChat)
+app.get('/api/getInbox/:id', cc.getInbox)
+app.put('/api/read/:id', cc.read)
 
 //provider_controller
 app.get('/api/getClients/:id', pc.getClients)
@@ -173,8 +175,11 @@ io.on('connection', function (socket) {
 
   socket.on('sendMsg', async data => {
     console.log('data received', data)
-    const { room, msg, user, user_id, provider_id , author_id} = data
+    let { room, msg, user, user_id, provider_id , author_id} = data
     const db = app.get('db')
+    user_id = parseInt(user_id)
+    provider_id = parseInt(provider_id)
+    author_id = parseInt(author_id)
     await db.chat.create_message({ room:room, message:msg, user_name:user, author_id:author_id, user_id:user_id, provider_id:provider_id })
     let messages = await db.chat.get_message_history({ room: room })
     io.to(data.room).emit('sendMsg', messages)

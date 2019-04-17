@@ -15,6 +15,7 @@ import Contact from '../Components/Contact/Contact';
 import ImageUpload from '../Components/ImageUpload/ImageUpload'
 import Chat from '../Components/Chat/Chat'
 import PendingClientList from '../Components/ClientList/PendingClientList'
+import ChatCenter from '../Components/ChatCenter/ChatCenter'
 
 
 export default (
@@ -34,5 +35,6 @@ export default (
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />
         <Route path='/chat/:userId/:providerId' component={Chat} />
+        <Route path='/inbox' component={ChatCenter} />
     </Switch>
 )
