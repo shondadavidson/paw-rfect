@@ -68,8 +68,18 @@ CREATE TABLE chat (
 	user_name varChar,
 	name varchar,
 	message  TEXT,
+	author_id varchar,
 	date_time TIMESTAMP
 );
+
+CREATE TABLE chat_rooms (
+	user_id	varchar,
+	room varchar,
+	date_time timestamp,
+	message text,
+	author_id varchar,
+	read timestamp
+)
 
 CREATE TABLE "session" (
  "sid" varchar NOT NULL COLLATE "default",

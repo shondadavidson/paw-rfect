@@ -32,7 +32,7 @@ class Chat extends Component {
             this.setState({ messages: messages, message: '' })
         })
         // this.joinChatRoom()
-        this.socket.emit('joinRoom', '1')
+        // this.socket.emit('joinRoom', this.state.room)
     }
 
     joinChatRoom = async (myId, providerId) => {
@@ -65,7 +65,7 @@ class Chat extends Component {
 
     sendMessage = () => {
         // console.log('sending message', this.state.message)
-        this.socket.emit('sendMsg', { room: this.state.room, msg: this.state.message, user: this.props.name })
+        this.socket.emit('sendMsg', { room: this.state.room, msg: this.state.message, user: this.props.name, author_id:this.props.id, user_id: this.props.match.params.userId, provider_id:this.props.match.params.providerId })
         this.setState({ message: '' })
     }
     render() {
@@ -76,21 +76,27 @@ class Chat extends Component {
 
           const mappedMessages = this.state.messages.map((message, i) => {
               return (
-                  <div key={i}>
-                  <p>{message.user_name}: {message.message}</p>
+                  <div key={i} className='chat'>
+                  <span className='chatName'>{message.user_name}: </span>
+                  <span className='chatMessage'> {message.message}</span>
                   
                   </div>
               )
           })
 
         return (
-            <div className="Chat">
-               
-        
-        <input type='text' placeholder='chat' value={this.state.message} onChange={(e) => this.setState({ message: e.target.value })} />
-                <button onClick={() => this.sendMessage()}>Send Message</button>
-              
+            <div className="Chat col-11">
+            <div className='chatDisplay'>
+  
                 {mappedMessages}
+                </div>
+                <input 
+                    type='text' 
+                    placeholder='chat' 
+                    value={this.state.message} 
+                    onChange={(e) => this.setState({ message: e.target.value })} />
+                <button className='sendMessageButton' onClick={() => this.sendMessage()}>Send Message</button>
+                
             </div>
         );
     }

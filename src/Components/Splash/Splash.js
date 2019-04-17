@@ -8,7 +8,7 @@ function Splash() {
 
 
   return (
-    <div className='Container'>
+    <div className='container'>
       <div className='col-12'>
 
         <h1>Paw-rfect</h1>
