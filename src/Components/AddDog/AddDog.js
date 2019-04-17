@@ -67,7 +67,9 @@ class AddDog extends Component {
     
       // when clicked it upload
       sendPhoto = event => {
-        return axios.post('/api/uploadDog', this.state).then(response => {
+          const { file, filename, filetype, dogPicture } = this.state
+          let s3file = {file, filename, filetype, dogPicture}
+        return axios.post('/api/uploadDog', s3file).then(response => {
           console.log(response.data)
           this.setState({ dogPicture: response.data.Location });
           
