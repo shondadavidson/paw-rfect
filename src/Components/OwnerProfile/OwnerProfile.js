@@ -116,32 +116,67 @@ class OwnerProfile extends Component{
         });
       }
 
-    render(){ const save = <button onClick={e=> {this.save()}}>Save</button>
+    render(){ 
+        const save = <button onClick={e=> {this.save()}}>Save</button>
+        const {
+        ownerName,
+        ownerShortDescription,
+        ownerPicture,
+        ownerZip,
+        editing,
+        edited
+        } = this.state
     // console.log(this)
     // console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
-    console.log({edited: this.state.edited})
+    console.log({edited: edited})
         return(
             <>
-                <div>
-                    Welcome {this.state.ownerName}
-                </div>
-                {this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <input placeholder={'Name'} onChange={e=>{this.handleInput('ownerName', e.target.value)}}/>
-                    <input placeholder={'Short Description'} onChange={e=>{this.handleInput('ownerShortDescription', e.target.value)}}/>
+                <h3>
+                    {ownerName}'s Owner Profile
+                </h3>
+                
+                {editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
+                    <input 
+                        placeholder={ownerName ? ownerName : 'Name'} 
+                        onChange={e=>{this.handleInput('ownerName', e.target.value)}}
+                    />
+                    <input 
+                        placeholder={ownerShortDescription ? ownerShortDescription : 'Short Description'} 
+                        onChange={e=>{this.handleInput('ownerShortDescription', e.target.value)}}
+                    />
                     {/* <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/> */}
                     <ImageUpload 
                         state={this.state}
                         sendPhoto={this.sendPhoto}
                         handlePhoto={this.handlePhoto}
                     />
-                    <input placeholder={'Zip Code'} onChange={e=>{this.handleInput('ownerZip', e.target.value)}}/>
+                    <input 
+                        placeholder={ownerZip ? ownerZip : 'Zip Code'} 
+                        onChange={e=>{this.handleInput('ownerZip', e.target.value)}}
+                    />
                 </div>}
 
-                {!this.state.editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <img src={this.state.ownerPicture} alt='' style={{'width':'10vw', height: '10vw', borderRadius:'50%'}}/>
-                    <input placeholder={'Name'} value={this.state.ownerName} readOnly/>
-                    <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly/>
-                    <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly/>
+                {!editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
+                    <img 
+                        src={ownerPicture} 
+                        alt='' 
+                        style={{'width':'10vw', height: '10vw', borderRadius:'50%'}}
+                    />
+                    <input 
+                        placeholder={'Name'} 
+                        value={ownerName} 
+                        readOnly
+                    />
+                    <input 
+                        placeholder={'Short Description'} 
+                        value={ownerShortDescription} 
+                        readOnly
+                    />
+                    <input 
+                        placeholder={'Zip Code'} 
+                        value={ownerZip} 
+                        readOnly
+                    />
                 </div>}
 
 
@@ -160,14 +195,18 @@ class OwnerProfile extends Component{
                     </Link>
                 </div>
                 <div>
-                    {!this.state.editing && 
+                    {!editing && 
                         <Link to='/home'>
                             <button>Back</button>
                         </Link>
                     }
-                    {this.state.editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
-                    {!this.state.editing && this.state.edited && save}
-                    <button onClick={()=> this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
+                    {editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
+                    {!editing && edited && save}
+                    <button 
+                        onClick={()=> this.toggle('editing')}
+                    > 
+                        {editing ? 'Update' : 'Edit Profile'} 
+                        </button>
                 </div>
 
             </>
