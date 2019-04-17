@@ -21,7 +21,7 @@ const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
 })
 
-app.use(express.json())
+// app.use(express.json())
 app.use(session({
   store: new pgSession({
     pool: pgPool,
@@ -57,6 +57,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.post('/api/uploadOwner', (req, res) => {
   // the body contains the string that is the photo
   const photo = req.body;
+  console.log(111, req.body)
   let file = photo.file.replace(/^data:image\/\w+;base64,/, '')
   // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
   // console.log(photo.file.replace(/^data:image\/\w+;base64,/, ''))
@@ -73,7 +74,7 @@ app.post('/api/uploadOwner', (req, res) => {
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
-    console.log(data)
+    console.log(22222, data)
     
     let response, code;
     if (err) {
@@ -107,7 +108,7 @@ app.post('/api/uploadDog', (req, res) => {
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
-    console.log(data)
+    console.log(3333, data)
     
     let response, code;
     if (err) {
@@ -132,6 +133,8 @@ app.get("/api/current", ac.getUser);
 
 // chat_controller
 app.get('/api/getChat/:id', cc.getChat)
+app.get('/api/getInbox/:id', cc.getInbox)
+app.put('/api/read/:id', cc.read)
 
 //provider_controller
 app.get('/api/getClients/:id', pc.getClients)
@@ -172,9 +175,12 @@ io.on('connection', function (socket) {
 
   socket.on('sendMsg', async data => {
     console.log('data received', data)
-    const { room, msg, user } = data
+    let { room, msg, user, user_id, provider_id , author_id} = data
     const db = app.get('db')
-    await db.chat.create_message({ room: room, message: msg, user_name: user })
+    user_id = parseInt(user_id)
+    provider_id = parseInt(provider_id)
+    author_id = parseInt(author_id)
+    await db.chat.create_message({ room:room, message:msg, user_name:user, author_id:author_id, user_id:user_id, provider_id:provider_id })
     let messages = await db.chat.get_message_history({ room: room })
     io.to(data.room).emit('sendMsg', messages)
     console.log(messages)

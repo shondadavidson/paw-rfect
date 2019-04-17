@@ -27,8 +27,8 @@ h1 {
   color: #11A79D;
 }
 
-.Container {
-  margin: 20px 0 0 0;
+.container {
+  margin-top: 20px;
   background-color: white;
   min-height: 90vh;
 }
@@ -42,6 +42,7 @@ h1 {
 .login-button {
   background-color: #08756E;
   width: 60%;
+  max-width: 200px;
   color: white;
   /* border-radius: 10px; */
 }
@@ -52,12 +53,48 @@ h1 {
 
 .search-list {
   background-color: white;
-  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.125);
+  
   display: flex;
-  margin: 8px;
+  /* margin: 8px; */
 }
 
 .list-name {
   font-size: 1.4em;
   color: #A53722;
 }
+
+.chat {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  border: 1px solid rgba(0,0,0,.125);
+
+}
+
+.chatDisplay {
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.chatName {
+  display: flex;
+  font-size: .75em;
+  overflow: hidden;
+  justify-content: left;
+  color: #08756E;
+  margin: 5px 8px;
+
+}
+
+.chatMessage {
+
+}
+
+.sendMessageButton {
+  margin: 5px;
+  background-color: #08756E;
+  color: white;
+
+}
+

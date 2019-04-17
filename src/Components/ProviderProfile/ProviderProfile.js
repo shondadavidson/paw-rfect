@@ -232,9 +232,6 @@ class ProviderProfile extends Component{
                         /> Dog Boarding
                     </div>
                 </div>}
-
-
-
                 <div>
                     {!editing && 
                             <Link to='/home'>

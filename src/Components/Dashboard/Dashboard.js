@@ -31,7 +31,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className='container'>
-        <div className='col-12 col-md-8 col-l-6 Dashboard'>
+        <div className='col-12 Dashboard'>
           <h1>Paw-rfect</h1>
           <div>
             <img src={Beagle} alt="Beagle" />

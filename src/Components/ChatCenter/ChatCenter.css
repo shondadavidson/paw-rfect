@@ -1,0 +1,38 @@
+.ChatCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+
+
+}
+
+.chatRow {
+    padding: 5px;
+    border-bottom: 1px solid grey;
+    width: 70vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.chatPicture {
+    margin-right: 4px;
+    width:5vw;
+    height: 5vw;
+     border-radius: 50%;
+}
+
+.inboxName {
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+.inboxMessage {
+    font-size: .7em;
+}
+
+.inboxMessageNew {
+    font-weight: bold;
+}
