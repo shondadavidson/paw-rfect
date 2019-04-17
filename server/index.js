@@ -21,7 +21,7 @@ const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
 })
 
-app.use(express.json())
+// app.use(express.json())
 app.use(session({
   store: new pgSession({
     pool: pgPool,
@@ -57,6 +57,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.post('/api/uploadOwner', (req, res) => {
   // the body contains the string that is the photo
   const photo = req.body;
+  console.log(111, req.body)
   let file = photo.file.replace(/^data:image\/\w+;base64,/, '')
   // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
   // console.log(photo.file.replace(/^data:image\/\w+;base64,/, ''))
@@ -73,7 +74,7 @@ app.post('/api/uploadOwner', (req, res) => {
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
-    console.log(data)
+    console.log(22222, data)
     
     let response, code;
     if (err) {
@@ -107,7 +108,7 @@ app.post('/api/uploadDog', (req, res) => {
 
   // using the S3 object we made above the endpoints we will pass it the image we want uploaded and the funciton to be run when the upload is finished.
   S3.upload(params, (err, data) => {
-    console.log(data)
+    console.log(3333, data)
     
     let response, code;
     if (err) {

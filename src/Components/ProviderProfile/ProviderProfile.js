@@ -126,7 +126,7 @@ class ProviderProfile extends Component{
                     <input placeholder={providerShortDescription ? providerShortDescription :'Short Description'} onChange={e=>{this.handleInput('providerShortDescription', e.target.value)}} />
                     <input placeholder={providerExperience ? providerExperience : 'Experience'} onChange={e=>{this.handleInput('providerExperience', e.target.value)}} />
                     <input placeholder={providerBio ? providerBio : 'Bio'} onChange={e=>{this.handleInput('providerBio', e.target.value)}} />
-                    <input placeholder={providerPicture ? providerPicture : 'Picture'} onChange={e=>{this.handleInput('providerPicture', e.target.value)}} />
+                    {/* <input placeholder={providerPicture ? providerPicture : 'Picture'} onChange={e=>{this.handleInput('providerPicture', e.target.value)}} /> */}
                     <input placeholder={providerZip ? providerZip : 'Zip Code'} onChange={e=>{this.handleInput('providerZip', e.target.value)}} />
                     
                     <div> 
@@ -141,7 +141,7 @@ class ProviderProfile extends Component{
                 </div>}
 
                 {!editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <img src={providerPicture} alt='' style={{'width':'50vw'}}/>
+                    <img src={providerPicture} alt='' style={{'width':'10vw', height: '10vw', borderRadius:'50%'}}/>
                     <input placeholder={'Name'} value={providerName} readOnly/>
                     <input placeholder={'Short Description'} value={providerShortDescription} readOnly/>
                     <input placeholder={'Experience'} value={providerExperience} readOnly/>
@@ -158,9 +158,6 @@ class ProviderProfile extends Component{
                         <input type='checkbox' checked={dogBoardService} value={dogBoardService} disabled={editing ? false : true}/> Dog Boarding
                     </div>
                 </div>}
-
-
-
                 <div>
                     {!editing && 
                             <Link to='/home'>
