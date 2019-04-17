@@ -9,6 +9,7 @@
 
 
 .dead-link {
+  width: 100%;
   text-decoration: none !important;
   color: black;
 }
@@ -22,5 +23,41 @@
 }
 
 h1 {
-  word-wrap: normal
+  word-wrap: normal;
+  color: #11A79D;
+}
+
+.Container {
+  margin: 20px 0 0 0;
+  background-color: white;
+  min-height: 90vh;
+}
+
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-button {
+  background-color: #08756E;
+  width: 60%;
+  color: white;
+  /* border-radius: 10px; */
+}
+
+.input {
+  width: 90%;
+}
+
+.search-list {
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  margin: 8px;
+}
+
+.list-name {
+  font-size: 1.4em;
+  color: #A53722;
 }

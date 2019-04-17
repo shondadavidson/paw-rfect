@@ -17,14 +17,14 @@ const SearchForProvider = () => {
          const mappedProviders = providers.map(provider => {
             return (
                 
-                <div >
+                <div className='search-list'>
                     
                     <Link key={provider.id} to={`/detailedProvider/${provider.id}`} className="dead-link">
-                    <p>{provider.name}</p>
-                    <p>{provider.experience}</p>
-                    <p>{provider.short_desc}</p>
+                    <p className='list-name'>{provider.name}</p>
+                    <p><small>Experience:</small>{provider.experience}</p>
+                    <p><small>About:</small>{provider.short_desc}</p>
                     </Link>
-                    <p>--------------</p>
+                    
 
                 </div>
               
