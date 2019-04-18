@@ -59,7 +59,7 @@ class Chat extends Component {
 
     
     render() {
-        console.log(this.props.match.params.room)
+        // console.log(this.props.match.params.room)
         // console.log(this.props.match.params)
         // console.log(this.props.name)
         // console.log('message', this.state.message)
