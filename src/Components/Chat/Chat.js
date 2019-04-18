@@ -53,7 +53,11 @@ class Chat extends Component {
     sendMessage = () => {
         console.log(this.props.provider)
         console.log(this.props.match.params.room)
-        this.socket.emit('sendMsg', { room: this.props.match.params.room, msg: this.state.message, user: this.props.name, author_id:this.props.id, user_id: this.props.id, provider_id:this.props.match.params.providerId })
+        this.socket.emit('sendMsg', { 
+            room: this.props.match.params.room, 
+            msg: this.state.message, user: this.props.name, 
+            author_id:this.props.id, user_id: this.props.id, 
+            provider_id:this.props.match.params.providerId })
         this.setState({ message: '' })
     }
 
