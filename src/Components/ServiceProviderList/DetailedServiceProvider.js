@@ -53,12 +53,12 @@ class DetailedServiceProvider extends Component {
 
   render() {
     // const {user} = this.state.provider
-    const {user} = this.state.provider
+    const {user, relation} = this.state.provider
 
     return (
       <div className="DetailedServiceProvider">
         <h1>Welcome to detailed service provider</h1>
-        <Link to={`/joinchat/${this.props.id}`} className="dead-link">
+        <Link to={`/chatsearch/${this.props.id}/${user.id}`} className="dead-link">
         <i className="far fa-comment-dots" onClick={() => this.startChat(this.props.id, user.id, user.name)}></i></Link>
           {/* image: {user.image} */}
           <p>name: {user.name}</p>
