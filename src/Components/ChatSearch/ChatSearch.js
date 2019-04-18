@@ -32,7 +32,7 @@ class ChatSearch extends Component {
             this.setState({ messages: messages, message: '' })
         })
         // this.joinChatRoom()
-        this.socket.emit('joinRoom', '1')
+        // this.socket.emit('joinRoom', this.state.room)
     }
 
     joinChatRoom = async (myId, providerId) => {
@@ -65,10 +65,23 @@ class ChatSearch extends Component {
 
     sendMessage = () => {
         // console.log('sending message', this.state.message)
-        this.socket.emit('sendMsg', { room: this.state.room, msg: this.state.message, user: this.props.name })
+        this.socket.emit('sendMsg', { 
+            room: this.state.room, 
+            msg: this.state.message, 
+            user: this.props.name,
+            user_id: this.props.id,
+            author_id: this.props.id, 
+            provider_id:this.props.match.params.providerId
+     })
         this.setState({ message: '' })
     }
     render() {
+        console.log(this.state.room, 
+            this.state.message, 
+            this.props.name,
+            this.props.id, 
+            this.props.match.params.providerId)
+        console.log(this.props.match.params.providerId)
         // console.log(this.props.match.params)
         // console.log(this.props.name)
         // console.log('message', this.state.message)

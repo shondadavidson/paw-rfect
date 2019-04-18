@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
 
-const SearchForProvider = () => {
+const SearchForProvider = (props) => {
     const [providers, setProviders] = useState([])
     const [zip, setZip] = useState('')
     // const [room, setRoom] = useState(null)
 
-    const getProviders = () => {
-        axios.get(`/api/searchProviders/${zip}`).then(res => {
+    const getProviders = async () => {
+        await axios.get(`/api/searchProviders/${zip}`).then(res => {
+            console.log(res)
             setProviders(res.data)
         })
     }
 
 
-
-    const mappedProviders = providers.map((provider, i) => {
+console.log(providers)
+    const mappedProviders = providers.filter((obj) => obj.id !== 6 ).map((provider, i) => {
         console.log(provider)
         return (
-            <div className='container'>
+            // <div className='container'>
                 <div className='search-list col-12' key={i}>
                     <div className='row'>
                         <div className='col-12'>
@@ -38,7 +40,7 @@ const SearchForProvider = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            // </div>
 
         )
     })

@@ -35,11 +35,10 @@ class ServiceProviderList extends Component {
             return (
                 <Link key={provider.id} to={`/detailedProvider/${provider.id}`} className="dead-link">
                 <div >
-                    <i className="far fa-comment-dots"></i>
+                    
                     <p>{provider.name}</p>
                     <p>{provider.experience}</p>
                     <p>{provider.short_desc}</p>
-                    <p>--------------</p>
 
                 </div>
                 </Link>

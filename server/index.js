@@ -134,6 +134,7 @@ app.get("/api/current", ac.getUser);
 // chat_controller
 app.get('/api/getChat/:id', cc.getChat)
 app.get('/api/getInbox/:id', cc.getInbox)
+app.get('/api/getNewMessageCount/:id', cc. getNewMessageCount)
 app.put('/api/read/:id', cc.read)
 
 //provider_controller
