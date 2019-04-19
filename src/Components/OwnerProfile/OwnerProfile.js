@@ -122,36 +122,68 @@ class OwnerProfile extends Component {
         // console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
         console.log({ edited: this.state.edited })
         return (
-            <>
+
+            <div className='OwnerProfile'>
+
+
                 <div>
                     Welcome {this.state.ownerName}
                 </div>
                 {this.state.editing && <div style={{ 'display': 'flex', 'flexDirection': "column", 'alignItems': 'center' }}>
-                    <input placeholder={'Name'} onChange={e => { this.handleInput('ownerName', e.target.value) }} />
-                    <input placeholder={'Short Description'} onChange={e => { this.handleInput('ownerShortDescription', e.target.value) }} />
-                    {/* <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/> */}
-                    <ImageUpload
-                        state={this.state}
-                        sendPhoto={this.sendPhoto}
-                        handlePhoto={this.handlePhoto}
-                    />
-                    <input placeholder={'Zip Code'} onChange={e => { this.handleInput('ownerZip', e.target.value) }} />
+
+                    <div className='row OwnerProfileImage'>
+                        <ImageUpload
+                            state={this.state}
+                            sendPhoto={this.sendPhoto}
+                            handlePhoto={this.handlePhoto}
+                        />
+
+                    </div>
+                    <div className='row'>
+                        <span className='OwnerProfilePlaceholder'>Display Name: </span>
+                        <input placeholder={'Name'} onChange={e => { this.handleInput('ownerName', e.target.value) }} />
+                    </div>
+                    <div className='row'>
+                        <span className='OwnerProfilePlaceholder'>Description</span>
+                        <input placeholder={'Short Description'} onChange={e => { this.handleInput('ownerShortDescription', e.target.value) }} />
+                        {/* <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/> */}
+                    </div>
+                    <div className='row'>
+                        <span className='OwnerProfilePlaceholder'>Zip Code</span>
+                        <input placeholder={'Zip Code'} onChange={e => { this.handleInput('ownerZip', e.target.value) }} />
+                    </div>
                 </div>}
 
-                {!this.state.editing && <div style={{ 'display': 'flex', 'flexDirection': "column", 'alignItems': 'center' }}>
-                    <img src={this.state.ownerPicture} alt='' style={{ 'width': '10vw', height: '10vw', borderRadius: '50%' }} />
-                    <input placeholder={'Name'} value={this.state.ownerName} readOnly />
-                    <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly />
-                    <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly />
+                {!this.state.editing && <div >
+                    <div className=''>
+                        <div className=''>
+                            <img className='OwnerProfileImage' src={this.state.ownerPicture} alt='profile picture' />
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <span className='OwnerProfilePlaceholder'>Display Name: </span>
+                        <input placeholder={'Name'} value={this.state.ownerName} readOnly />
+                    </div>
+                    <div className='row'>
+                        <span className='OwnerProfilePlaceholder'>Description</span>
+                        <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly />
+                    </div>
+                    <div className='row'>
+                        <span className='OwnerProfilePlaceholder'>Zip Code</span>
+                        <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly />
+                    </div>
                 </div>}
 
 
 
 
-                <div>
-                    <Dogs />
-                    <div></div>
-                </div>
+                {/* <div className='row'> */}
+                {/* <div className='col-12'> */}
+
+                <Dogs />
+
+                {/* </div> */}
+                {/* </div> */}
 
 
 
@@ -171,7 +203,8 @@ class OwnerProfile extends Component {
                     <button onClick={() => this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
 
-            </>
+            </div >
+
         )
     }
 }

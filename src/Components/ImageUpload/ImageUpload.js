@@ -47,13 +47,15 @@ class ImageUpload extends Component {
 
   render() {
     return (
-      <div className="ImageUpload" style={{display:'flex'}}>
+      <div className='row'>
+      <div className="ImageUpload">
+      <img className='OwnerProfileImage' src={this.props.state.ownerPicture} alt="{this.props.name}"  />
         <input type="file" id="real" onChange={this.props.handlePhoto}/>
         <button onClick={this.props.sendPhoto}>upload</button>
         <div >
-          <img src={this.props.state.ownerPicture} alt="none" style={{'width':'10vw', height: '10vw', borderRadius:'50%'}} />
+          
         </div>
-        
+        </div>
       </div>
     );
   }
