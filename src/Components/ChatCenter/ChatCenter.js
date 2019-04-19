@@ -34,7 +34,7 @@ const ChatCenter = (props) => {
                 <div className='chatRow' onClick={ () => read(chat.room)}>
                 <img className='chatPicture' src={chat.picture} alt="chat.name"  />
                     <span className='inboxName'>{chat.receiver_name}</span>
-                    {chat.read === null ?  <span className='inboxMessageNew'>{chat.message}</span> : <span className='inboxMessage'>{chat.message}</span>} 
+                    {chat.read === null && chat.author_id !== props.id ?  <span className='inboxMessageNew'>{chat.message}</span> : <span className='inboxMessage'>{chat.message}</span>} 
                     {/* <span className='inboxMessage'>{chat.message}</span> */}
                 </div>
                 </Link>

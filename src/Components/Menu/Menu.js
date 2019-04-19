@@ -20,7 +20,7 @@ class Menu extends Component {
     // console.log({menuProps: this.props})
     this.props.hideMenu()
     this.getUser()
-    this.checkNewMessageCount()
+
   }
   getUser = async () => {
     const { id } = this.props;
@@ -46,12 +46,7 @@ class Menu extends Component {
     })
   }
 
-  checkNewMessageCount = () => {
-    console.log('hit new message')
-    axios.get(`/api/getNewMessageCount/${this.props.id}`).then(res => {
-      this.setState({ newMessageCount: res.data })
-    })
-  }
+  
 
   render() {
     const { name } = this.props
@@ -83,9 +78,7 @@ class Menu extends Component {
             <MenuItem component={Link} to='/faq'>FAQ</MenuItem>
             <MenuItem><Button onClick={this.logout}>Log Out</Button></MenuItem>
           </MenuList>
-          <Link to={`/inbox`}>
-            <p>you have {this.state.newMessageCount.count} unread messages</p>
-          </Link>
+          
         </div>
       )
     } return null
@@ -98,7 +91,7 @@ const mapStateToProps = reduxState => {
 const mapDispatchToProps = {
   updateUser,
   clearUser,
-  toggleMenu,
+  toggleMenu, 
   hideMenu
 };
 export default withRouter(connect(
