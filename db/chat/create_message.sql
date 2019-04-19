@@ -14,5 +14,6 @@ select user_id from chat_rooms WHERE user_id = ${provider_id} and room = ${room}
 update chat_rooms 
 set date_time = now(),
 message = ${message},
-author_id = ${author_id}
+author_id = ${author_id},
+read = null
 where room = ${room};

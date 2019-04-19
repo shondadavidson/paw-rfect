@@ -54,6 +54,7 @@ class Login extends Component {
     render() {
         const { email, password } = this.state
         return (
+            
             <div className='Login'>
                 <input 
                     className='input'
@@ -71,6 +72,7 @@ class Login extends Component {
                 />
                 <button className='login-button' onClick={this.login}>Login</button>
             </div>
+            
         )
     }
 }

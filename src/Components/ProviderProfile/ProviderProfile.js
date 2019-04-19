@@ -23,7 +23,8 @@ class ProviderProfile extends Component{
             dogSitService:"",
             dogBoardService:"",
             editing:false,
-            ownerPicture: ''
+            ownerPicture: '',
+            edited:false
         }
     }
 
@@ -50,13 +51,15 @@ class ProviderProfile extends Component{
             newVal = "defaultChecked"
         }
         this.setState({        
-            [prop]: newVal            
+            [prop]: newVal,
+            edited: true           
         })
     }
 
     handleInput = (prop, val) => {
         this.setState({
-            [prop]:val
+            [prop]: val,
+            edited: true
         })
     }
 
@@ -68,6 +71,9 @@ class ProviderProfile extends Component{
         let res = await axios.put(`/api/updateProviderProfile/${id}`, infoUpdate);
         // console.log(res.data)
         this.setProviderProfile(res.data[0])
+        this.setState({
+            edited: false
+        })
     }
 
     setProviderProfile = (val) => {
@@ -136,14 +142,15 @@ class ProviderProfile extends Component{
             dogWalkService,
             dogSitService,
             dogBoardService,
-            editing
+            editing,
+            edited
         } = this.state
         // console.log( 
         //     providerName, 
         //     providerShortDescription, 
         //     providerExperience,
         //     providerBio,
-            // providerPicture,
+        //     providerPicture,
         //     providerZip,
         //     dogWalkService,
         //     dogSitService,
@@ -153,49 +160,112 @@ class ProviderProfile extends Component{
         const save = <button onClick={e=> {this.save()}}>Save</button>
         return(
             <>
-                <h3>Welcome Provider</h3>
+                <h3>
+                    {providerName}'s Provider Profile
+                </h3>
 
 
                 {editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <input placeholder={providerName ? providerName : 'Name'} onChange={e=>{this.handleInput('providerName', e.target.value)}} />
-                    <input placeholder={providerShortDescription ? providerShortDescription :'Short Description'} onChange={e=>{this.handleInput('providerShortDescription', e.target.value)}} />
-                    <input placeholder={providerExperience ? providerExperience : 'Experience'} onChange={e=>{this.handleInput('providerExperience', e.target.value)}} />
-                    <input placeholder={providerBio ? providerBio : 'Bio'} onChange={e=>{this.handleInput('providerBio', e.target.value)}} />
-                    {/* <input placeholder={providerPicture ? providerPicture : 'Picture'} onChange={e=>{this.handleInput('providerPicture', e.target.value)}} /> */}
-                    <ImageUpload
-                        state={this.state}
-                        sendPhoto={this.sendPhoto}
-                        handlePhoto={this.handlePhoto}
+                    <input 
+                        placeholder={providerName ? providerName : 'Name'} 
+                        onChange={e=>{this.handleInput('providerName', e.target.value)}} 
                     />
-                    <input placeholder={providerZip ? providerZip : 'Zip Code'} onChange={e=>{this.handleInput('providerZip', e.target.value)}} />
+                    <input 
+                        placeholder={providerShortDescription ? providerShortDescription :'Short Description'} 
+                        onChange={e=>{this.handleInput('providerShortDescription', e.target.value)}} 
+                    />
+                    <input 
+                        placeholder={providerExperience ? providerExperience : 'Experience'} 
+                        onChange={e=>{this.handleInput('providerExperience', e.target.value)}} 
+                    />
+                    <input 
+                        placeholder={providerBio ? providerBio : 'Bio'} 
+                        onChange={e=>{this.handleInput('providerBio', e.target.value)}} 
+                    />
+                    <input 
+                        placeholder={providerPicture ? providerPicture : 'Picture'} 
+                        onChange={e=>{this.handleInput('providerPicture', e.target.value)}} 
+                    />
+                    <input 
+                        placeholder={providerZip ? providerZip : 'Zip Code'} 
+                        onChange={e=>{this.handleInput('providerZip', e.target.value)}} 
+                    />
                     
                     <div> 
-                        <input type='checkbox' checked={dogWalkService} onChange={()=>{this.toggle('dogWalkService')}}/> Dog Walking
+                        <input 
+                            type='checkbox' checked={dogWalkService} 
+                            onChange={()=>{this.toggle('dogWalkService')}}
+                        /> Dog Walking
                     </div>
                     <div> 
-                        <input type='checkbox' checked={dogSitService} onChange={()=>{this.toggle('dogSitService')}}/> Dog Sitting
+                        <input 
+                            type='checkbox' checked={dogSitService} 
+                            onChange={()=>{this.toggle('dogSitService')}}
+                        /> Dog Sitting
                     </div>
                     <div> 
-                        <input type='checkbox' checked={dogBoardService} onChange={()=>{this.toggle('dogBoardService')}}/> Dog Boarding
+                        <input 
+                            type='checkbox' checked={dogBoardService} 
+                            onChange={()=>{this.toggle('dogBoardService')}}
+                        /> Dog Boarding
                     </div>
                 </div>}
 
                 {!editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                <img src={providerPicture} alt='' style={{ 'width': '10vw', height: '10vw', borderRadius: '50%' }} />
-                    <input placeholder={'Name'} value={providerName} readOnly/>
-                    <input placeholder={'Short Description'} value={providerShortDescription} readOnly/>
-                    <input placeholder={'Experience'} value={providerExperience} readOnly/>
-                    <input placeholder={'Bio'} value={providerBio} readOnly/>
-                    <input placeholder={'Zip Code'} value={providerZip} readOnly/>
+                    <img 
+                        src={providerPicture} 
+                        alt='' 
+                        style={{'width':'50vw'}}
+                    />
+                    <input 
+                        placeholder={'Name'} 
+                        value={providerName} 
+                        readOnly
+                    />
+                    <input 
+                        placeholder={'Short Description'} 
+                        value={providerShortDescription} 
+                        readOnly
+                    />
+                    <input 
+                        placeholder={'Experience'} 
+                        value={providerExperience} 
+                        readOnly
+                    />
+                    <input 
+                        placeholder={'Bio'} 
+                        value={providerBio} 
+                        readOnly
+                    />
+                    <input 
+                        placeholder={'Zip Code'} 
+                        value={providerZip} 
+                        readOnly
+                    />
                     
                     <div> 
-                        <input type='checkbox' checked={dogWalkService} value={dogWalkService} disabled={editing ? false : true}/> Dog Walking
+                        <input 
+                            type='checkbox' 
+                            checked={dogWalkService} 
+                            value={dogWalkService} 
+                            disabled={editing ? false : true}
+                        /> Dog Walking
                     </div>
                     <div> 
-                        <input type='checkbox' checked={dogSitService} value={dogSitService} disabled={editing ? false : true}/> Dog Sitting
+                        <input 
+                            type='checkbox' 
+                            checked={dogSitService} 
+                            value={dogSitService} 
+                            disabled={editing ? false : true}
+                        /> Dog Sitting
                     </div>
                     <div> 
-                        <input type='checkbox' checked={dogBoardService} value={dogBoardService} disabled={editing ? false : true}/> Dog Boarding
+                        <input 
+                            type='checkbox' 
+                            checked={dogBoardService} 
+                            value={dogBoardService} 
+                            disabled={editing ? false : true}
+                        /> Dog Boarding
                     </div>
                 </div>}
                 <div>
@@ -205,7 +275,7 @@ class ProviderProfile extends Component{
                             </Link>
                     }
                     {editing && <button onClick={()=>(this.toggle('editing'))}>Back</button>}
-                    {!editing && save}
+                    {!editing && edited && save}
                     <button onClick={()=> this.toggleEditing()}> {editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
 

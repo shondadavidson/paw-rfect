@@ -9,7 +9,7 @@ class DetailedServiceProvider extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      provider: {user:{}, relation:{}}
+      provider: {user:{}, relation:{client_request: "no", provider_approve: 'no'}}
     }
   }
 
@@ -20,7 +20,7 @@ class DetailedServiceProvider extends Component {
   getProvider = async () => {
     console.log(this.props.id)
     await axios.post(`/api/provider/${this.props.match.params.provider_id}`, {ownerId:this.props.id}).then(res => {
-
+console.log(res.data)
       this.setState({
         provider: res.data
       })
@@ -31,47 +31,43 @@ class DetailedServiceProvider extends Component {
     console.log(this.props.id)
     console.log(this.props.match.params.provider_id)
     axios.post(`/api/addProvider/${this.props.id}`, {providerId:this.props.match.params.provider_id}).then(res => {
-      console.log(res.data)
-      this.setState({
-        provider: res.data
+      this.getProvider()
+        
+        // provider: res.data
       })
-    })
-  }
+    }
 
   removeProvider = (id) => {
-    axios.post(`/api/removeProvider/${id}`, {user_id: this.props.id}).then(res => {
-      this.setState({
-        provider: res.data
+    console.log(id)
+    axios.post(`/api/removeProvider/${id}`, {owner_id: this.props.id}).then(res => {
+      this.getProvider()
       })
-    })
-  }
-
+    }
 
   render() {
     // const {user} = this.state.provider
-    const {user, relation} = this.state.provider
+    let {user, relation} = this.state.provider
+    if (relation === null){
+    relation = {client_request: "no", provider_approve: 'no'}}
+    // console.log(relation.client_request)
 
     return (
       <div className="DetailedServiceProvider">
         <h1>Welcome to detailed service provider</h1>
         <Link to={`/chatsearch/${this.props.id}/${user.id}`} className="dead-link">
         <i className="far fa-comment-dots" ></i></Link>
-          {/* image: {user.image} */}
           <p>name: {user.name}</p>
           <p>{user.short_desc}</p>
           <p>experience {user.experience}</p>
-          <p>{user.short_desc}</p>
           <p>{user.bio}</p>
-          <p>Boarder? {user.provider_boarder ? "yes" : 'no' }</p>
-          <p>Sitter? {user.provider_sitter ? "yes" : 'no' }</p>
-          <p>walker? {user.provider_walker ? "yes" : 'no' }</p>
-          <p>request sent? {user.client_request = 'approved' ? 'request sent' : <button onClick={this.addProvider}>Hire</button>}</p>
-          <p>provider approved? {user.provider_approve}</p>
-        
-          
-          <i className="fas fa-user-slash" onClick={() => this.removeProvider(user.id)}></i>
+          <p>Services Offered:</p>
+          <p>{user.provider_boarder ? "Boarding" : '' }</p>
+          <p>{user.provider_sitter ? "Sitting" : '' }</p>
+          <p>{user.provider_walker ? "Walker" : '' }</p>
 
-          <h6>Past Ratings</h6>
+          {relation.provider_approve === 'approved' ? <i className="fas fa-user-slash" onClick={() => this.removeProvider(user.id)}></i> : relation.client_request === 'approved' ? 'request sent' : <button type='button' onClick={this.addProvider}>Hire</button>}
+
+          {/* <h6>Past Ratings</h6> */}
       </div>
     );
   }

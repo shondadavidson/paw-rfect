@@ -37,7 +37,7 @@ class Chat extends Component {
     }
 
     joinChatRoom = async () => {
-        console.log(this.props.room)
+        console.log(this.props.match.params)
         await this.socket.emit('joinRoom', this.props.match.params.room)
         this.getChat()
     }

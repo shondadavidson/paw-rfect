@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux'
-import { updateUser} from '../../ducks/reducer'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { updateUser } from '../../ducks/reducer'
+import { Link } from 'react-router-dom'
 
 class ServiceProviderList extends Component {
     constructor(props) {
@@ -33,24 +33,34 @@ class ServiceProviderList extends Component {
         const mappedProviders = this.state.myProviders.map(provider => {
             console.log(provider.id)
             return (
-                <Link key={provider.id} to={`/detailedProvider/${provider.id}`} className="dead-link">
-                <div >
-                    
-                    <p>{provider.name}</p>
-                    <p>{provider.experience}</p>
-                    <p>{provider.short_desc}</p>
+                <div className='search-list ' key={provider.id}>
 
+
+                    <Link to={`/detailedProvider/${provider.id}`} className="dead-link">
+                        <div className='profileImage'>
+
+
+                            <img src={provider.picture} alt={provider.name} style={{ 'width': '10vw', height: '10vw', borderRadius: '50%' }} />
+
+                        </div>
+                        <div className=''>
+
+                            <p className='list-name'>{provider.name}</p>
+                            <p><small>Experience:</small>{provider.experience}</p>
+                            <p><small>About:</small>{provider.short_desc}</p>
+
+                        </div>
+                    </Link>
                 </div>
-                </Link>
             )
         })
 
         return (
             <div className="ServiceProviderList">
                 <h1>Welcome Owner</h1>
-             
+
                 {mappedProviders}
-                
+
 
             </div>
         );
@@ -60,10 +70,10 @@ class ServiceProviderList extends Component {
 
 const mapStateToProps = reduxState => {
     return reduxState;
-  };
-  const mapDispatchToProps = {
+};
+const mapDispatchToProps = {
     updateUser
-  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ServiceProviderList);
 
