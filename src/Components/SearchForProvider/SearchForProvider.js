@@ -44,17 +44,22 @@ const SearchForProvider = (props) => {
 
         )
     })
-
-    return (
-        <div className="SearchForProvider">
-            <h1>Search For Provider</h1>
-            <p>Search by zip code:</p>
-            <input type='integer' placeholder='zip' maxLength={5} onChange={(e) => setZip(e.target.value)} value={zip}
-            />
-            <button onClick={() => getProviders()}>Search</button>
-            {mappedProviders}
+    
+    console.log(555, zip)
+return (
+    <div className="SearchForProvider">
+        <h1>Search For Provider</h1>
+        <p>Search by zip code:</p>
+        <input type='integer' placeholder='zip' maxLength={5} onChange={(e) => setZip(e.target.value)} value={zip}
+        />
+        <button onClick={() => getProviders()}>Search</button>
+        {/* <Link to='/map'><button >Search in Map</button></Link> */}
+        {mappedProviders}
+        <div  >
+            <MapContainer zip={zip}/>
         </div>
-    );
+    </div>
+);
 }
 
 export default SearchForProvider
