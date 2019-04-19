@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
+import MapContainer from '../Map/MapContainer'
 
 const SearchForProvider = (props) => {
     const [providers, setProviders] = useState([])
@@ -16,8 +17,7 @@ const SearchForProvider = (props) => {
     }
 
 
-console.log(providers)
-    const mappedProviders = providers.filter((obj) => obj.id !== 6 ).map((provider, i) => {
+    const mappedProviders = providers.filter((obj) => obj.id !== props.id ).map((provider, i) => {
         console.log(provider)
         return (
             // <div className='container'>
@@ -44,17 +44,22 @@ console.log(providers)
 
         )
     })
-
-    return (
-        <div className="SearchForProvider">
-            <h1>Search For Provider</h1>
-            <p>Search by zip code:</p>
-            <input type='integer' placeholder='zip' maxLength={5} onChange={(e) => setZip(e.target.value)} value={zip}
-            />
-            <button onClick={() => getProviders()}>Search</button>
-            {mappedProviders}
+    
+    console.log(555, zip)
+return (
+    <div className="SearchForProvider">
+        <h1>Search For Provider</h1>
+        <p>Search by zip code:</p>
+        <input type='integer' placeholder='zip' maxLength={5} onChange={(e) => setZip(e.target.value)} value={zip}
+        />
+        <button onClick={() => getProviders()}>Search</button>
+        {/* <Link to='/map'><button >Search in Map</button></Link> */}
+        {mappedProviders}
+        <div  >
+            <MapContainer zip={zip}/>
         </div>
-    );
+    </div>
+);
 }
 
 export default SearchForProvider

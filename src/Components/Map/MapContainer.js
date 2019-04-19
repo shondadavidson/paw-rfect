@@ -18,15 +18,26 @@ Geocode.setApiKey("AIzaSyDP-UIUktAsE3rMCtlAKuwgMWm9Vjqi6mo");
 // );
 
 export class MapContainer extends Component {
-  state = {
+  constructor(props) {
+    super(props)
+  this.state = {
     showingInfoWindow: false, //Hides or the shows the infoWindow
     activeMarker: {}, //Shows the active marker upon click
     selectedPlace: {},
     address: {}
-  }; //Shows the infoWindow to the selected place upon a marker
+  }//Shows the infoWindow to the selected place upon a marker
+}
 
   componentDidMount() {
-    Geocode.fromAddress("36609").then(response => {
+    this.doGeoStuff()
+  }
+  componentDidUpdate() {
+    this.doGeoStuff()
+  }
+  
+  doGeoStuff = () => {
+    Geocode.fromAddress('this.props.zip').then(response => {
+      console.log(11111, this.props.zip)
       const { lat, lng } = response.results[0].geometry.location;
       console.log(lat, lng);
       this.setState({address:{lat, lng}})
@@ -52,7 +63,7 @@ export class MapContainer extends Component {
   };
 
   render() {
-    console.log(this.state.address);
+    console.log("7777", this.props.zip)
     return (
       <div style={{ height: "100vh" }}>
         {this.state.address.lat &&

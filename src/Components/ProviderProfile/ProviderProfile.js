@@ -3,12 +3,16 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { updateOwnersDogs } from '../../ducks/reducer';
 import axios from 'axios';
+import ImageUpload from '../ImageUpload/ImageUpload'
 
 class ProviderProfile extends Component{
     constructor(){
         super()
 
         this.state={
+            file: '',
+            filename: '',
+            filetype: '',
             providerName: '',
             providerShortDescription: '',
             providerExperience: '',
@@ -18,7 +22,8 @@ class ProviderProfile extends Component{
             dogWalkService:"",
             dogSitService:"",
             dogBoardService:"",
-            editing:false
+            editing:false,
+            ownerPicture: ''
         }
     }
 
@@ -88,8 +93,39 @@ class ProviderProfile extends Component{
         this.setProviderProfile(res.data[0])
     }
 
+    handlePhoto = event => {
+        // this makes a generic file reader that an convert files into strings that allows us to upload it to a server.
+        const reader = new FileReader();
+        // the file itself is located here
+        const file = event.target.files[0];
 
-    render(){             
+        // this is an event handeler and will not actaully run untill the code on line 39 finishes running
+        reader.onload = photo => {
+            // the photo param here is the processed image from the reader.
+            this.setState({
+                file: photo.target.result,
+                filename: file.name,
+                filetype: file.type,
+                providerPicture: '',
+            });
+        };
+        // take the file from the input field and process it at a DataURL (a special way to interpret files)
+        reader.readAsDataURL(file);
+    }
+
+    // when clicked it upload
+    sendPhoto = event => {
+        return axios.post('/api/uploadOwner', this.state).then(response => {
+            console.log(response.data)
+            this.setState({ providerPicture: response.data.Location });
+
+        });
+    }
+
+
+
+    render(){ 
+        console.log(2223333, this.state.providerPicture)            
         const{
             providerName, 
             providerShortDescription, 
@@ -117,7 +153,6 @@ class ProviderProfile extends Component{
         const save = <button onClick={e=> {this.save()}}>Save</button>
         return(
             <>
-                <h3>ProviderProfile Component</h3>
                 <h3>Welcome Provider</h3>
 
 
@@ -127,6 +162,11 @@ class ProviderProfile extends Component{
                     <input placeholder={providerExperience ? providerExperience : 'Experience'} onChange={e=>{this.handleInput('providerExperience', e.target.value)}} />
                     <input placeholder={providerBio ? providerBio : 'Bio'} onChange={e=>{this.handleInput('providerBio', e.target.value)}} />
                     {/* <input placeholder={providerPicture ? providerPicture : 'Picture'} onChange={e=>{this.handleInput('providerPicture', e.target.value)}} /> */}
+                    <ImageUpload
+                        state={this.state}
+                        sendPhoto={this.sendPhoto}
+                        handlePhoto={this.handlePhoto}
+                    />
                     <input placeholder={providerZip ? providerZip : 'Zip Code'} onChange={e=>{this.handleInput('providerZip', e.target.value)}} />
                     
                     <div> 
@@ -141,7 +181,7 @@ class ProviderProfile extends Component{
                 </div>}
 
                 {!editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
-                    <img src={providerPicture} alt='' style={{'width':'10vw', height: '10vw', borderRadius:'50%'}}/>
+                <img src={providerPicture} alt='' style={{ 'width': '10vw', height: '10vw', borderRadius: '50%' }} />
                     <input placeholder={'Name'} value={providerName} readOnly/>
                     <input placeholder={'Short Description'} value={providerShortDescription} readOnly/>
                     <input placeholder={'Experience'} value={providerExperience} readOnly/>
