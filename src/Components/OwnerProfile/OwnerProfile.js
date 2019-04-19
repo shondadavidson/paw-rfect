@@ -186,18 +186,12 @@ class OwnerProfile extends Component {
                 {/* <div className='row'> */}
                 {/* <div className='col-12'> */}
 
-                <Dogs />
 
                 {/* </div> */}
                 {/* </div> */}
 
 
 
-                <div>
-                    <Link to='/adddog'>
-                        <button>+ Add Dog</button>
-                    </Link>
-                </div>
                 <div>
                     {!this.state.editing &&
                         <Link to='/home'>
@@ -208,7 +202,14 @@ class OwnerProfile extends Component {
                     {!this.state.editing && this.state.edited && save}
                     <button onClick={() => this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
+                
+                <div>
+                    <Link to='/adddog'>
+                        <button>+ Add Dog</button>
+                    </Link>
+                </div>
 
+            <Dogs />
             </div >
 
         )
