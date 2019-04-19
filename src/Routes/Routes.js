@@ -15,6 +15,7 @@ import Contact from '../Components/Contact/Contact';
 import ImageUpload from '../Components/ImageUpload/ImageUpload'
 import Chat from '../Components/Chat/Chat'
 import PendingClientList from '../Components/ClientList/PendingClientList'
+import Map from '../Components/Map/MapContainer'
 import ChatCenter from '../Components/ChatCenter/ChatCenter'
 import ChatSearch from '../Components/ChatSearch/ChatSearch'
 
@@ -35,6 +36,8 @@ export default (
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />
+        <Route path='/chat/:userId/:providerId' component={Chat} />
+        <Route path='/map' component={Map} />
         <Route path='/chat/:room/:providerId' component={Chat} />
         <Route path='/inbox' component={ChatCenter} />
         <Route path='/chatsearch/:userId/:providerId' component={ChatSearch} />

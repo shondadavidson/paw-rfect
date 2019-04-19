@@ -2,7 +2,7 @@ const initialState = {
     id: null,
     name: '',
     ownersDogs: [],
-    show: false
+    show: false,
 }
 
 const UPDATE_USER = 'UPDATE_USER'
