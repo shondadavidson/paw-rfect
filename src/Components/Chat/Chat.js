@@ -17,7 +17,8 @@ class Chat extends Component {
 
     componentDidMount() {
         this.setSocketListeners()
-        this.joinChatRoom(this.props.match.params.userId, this.props.match.params.providerId)
+        this.joinChatRoom(this.props.match.params.room)
+        
     }
 
     componentWillUnmount() {
@@ -29,34 +30,20 @@ class Chat extends Component {
 
         this.socket.on('sendMsg', (messages) => {
             // console.log('hit on', messages)
-            this.setState({ messages: messages, message: '' })
+            this.setState({ messages: messages})
         })
         // this.joinChatRoom()
         // this.socket.emit('joinRoom', this.state.room)
     }
 
-    joinChatRoom = async (myId, providerId) => {
-        // console.log(myId, providerId)
-        myId = parseInt(myId)
-        providerId = parseInt(providerId)
-        let highUser
-        let lowUser
-        if(myId > providerId){
-            highUser = myId
-            lowUser = providerId
-        } else {
-            highUser = providerId
-            lowUser = myId
-        }
-        const roomId = highUser + ':' + lowUser
-        // console.log(roomId)
-        await this.setState({room:roomId})
-        this.socket.emit('joinRoom', roomId)
+    joinChatRoom = async () => {
+        console.log(this.props.room)
+        await this.socket.emit('joinRoom', this.props.match.params.room)
         this.getChat()
     }
 
     getChat = () => {
-        axios.get(`/api/getChat/${this.state.room}`).then(res => {
+        axios.get(`/api/getChat/${this.props.match.params.room}`).then(res => {
             this.setState({
                 messages: res.data
             })
@@ -64,11 +51,19 @@ class Chat extends Component {
     }
 
     sendMessage = () => {
-        // console.log('sending message', this.state.message)
-        this.socket.emit('sendMsg', { room: this.state.room, msg: this.state.message, user: this.props.name, author_id:this.props.id, user_id: this.props.match.params.userId, provider_id:this.props.match.params.providerId })
+        console.log(this.props.provider)
+        console.log(this.props.match.params.room)
+        this.socket.emit('sendMsg', { 
+            room: this.props.match.params.room, 
+            msg: this.state.message, user: this.props.name, 
+            author_id:this.props.id, user_id: this.props.id, 
+            provider_id:this.props.match.params.providerId })
         this.setState({ message: '' })
     }
+
+    
     render() {
+        // console.log(this.props.match.params.room)
         // console.log(this.props.match.params)
         // console.log(this.props.name)
         // console.log('message', this.state.message)
@@ -86,16 +81,17 @@ class Chat extends Component {
 
         return (
             <div className="Chat col-11">
-            <div className='chatDisplay'>
-  
-                {mappedMessages}
-                </div>
+            
                 <input 
                     type='text' 
                     placeholder='chat' 
                     value={this.state.message} 
                     onChange={(e) => this.setState({ message: e.target.value })} />
                 <button className='sendMessageButton' onClick={() => this.sendMessage()}>Send Message</button>
+                <div className='chatDisplay'>
+  
+                {mappedMessages}
+            </div>
                 
             </div>
         );

@@ -73,11 +73,12 @@ CREATE TABLE chat (
 );
 
 CREATE TABLE chat_rooms (
-	user_id	varchar,
+	user_id	integer,
 	room varchar,
 	date_time timestamp,
 	message text,
-	author_id varchar,
+	author_id integer,
+	receiver_id integer,
 	read timestamp
 )
 

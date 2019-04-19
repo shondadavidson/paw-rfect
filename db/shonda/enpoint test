@@ -1,0 +1,43 @@
+GET- http://localhost:4321/api/getInbox/6
+
+ const expectedObject = {
+        "user_id": 6,
+        "room": "6:6",
+        "date_time": "2019-04-18T04:08:11.342Z",
+        "message": "9",
+        "author_id": 6,
+        "read": "2019-04-19T02:08:09.855Z",
+        "receiver_id": 6,
+        "receiver_name": "Shonda",
+        "picture": "https://pawrfect2.s3.us-west-2.amazonaws.com/Redhat-logo.jpg"
+    }
+
+const responseJSON = pm.response.json();
+
+pm.test("Status Code is 200", function() {
+    pm.response.to.have.status(200)
+})
+
+pm.test("returned data is an array", function() {
+    pm.expect(Array.isArray(responseJSON)).to.eql(true)
+})
+
+pm.test("return data is an array with length of 1", function() {
+    pm.expect(Array.isArray(responseJSON)).to.eql(true);
+  pm.expect(responseJSON.length).to.eql(5);
+})
+
+pm.test("Returned data is expected", function() {
+  pm.expect(responseJSON[0]).to.eql(expectedObject);
+});
+
+
+
+
+GET- http://localhost:4321/api/getInbox/h
+
+const responseJSON = pm.response.json();
+
+pm.test("Status code is 400", function() {
+  pm.response.to.have.status(400);
+});
