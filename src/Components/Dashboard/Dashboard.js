@@ -33,11 +33,8 @@ class Dashboard extends Component {
       <div className='container'>
         <div className='col-12 Dashboard'>
           <h1>Paw-rfect</h1>
-          <div>
-            <img src={Beagle} alt="Beagle" />
-            <img src={Rot} alt="Rot" />
-            <img src={Dalmatian} alt="Dalmatian" />
-          </div>
+          
+          <div className='col-12 col-md-6'>
           <div className='box-controller'>
             <div
               className={"controller " + (this.state.isLoginOpen
@@ -59,6 +56,13 @@ class Dashboard extends Component {
               Register
        </div>
             {this.state.isRegisterOpen && <Register history={this.props.history} />}
+          </div>
+          
+          </div>
+          <div className='splash-dogs'>
+            <img src={Beagle} alt="Beagle" />
+            <img src={Rot} alt="Rot" />
+            <img src={Dalmatian} alt="Dalmatian" />
           </div>
         </div>
       </div>

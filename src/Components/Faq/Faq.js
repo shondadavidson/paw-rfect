@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Faq() {
     return (
-        <div>
+        <div className='faq'>
             <h3>FAQs</h3>
             <ul>
                 <li>Is Paw-rfect free?</li>
