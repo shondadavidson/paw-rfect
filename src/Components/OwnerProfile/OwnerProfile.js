@@ -6,6 +6,7 @@ import Dogs from '../Dogs/Dogs';
 import { updateOwnersDogs } from '../../ducks/reducer';
 import axios from 'axios';
 import ImageUpload from '../ImageUpload/ImageUpload'
+import MapContainer from '../Map/MapContainer'
 
 class OwnerProfile extends Component {
     constructor() {
@@ -124,6 +125,11 @@ class OwnerProfile extends Component {
         return (
             <>
                 <div>
+                    <div style={{display:'none'}}>
+                    <MapContainer style={{height: 10}}
+                        zip ={this.state.ownerZip}
+                    /> 
+                    </div>
                     Welcome {this.state.ownerName}
                 </div>
                 {this.state.editing && <div style={{ 'display': 'flex', 'flexDirection': "column", 'alignItems': 'center' }}>

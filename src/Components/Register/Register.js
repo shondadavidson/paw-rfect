@@ -45,10 +45,15 @@ class Register extends Component {
             name: this.state.name
         }
         try {
+            const { email, password, name } = this.state
+            if(email && password && name) {
             let res = await axios.post('/auth/register', user)
             this.props.updateUser(res.data)
             this.props.history.push('/home')
-        } catch (err) {
+        } else {
+            alert('Please fill out the registration form')
+        }
+     }  catch (err) {
             alert('This Email is already registered')
         }
     }
