@@ -36,7 +36,6 @@ export default (
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/imageupload' component={ImageUpload} />
-        <Route path='/chat/:userId/:providerId' component={Chat} />
         <Route path='/map' component={Map} />
         <Route path='/chat/:room/:providerId' component={Chat} />
         <Route path='/inbox' component={ChatCenter} />
