@@ -21,16 +21,17 @@
     margin-right: 4px;
     width:5vw;
     height: 5vw;
-     border-radius: 50%;
+    border-radius: 50%;
 }
 
 .inboxName {
-    font-size: 1em;
+    font-size: .5em;
     margin-right: 10px;
+   
 }
 
 .inboxMessage {
-    font-size: .7em;
+    font-size: .5em;
 }
 
 .inboxMessageNew {

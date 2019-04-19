@@ -6,6 +6,7 @@ import Dogs from '../Dogs/Dogs';
 import { updateOwnersDogs } from '../../ducks/reducer';
 import axios from 'axios';
 import ImageUpload from '../ImageUpload/ImageUpload'
+import MapContainer from '../Map/MapContainer'
 
 class OwnerProfile extends Component {
     constructor() {
@@ -182,10 +183,13 @@ class OwnerProfile extends Component {
 
 
 
-                <div>
-                    <Dogs />
-                    <div></div>
-                </div>
+                {/* <div className='row'> */}
+                {/* <div className='col-12'> */}
+
+                <Dogs />
+
+                {/* </div> */}
+                {/* </div> */}
 
 
 
@@ -209,7 +213,8 @@ class OwnerProfile extends Component {
                         </button>
                 </div>
 
-            </>
+            </div >
+
         )
     }
 }

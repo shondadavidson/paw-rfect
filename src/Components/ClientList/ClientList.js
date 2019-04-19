@@ -78,7 +78,8 @@ const ClientList = (props) => {
         return (
             <div key={client.clients.id}>
                 <h4>{client.clients.name}</h4>
-                <i className="far fa-comment-dots"></i>
+                <Link to={`/chatsearch/${props.id}/${client.clients.id}`} className="dead-link">
+                    <i className="far fa-comment-dots" ></i></Link>
                 {mappedDogs}
                 <p>test</p>
                 {client.clients.walk}

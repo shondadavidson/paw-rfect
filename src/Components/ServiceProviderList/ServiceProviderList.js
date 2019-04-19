@@ -33,16 +33,25 @@ class ServiceProviderList extends Component {
         const mappedProviders = this.state.myProviders.map(provider => {
             console.log(provider.id)
             return (
-                <Link key={provider.id} to={`/detailedProvider/${provider.id}`} className="dead-link">
-                <div >
-                    <i className="far fa-comment-dots"></i>
-                    <p>{provider.name}</p>
-                    <p>{provider.experience}</p>
-                    <p>{provider.short_desc}</p>
-                    <p>--------------</p>
+                <div className='search-list ' key={provider.id}>
+    
+            
 
+                        <div className='profileImage'>
+                            <Link to={`/detailedProvider/${provider.id}`} className="dead-link">
+
+                                <img src={provider.picture} alt={provider.name} style={{ 'width': '10vw', height: '10vw', borderRadius: '50%' }} />
+                            </Link>
+                        </div>
+                        <div className=''>
+                          
+                            <p className='list-name'>{provider.name}</p>
+                            <p><small>Experience:</small>{provider.experience}</p>
+                            <p><small>About:</small>{provider.short_desc}</p>
+                    
+                        </div>
+                   
                 </div>
-                </Link>
             )
         })
 

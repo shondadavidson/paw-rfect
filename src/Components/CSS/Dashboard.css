@@ -1,8 +1,13 @@
 .Dashboard {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    justify-content: center;
+    align-items: center;
 
+}
+
+.homeDog {
+    width: 70vw;
 }
 
 .box-controller {

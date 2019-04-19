@@ -5,7 +5,7 @@ function BackButton (props) {
     if (props.location.pathname !== '/') {
     return (
         <div>
-            <button onClick={() => props.history.goBack()}><i className="fas fa-chevron-circle-left"></i></button>
+            <button className='backButton' onClick={() => props.history.goBack()}><i className="fas fa-chevron-circle-left"></i></button>
         </div>
     )
     } return null
