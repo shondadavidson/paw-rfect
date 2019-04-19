@@ -23,11 +23,12 @@ const SearchForProvider = (props) => {
             // <div className='container'>
             <div className='search-list col-12' key={i}>
                 <div className='row'>
+                <Link to={`/detailedProvider/${provider.id}`} className="dead-link">
                 <div className='profileImage'>
-                            <Link to={`/detailedProvider/${provider.id}`} className="dead-link">
+                           
 
                                 <img src={provider.picture} alt={provider.name} style={{ 'width': '10vw', height: '10vw', borderRadius: '50%' }} />
-                            </Link>
+                            
                         </div>
                         <div className=''>
                           
@@ -36,6 +37,7 @@ const SearchForProvider = (props) => {
                             <p><small>About:</small>{provider.short_desc}</p>
                     
                         </div>
+                        </Link>
                 </div>
             </div>
             // </div>
