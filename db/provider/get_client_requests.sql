@@ -14,4 +14,4 @@ select *, (
     ) c 
 ) as clients
 from owner_client as o
-where provider_id = ${provider_id} and o.provider_approve = null;
+where provider_id = ${provider_id} and o.provider_approve = 'pending';

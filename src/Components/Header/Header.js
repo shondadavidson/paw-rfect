@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
-const BackButton = (props) => {
+const Header = (props) => {
     const [newMessageCount, setNewMessageCount] = useState({count: "0"})
 
     useEffect(() => {
@@ -22,10 +22,16 @@ const checkNewMessageCount = () => {
 
     if (props.location.pathname !== '/') {
     return (
-        <div className=' backButton dead-link'>
-            <button className='backButton' onClick={() => props.history.goBack()}><i className="fas fa-chevron-circle-left"></i></button>
-            <img className='logo' src={require('../../img/paw-rfect-logo.png')} width="" height="" alt='dogs' />
+        <div className=' header dead-link'>
             
+            {/* <img className='logo' src={require('../../img/paw-rfect-logo.png')} width="" height="" alt='dogs' /> */}
+            <h5>Welcome {props.name}</h5>
+            <Link to={`/inbox`}>
+            <div className='messageCount'>
+            <i class="fas fa-inbox"></i>
+            <span className='messageCount'>{newMessageCount.count} </span>
+            </div>
+          </Link>
             
         </div>)} else return(null)
     
@@ -38,4 +44,4 @@ const checkNewMessageCount = () => {
             }
         }
 
-export default withRouter(connect(mapStateToProps)(BackButton))
+export default withRouter(connect(mapStateToProps)(Header))

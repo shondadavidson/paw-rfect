@@ -76,5 +76,33 @@ module.exports = {
                 res.status(200).send(resp)
             }
         )
+    },
+    acceptRequest: (req, res) => {
+        console.log(req.params)
+        console.log(req.body)
+        const db = req.app.get('db')
+        let { id } = req.params
+        let {owner_id} = req.body
+        id = parseInt(id)
+        owner_id = parseInt(owner_id)
+        db.provider.accept({provider_id:id, owner_id: owner_id }).then(
+            resp => {
+                res.status(200).send(resp)
+            }
+        ).catch(err => console.log(err))
+    },
+    denyRequest: (req, res) => {
+        console.log(req.params)
+        console.log(req.body)
+        const db = req.app.get('db')
+        let { id } = req.params
+        let {owner_id} = req.body
+        id = parseInt(id)
+        owner_id = parseInt(owner_id)
+        db.provider.deny({provider_id:id, owner_id: owner_id }).then(
+            resp => {
+                res.status(200).send(resp)
+            }
+        )
     }
 }

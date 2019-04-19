@@ -188,15 +188,34 @@ h1 {
 }
 
 .messageCount {
-  color: #08756E;
+  color: red;
+  /* margin: 3px; */
+
 }
 
 .header {
   display: flex;
   padding-top: 10px;
+  padding: 10px;
   font-size: 1em;
   justify-content: space-between;
+  align-items: flex-end;
+  background-color: #08756E;
+  color: white;
 }
+
+.logo {
+  max-width: 40vw;
+  height: auto;    
+}
+
+.messageBubble {
+  /* position: absolute;
+  right: 10px;
+  font-size: 1.5em; */
+}
+
+
 
 
 

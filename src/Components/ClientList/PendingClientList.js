@@ -16,10 +16,21 @@ const PendingClientList = (props) => {
         })
     }
 
+    const acceptRequest = (id) => {
+        console.log(id)
+        axios.put(`/api/acceptRequest/${id}`, {owner_id: props.id}).then(res => setClients(res.data))
+    }
+
+    const declineRequest = (id) => {
+        console.log(id)
+        axios.put(`/api/declineRequest/${id}`, {owner_id: props.id}).then(res => {setClients(res.data)})
+    }
+
     const mappedClients = clients.map((client, i) => {
         const mappedDogs = client.clients.dogs.map((dog, i) => {
             return (
                 <div key={i}>
+                    <img src={dog.dog_picture} alt="none" style={{'width':'3vw', height: '3vw', borderRadius:'50%'}}/>
                     <p>{dog.dog_name}</p>
 
                 </div>
@@ -27,11 +38,12 @@ const PendingClientList = (props) => {
         })
         return (
             <div key={i}>
+            <img src={client.clients.picture} alt="none" style={{'width':'5vw', height: '5vw', borderRadius:'50%'}}/>
                 <h4>{client.clients.name}</h4>
                 <i className="far fa-comment-dots"></i>
                 {mappedDogs}
-                <button>Accept</button>
-                <button>Decline</button>
+                <button onClick={() => acceptRequest(client.clients.id)}>Accept</button>
+                <button onClick={() => declineRequest(client.clients.id)}>Decline</button>
 
             </div>
         )

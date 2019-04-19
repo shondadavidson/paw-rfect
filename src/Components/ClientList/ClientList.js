@@ -70,13 +70,17 @@ const ClientList = (props) => {
         const mappedDogs = client.clients.dogs.map((dog) => {
             return (
                 <div key={dog.dog_id}>
+                <img src={dog.dog_picture} alt="none" style={{'width':'3vw', height: '3vw', borderRadius:'50%'}}/>
                     <p>{dog.dog_name}</p>
 
                 </div>
             )
         })
         return (
+            <>
+            
             <div key={client.clients.id}>
+            <img src={client.clients.picture} alt="none" style={{'width':'5vw', height: '5vw', borderRadius:'50%'}}/>
                 <h4>{client.clients.name}</h4>
                 <Link to={`/chatsearch/${props.id}/${client.clients.id}`} className="dead-link">
                     <i className="far fa-comment-dots" ></i></Link>
@@ -87,7 +91,7 @@ const ClientList = (props) => {
 
 
             </div>
-
+</>
         )
     })
     console.log(clients, props.id)
@@ -98,10 +102,8 @@ const ClientList = (props) => {
         <div>
             <div>
 
-                {requests > 0 ? <p>Pending Requests = {requests}</p> : <p></p>}
-
                 <Link to='/pendingclients'>
-                    {/* <button>View Pending Client Requests</button> */}
+                {requests > 0 ? <p>Pending Requests = {requests}</p> : <p></p>}
                 </Link>
                 {mappedWalking}
                 <h4>Client List</h4>
