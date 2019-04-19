@@ -11,7 +11,7 @@ function Splash() {
     <div className='container'>
       <div className='col-12'>
 
-        <h1>Paw-rfect</h1>
+      <img className='' src={require('../../img/paw-rfect-logo.png')} width="" height="" alt='dogs' />
 
         <p>The Paw-rfect way to find the best care for your good boy or girl.</p>
 

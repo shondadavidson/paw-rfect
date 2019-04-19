@@ -184,6 +184,18 @@ h1 {
   display: flex;
   padding-top: 10px;
   font-size: 1.5em;
+  justify-content: space-between;
+}
+
+.messageCount {
+  color: #08756E;
+}
+
+.header {
+  display: flex;
+  padding-top: 10px;
+  font-size: 1em;
+  justify-content: space-between;
 }
 
 
