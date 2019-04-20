@@ -6,7 +6,6 @@ import Dogs from '../Dogs/Dogs';
 import { updateOwnersDogs } from '../../ducks/reducer';
 import axios from 'axios';
 import ImageUpload from '../ImageUpload/ImageUpload'
-import MapContainer from '../Map/MapContainer'
 
 class OwnerProfile extends Component {
     constructor() {
