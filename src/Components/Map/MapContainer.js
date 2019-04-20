@@ -31,15 +31,13 @@ export class MapContainer extends Component {
   componentDidMount() {
     this.doGeoStuff()
   }
-  componentDidUpdate() {
-    this.doGeoStuff()
-  }
+  // componentDidUpdate() {
+  //   this.doGeoStuff()
+  // }
   
   doGeoStuff = () => {
-    Geocode.fromAddress('this.props.zip').then(response => {
-      console.log(11111, this.props.zip)
+    Geocode.fromAddress(this.props.match.params.zip).then(response => {
       const { lat, lng } = response.results[0].geometry.location;
-      console.log(lat, lng);
       this.setState({address:{lat, lng}})
     }).catch(err => {
       console.log(err)

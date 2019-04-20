@@ -125,14 +125,7 @@ class OwnerProfile extends Component {
         return (
 
             <div className='OwnerProfile'>
-
-
                 <div>
-                    <div style={{display:'none'}}>
-                    <MapContainer style={{height: 10}}
-                        zip ={this.state.ownerZip}
-                    /> 
-                    </div>
                     Welcome {this.state.ownerName}
                 </div>
                 {this.state.editing && <div style={{ 'display': 'flex', 'flexDirection': "column", 'alignItems': 'center' }}>

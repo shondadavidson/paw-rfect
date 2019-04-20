@@ -53,10 +53,11 @@ return (
         <input type='integer' placeholder='zip' maxLength={5} onChange={(e) => setZip(e.target.value)} value={zip}
         />
         <button onClick={() => getProviders()}>Search</button>
+        <Link to={`/map/${zip}`}><button>Search in Map</button></Link>
         {/* <Link to='/map'><button >Search in Map</button></Link> */}
         {mappedProviders}
         <div  >
-            <MapContainer zip={zip}/>
+            {/* <MapContainer zip={zip}/> */}
         </div>
     </div>
 );
