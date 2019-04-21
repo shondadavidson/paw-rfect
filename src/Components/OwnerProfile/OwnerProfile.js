@@ -80,6 +80,14 @@ class OwnerProfile extends Component {
         updateOwnersDogs(res.data)
     }
 
+    deleteDog = async (dogId, ownerId) => {
+        // console.log({dogId:dogId},{ownerId:ownerId})
+        // console.log('hit dog delete button', dogId, ownerId)
+        let res = await axios.delete(`/api/deleteDog/${dogId}`, {data: {ownerId}})  //giving it the data object with an object inside creates the body prop on the req in the controller.
+        // console.log({resData:res.data})
+        this.props.updateOwnersDogs(res.data)
+    }
+
     getOwner = async () => {
         const { id } = this.props
         // console.log(id)
@@ -121,7 +129,7 @@ class OwnerProfile extends Component {
         const save = <button onClick={e => { this.save() }}>Save</button>
         // console.log(this)
         // console.log({testImageProvidedByRobohashDotOrg:'https://robohash.org/borris?set=set4'})
-        console.log({ edited: this.state.edited })
+        // console.log({ edited: this.state.edited })
         return (
 
             <div className='OwnerProfile'>
@@ -203,13 +211,13 @@ class OwnerProfile extends Component {
                     <button onClick={() => this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
                 </div>
                 
+
+            <Dogs deleteDog={this.deleteDog}/>
                 <div>
                     <Link to='/adddog'>
                         <button>+ Add Dog</button>
                     </Link>
                 </div>
-
-            <Dogs />
             </div >
 
         )

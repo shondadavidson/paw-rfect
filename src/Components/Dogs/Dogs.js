@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from "axios";
 
 class Dogs extends Component {
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         const dogList = this.props.ownersDogs.map((dog, i) => {
-            const { dog_picture, dog_name, dog_age, weight, breed, dog_gender, special_notes, dog_id } = dog
+            const { dog_picture, dog_name, dog_age, weight, breed, dog_gender, special_notes, dog_id, owner_id, deleteDog } = dog
             return (
                 <div className='Dogs' key={dog_id} >
             
@@ -18,6 +19,7 @@ class Dogs extends Component {
                         <div className='3'>
                             <span className='OwnerProfileDogList'>Name:</span >
                             <span className='OwnerProfileDogText'>{dog_name}</span >
+                            <button className='OwnerProfileDogList' onClick={()=>{this.props.deleteDog(dog_id, owner_id)}}>X</button>
                             <span className='OwnerProfileDogList'>Age:</span >
                             <span className='OwnerProfileDogText'>{dog_age}</span >
                             <span className='OwnerProfileDogList'>Weight:</span >

@@ -163,6 +163,7 @@ app.put('/api/updateOwner/:id', uc.updateOwner)
 app.get('/api/getOwner/:id', uc.getOwner)
 app.get('/api/getProviderProfile/:id', uc.getProviderProfile)
 app.put('/api/updateProviderProfile/:id', uc.updateProviderProfile)
+app.delete('/api/deleteDog/:id', uc.deleteDog)
 // SOCKETS
 
 const io = socket(app.listen(SERVER_PORT, () => console.log('Sweeettt')))

@@ -40,7 +40,7 @@ export function hideMenu(){
 
 export function toggleMenu(){
     return {
-        type: TOGGLE_MENU,
+        type: TOGGLE_MENU
     }
 }
 
