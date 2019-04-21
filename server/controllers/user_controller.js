@@ -147,6 +147,29 @@ module.exports = {
             res.status(400).send(err)
         })
     },
+    deleteDog: (req, res) => {
+        // console.log('hit controller delete dog', {reqParams: req.params}, {reqData:req.data})
+        const {id} = req.params
+        const dog_id = parseInt(id)
+        const {ownerId} = req.body
+        // console.log({ownerId: ownerId})
+        // console.log({reqBody: req.body})
+        owner_id = parseInt(ownerId)
+        // console.log({dogId: dog_id},{ownerId: owner_id})
+        const dog = {
+            dog_id:dog_id, 
+            owner_id:owner_id
+        }
+        const db = req.app.get('db')
+        db.users.delete_dog(dog).then(
+            remainingDogs => {
+                // console.log({remainingDogs:remainingDogs})
+                res.status(200).send(remainingDogs)
+            }
+        ).catch(err => {
+            res.status(400).send(err)
+        })
+    },
     getProviderProfile: (req, res) => {
         // console.log('hit controller get provider profile')
         // console.log({params:req.params})
