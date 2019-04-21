@@ -53,7 +53,6 @@ class Menu extends Component {
     if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/dashboard') {
       return (
         <div>
-          <h5>Welcome {name}</h5>
           <div className='toggle'
             // onClick={() => this.toggle()} //old toggle that uses state
             onClick={() => this.props.toggleMenu()}

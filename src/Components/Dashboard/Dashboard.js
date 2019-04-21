@@ -59,11 +59,8 @@ class Dashboard extends Component {
           </div>
           
           </div>
-          <div className='splash-dogs'>
-            <img src={Beagle} alt="Beagle" />
-            <img src={Rot} alt="Rot" />
-            <img src={Dalmatian} alt="Dalmatian" />
-          </div>
+          <img className='splash-dogs' src={require('../../img/dogs.png')} width="" height="" alt='dogs' />
+         
         </div>
       </div>
     );

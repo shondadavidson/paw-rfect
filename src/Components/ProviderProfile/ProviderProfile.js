@@ -3,12 +3,16 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { updateOwnersDogs } from '../../ducks/reducer';
 import axios from 'axios';
+import ImageUpload from '../ImageUpload/ImageUpload'
 
 class ProviderProfile extends Component{
     constructor(){
         super()
 
         this.state={
+            file: '',
+            filename: '',
+            filetype: '',
             providerName: '',
             providerShortDescription: '',
             providerExperience: '',
@@ -19,6 +23,7 @@ class ProviderProfile extends Component{
             dogSitService:"",
             dogBoardService:"",
             editing:false,
+            ownerPicture: '',
             edited:false
         }
     }
@@ -94,8 +99,39 @@ class ProviderProfile extends Component{
         this.setProviderProfile(res.data[0])
     }
 
+    handlePhoto = event => {
+        // this makes a generic file reader that an convert files into strings that allows us to upload it to a server.
+        const reader = new FileReader();
+        // the file itself is located here
+        const file = event.target.files[0];
 
-    render(){             
+        // this is an event handeler and will not actaully run untill the code on line 39 finishes running
+        reader.onload = photo => {
+            // the photo param here is the processed image from the reader.
+            this.setState({
+                file: photo.target.result,
+                filename: file.name,
+                filetype: file.type,
+                providerPicture: '',
+            });
+        };
+        // take the file from the input field and process it at a DataURL (a special way to interpret files)
+        reader.readAsDataURL(file);
+    }
+
+    // when clicked it upload
+    sendPhoto = event => {
+        return axios.post('/api/uploadOwner', this.state).then(response => {
+            console.log(response.data)
+            this.setState({ providerPicture: response.data.Location });
+
+        });
+    }
+
+
+
+    render(){ 
+        console.log(2223333, this.state.providerPicture)            
         const{
             providerName, 
             providerShortDescription, 

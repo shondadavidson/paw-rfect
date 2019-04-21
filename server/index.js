@@ -144,6 +144,9 @@ app.get('/api/getRequestCount/:id', pc.getRequestCount)
 app.get('/api/getWalking/:id', pc.getWalking)
 app.post('/api/pickup/:id', pc.pickup)
 app.put('/api/dropoff/:id', pc.dropoff)
+app.put('/api/acceptRequest/:id', pc.acceptRequest)
+app.put('/api/denyRequest/:id', pc.acceptRequest)
+
 
 //user_controller
 
@@ -152,6 +155,7 @@ app.post('/api/provider/:id', uc.provider)
 app.get('/api/searchProviders/:zip', uc.searchProviders)
 app.post('/api/addProvider/:id', uc.addProvider)
 app.post('/api/dropoff/:id', pc.dropoff)
+app.post('/api/removeProvider/:id', uc.removeProvider)
 
 app.post('/api/addDog/:id', uc.addDog)
 app.get('/api/getDogs/:id', uc.getDogs)

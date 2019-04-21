@@ -55,9 +55,11 @@ module.exports = {
         providerId = parseInt(providerId)
         db.users.add_provider({ owner_id: id, provider_id: providerId }).then(
             resp => {
+                console.log(resp)
                 res.status(200).send(resp)
             }
         ).catch(err => {
+            console.log(err)
             res.status(400).send(err)
         })
     },
@@ -210,6 +212,24 @@ module.exports = {
         ).catch(err => {
             res.status(400).send(err)
         })
+    },
+
+    removeProvider: (req, res) => {
+        console.log(req.params)
+        console.log(req.body)
+        let {id} = req.params
+        let {owner_id }= req.body
+        owner_id = parseInt(owner_id)
+        const db = req.app.get('db')
+        db.users.remove_provider({provider_id: id, owner_id: owner_id}).then(
+            provider => {
+                res.status(200).send(provider)
+            }
+        ).catch(err => {
+            console.log(err)
+            res.status(400).send(err)
+        })
+
     }
 
 
