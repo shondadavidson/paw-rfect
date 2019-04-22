@@ -22,9 +22,9 @@ const checkNewMessageCount = () => {
 
     if (props.location.pathname !== '/') {
     return (
-        <div className=' backButton dead-link'>
-            <button className='backButton' onClick={() => props.history.goBack()}><i className="fas fa-chevron-circle-left"></i></button>
-            <img className='logo' src={require('../../img/paw-rfect-logo.png')} width="" height="" alt='dogs' />
+        <div >
+            <button id='backButton' onClick={() => props.history.goBack()}><i className="fas fa-chevron-circle-left"></i></button>
+           
             
             
         </div>)} else return(null)

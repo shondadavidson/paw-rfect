@@ -1,5 +1,40 @@
 .App {
   text-align: center;
+  height: 100vh;
+}
+
+Input {
+  /* border-bottom: #111ba7 solid 1px; */
+  height: 1.9em;
+}
+
+Button {
+  margin-top: 30px;
+  padding: 10px 25px;
+    cursor: pointer;
+    background: #08756E;
+    font-size: 12px;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: #fff;
+    transition: all 0.5s ease-in-out;
+}
+
+Button:hover {
+  margin-top: 30px;
+    padding: 10px 25px;
+    cursor: pointer;
+    background: #fff;
+    font-size: 12px;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: #08756E;
+    transition: all 0.5s ease-in-out;
+}
+
+Link:hover {
+  text-decoration: none;
+  color: none;
 }
 .menu {
   /* background-color: teal; */
@@ -25,6 +60,14 @@
 h1 {
   word-wrap: normal;
   color: #11A79D;
+  
+  font-family: 'Fresca', sans-serif;
+}
+p h2 h3 h4 h5 {
+  font-family: 'Didact Gothic', sans-serif;
+}
+span {
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .container {
@@ -139,21 +182,40 @@ h1 {
 
 }
 
-.OwnerProfileDogList {
-  display: flex;
-  flex-direction: column;
-  font-size: .5em;
+.OwnerProfileDogListEdit {
+  font-size: .75em;
+  padding: 3px;
+  background: white;
   color: #08756E;
+  border: 0px solid;
 }
 
-.OwnerProfileDogText {
+.row {
+  display: flex;
+  justify-content: center;
+}
 
+.OwnerProfileDogList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: .5em;
+    color: #08756E;
+    width: 10vw;
+}
+
+
+.OwnerProfileDogText {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .OwnerProfileDogImage {
   border-radius: 50%;
-  width:15vh;
-  width: 15vw;
+  height: 70px;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Contact {
@@ -179,24 +241,30 @@ h1 {
   text-align: left;
 }
 
-.backButton {
+#backButton {
+  color: #08756E;
   border: 0;
   display: flex;
   padding-top: 10px;
-  font-size: 1.5em;
+  font-size: 1em;
   justify-content: space-between;
+  background: white;
 }
 
 .messageCount {
-  color: red;
+  color: white;;
   /* margin: 3px; */
-
+}
+.messageCount:hover {
+  color: white;
+  text-decoration: none;
+  /* margin: 3px; */
 }
 
 .header {
   display: flex;
   padding-top: 10px;
-  padding: 10px;
+  padding: 0 10px;
   font-size: 1em;
   justify-content: space-between;
   align-items: flex-end;
@@ -213,6 +281,10 @@ h1 {
   /* position: absolute;
   right: 10px;
   font-size: 1.5em; */
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 
