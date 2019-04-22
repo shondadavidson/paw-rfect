@@ -3,9 +3,14 @@
   height: 100vh;
 }
 
+.container {
+  padding: 0;
+}
+
 Input {
   /* border-bottom: #111ba7 solid 1px; */
   height: 1.9em;
+  margin: 0;
 }
 
 Button {
@@ -84,7 +89,7 @@ span {
 
 .login-button {
   background-color: #08756E;
-  width: 60%;
+  width: 80%;
   max-width: 200px;
   color: white;
   /* border-radius: 10px; */
@@ -109,11 +114,13 @@ span {
 
 .chat {
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: flex-start;
   border: 1px solid rgba(0,0,0,.125);
 
 }
+
+
 
 .chatDisplay {
   height: 70vh;
@@ -135,7 +142,6 @@ span {
 }
 
 .sendMessageButton {
-  margin: 5px;
   background-color: #08756E;
   color: white;
 
@@ -179,14 +185,35 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 10px;
 
+}
+
+#DogBackground {
+  background-color: rgba(238, 238, 238, 0.6) !important;
+background-blend-mode: screen;
+background-size: contain;
+background-size: cover;
+height: 400px;
+overflow: scroll;
+border-radius: 20px;
+  
+}
+
+.dogList {
+  /* opacity: .9; */
+  z-index: 100;
+  padding: 20px;
 }
 
 .OwnerProfileDogListEdit {
   font-size: .75em;
   padding: 3px;
   background: white;
-  color: #08756E;
+  background-color: rgba(238, 238, 238, 0.0) !important;
+background-blend-mode: screen;
+  /* opacity: .2; */
+  color: black;
   border: 0px solid;
 }
 
@@ -252,7 +279,8 @@ span {
 }
 
 .messageCount {
-  color: white;;
+  color: white;
+  text-decoration: none;
   /* margin: 3px; */
 }
 .messageCount:hover {
@@ -286,6 +314,14 @@ span {
 a:hover {
   text-decoration: none;
 }
+
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 
 
 

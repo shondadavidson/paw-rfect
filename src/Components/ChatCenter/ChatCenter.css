@@ -1,6 +1,7 @@
 .ChatCenter {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
 
@@ -19,19 +20,19 @@
 
 .chatPicture {
     margin-right: 4px;
-    width:5vw;
-    height: 5vw;
+    width:30px;
+    height: 30px;
     border-radius: 50%;
 }
 
 .inboxName {
-    font-size: .5em;
-    margin-right: 10px;
+    font-size: 1em;
+    margin-right: 20px;
    
 }
 
 .inboxMessage {
-    font-size: .5em;
+    font-size: .8em;
 }
 
 .inboxMessageNew {
