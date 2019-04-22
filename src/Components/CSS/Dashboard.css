@@ -42,7 +42,7 @@
 
 .selected-controller {
     /* -webkit-box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2); */
-    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    /* box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2); */
     padding: 10px;
  
 }

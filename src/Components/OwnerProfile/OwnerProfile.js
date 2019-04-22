@@ -143,9 +143,11 @@ class OwnerProfile extends Component {
                     </div>
                     Welcome {this.state.ownerName}
                 </div>
-                {this.state.editing && <div style={{ 'display': 'flex', 'flexDirection': "column", 'alignItems': 'center' }}>
+                {this.state.editing && <div >
 
-                    <div className='row OwnerProfileImage'>
+                    <div className='OwnerProfileImage'>
+                    <div className='row ownerProfileDisplay'>
+
                         <ImageUpload
                             state={this.state}
                             sendPhoto={this.sendPhoto}
@@ -160,44 +162,43 @@ class OwnerProfile extends Component {
                     <div className='row'>
                         <span className='OwnerProfilePlaceholder'>Description</span>
                         <input placeholder={'Short Description'} onChange={e => { this.handleInput('ownerShortDescription', e.target.value) }} />
-                        {/* <input placeholder={'Picture'} onChange={e=>{this.handleInput('ownerPicture', e.target.value)}}/> */}
+                        
                     </div>
                     <div className='row'>
                         <span className='OwnerProfilePlaceholder'>Zip Code</span>
                         <input placeholder={'Zip Code'} onChange={e => { this.handleInput('ownerZip', e.target.value) }} />
                     </div>
+                    </div>
                 </div>}
 
-                {!this.state.editing && <div >
+                {!this.state.editing && <div className='profileView'>
                     <div className=''>
                         <div className=''>
                             <img className='OwnerProfileImage' src={this.state.ownerPicture} alt='profile picture' />
                         </div>
                     </div>
-                    <div className='row'>
+
+                    <div className='row ownerProfileDisplay'>
                         <span className='OwnerProfilePlaceholder'>Display Name: </span>
                         <input placeholder={'Name'} value={this.state.ownerName} readOnly />
                     </div>
-                    <div className='row'>
+                    <div className='row ownerProfileDisplay'>
                         <span className='OwnerProfilePlaceholder'>Description</span>
                         <input placeholder={'Short Description'} value={this.state.ownerShortDescription} readOnly />
                     </div>
-                    <div className='row'>
+                    <div className='row ownerProfileDisplay'>
                         <span className='OwnerProfilePlaceholder'>Zip Code</span>
                         <input placeholder={'Zip Code'} value={this.state.ownerZip} readOnly />
                     </div>
+                    <div className='row'>
+                    <Dogs deleteDog={this.deleteDog}/>
+                <div>
+                    <Link to='/adddog'>
+                        <button>+ Add Dog</button>
+                    </Link>
+                    </div>
+                </div>
                 </div>}
-
-
-
-
-                {/* <div className='row'> */}
-                {/* <div className='col-12'> */}
-
-
-                {/* </div> */}
-                {/* </div> */}
-
 
 
                 <div>
@@ -209,15 +210,11 @@ class OwnerProfile extends Component {
                     {this.state.editing && <button onClick={() => (this.toggle('editing'))}>Back</button>}
                     {!this.state.editing && this.state.edited && save}
                     <button onClick={() => this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
+                    
                 </div>
                 
 
-            <Dogs deleteDog={this.deleteDog}/>
-                <div>
-                    <Link to='/adddog'>
-                        <button>+ Add Dog</button>
-                    </Link>
-                </div>
+            
             </div >
 
         )
