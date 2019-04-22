@@ -11,11 +11,12 @@ class Dogs extends Component {
             return (
                 // <div className='col-12 col-md-3'>
                 // <div className='row'>
-                <div className='col-12 col-md-4'>
-                <div className='Dogs' key={dog_id} >
+                <div className='col-12 col-md-5'>
+                <div className='Dogs' key={dog_id}  >
             
                 {/* <div className='row'> */}
-                    <div className='2'>
+                    <div id='DogBackground' style={{backgroundImage:`url(${dog_picture})`, } }>
+                        <div className='dogList'>
                     
                         <img className='OwnerProfileDogImage' src={dog_picture} alt='' />
                         <button className='OwnerProfileDogListEdit' onClick={()=>{this.props(dog_id, owner_id)}}><i class="fas fa-minus-circle"></i></button>
@@ -45,7 +46,7 @@ class Dogs extends Component {
 
 </div>
 
-
+</div>
                         </div>
                 
                     {/* </div> */}

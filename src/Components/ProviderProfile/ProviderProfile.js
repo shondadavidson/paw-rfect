@@ -165,31 +165,55 @@ class ProviderProfile extends Component{
                 </h3>
 
 
-                {editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
+                {editing && <div className='profileView'>
+                <div className=''>
+                        <div className=''>
+
+                    <img 
+                        className='OwnerProfileImage'
+                        src={providerPicture} 
+                        alt='' 
+                        
+                    />
+                    </div>
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Display Name: </span>
                     <input 
                         placeholder={providerName ? providerName : 'Name'} 
                         onChange={e=>{this.handleInput('providerName', e.target.value)}} 
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Short Description: </span>
                     <input 
                         placeholder={providerShortDescription ? providerShortDescription :'Short Description'} 
                         onChange={e=>{this.handleInput('providerShortDescription', e.target.value)}} 
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Experience: </span>
                     <input 
                         placeholder={providerExperience ? providerExperience : 'Experience'} 
                         onChange={e=>{this.handleInput('providerExperience', e.target.value)}} 
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Bio: </span>
                     <input 
                         placeholder={providerBio ? providerBio : 'Bio'} 
                         onChange={e=>{this.handleInput('providerBio', e.target.value)}} 
                     />
-                    <input 
-                        placeholder={providerPicture ? providerPicture : 'Picture'} 
-                        onChange={e=>{this.handleInput('providerPicture', e.target.value)}} 
-                    />
+                    </div>
+                
+                  
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Display Name: </span>
                     <input 
                         placeholder={providerZip ? providerZip : 'Zip Code'} 
                         onChange={e=>{this.handleInput('providerZip', e.target.value)}} 
                     />
+                    </div>
                     
                     <div> 
                         <input 
@@ -211,47 +235,69 @@ class ProviderProfile extends Component{
                     </div>
                 </div>}
 
-                {!editing && <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
+                {!editing && <div className='profileView'>
+                <div className=''>
+                        <div className=''>
                     <img 
+                        className='OwnerProfileImage'
                         src={providerPicture} 
                         alt='' 
-                        style={{'width':'50vw'}}
+                        
                     />
+                    </div>
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Display Name: </span>
                     <input 
                         placeholder={'Name'} 
                         value={providerName} 
                         readOnly
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Short Description: </span>
                     <input 
                         placeholder={'Short Description'} 
                         value={providerShortDescription} 
                         readOnly
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Experience: </span>
                     <input 
                         placeholder={'Experience'} 
                         value={providerExperience} 
                         readOnly
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Bio: </span>
                     <input 
                         placeholder={'Bio'} 
                         value={providerBio} 
                         readOnly
                     />
+                    </div>
+                    <div className='row ownerProfileDisplay'>
+                        <span className='OwnerProfilePlaceholder'>Zip: </span>
                     <input 
                         placeholder={'Zip Code'} 
                         value={providerZip} 
                         readOnly
                     />
-                    
-                    <div> 
+                    </div>
+                 
+                    <div className='services'>
+                    <div className='row ownerProfileDisplayCheckbox'> 
                         <input 
+
                             type='checkbox' 
                             checked={dogWalkService} 
                             value={dogWalkService} 
                             disabled={editing ? false : true}
                         /> Dog Walking
                     </div>
-                    <div> 
+                    <div className='row ownerProfileDisplay'> 
                         <input 
                             type='checkbox' 
                             checked={dogSitService} 
@@ -259,7 +305,7 @@ class ProviderProfile extends Component{
                             disabled={editing ? false : true}
                         /> Dog Sitting
                     </div>
-                    <div> 
+                    <div className='row ownerProfileDisplay'> 
                         <input 
                             type='checkbox' 
                             checked={dogBoardService} 
@@ -267,7 +313,9 @@ class ProviderProfile extends Component{
                             disabled={editing ? false : true}
                         /> Dog Boarding
                     </div>
-                </div>}
+                </div>
+                </div>
+                }
                 <div>
                     {!editing && 
                             <Link to='/home'>

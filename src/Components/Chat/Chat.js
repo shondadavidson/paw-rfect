@@ -81,6 +81,7 @@ class Chat extends Component {
 
         return (
             <div className="Chat col-11">
+            <div className='chatMessage'>
             
                 <input 
                     type='text' 
@@ -88,6 +89,7 @@ class Chat extends Component {
                     value={this.state.message} 
                     onChange={(e) => this.setState({ message: e.target.value })} />
                 <button className='sendMessageButton' onClick={() => this.sendMessage()}>Send Message</button>
+                </div>
                 <div className='chatDisplay'>
   
                 {mappedMessages}
