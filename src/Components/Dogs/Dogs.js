@@ -9,17 +9,24 @@ class Dogs extends Component {
         const dogList = this.props.ownersDogs.map((dog, i) => {
             const { dog_picture, dog_name, dog_age, weight, breed, dog_gender, special_notes, dog_id, owner_id, deleteDog } = dog
             return (
+                // <div className='col-12 col-md-3'>
+                // <div className='row'>
+                <div className='col-12 col-md-4'>
                 <div className='Dogs' key={dog_id} >
             
                 {/* <div className='row'> */}
                     <div className='2'>
+                    
                         <img className='OwnerProfileDogImage' src={dog_picture} alt='' />
+                        <button className='OwnerProfileDogListEdit' onClick={()=>{this.props(dog_id, owner_id)}}><i class="fas fa-minus-circle"></i></button>
+                      
+                        <button className='OwnerProfileDogListEdit' onClick={()=>{this.props.deleteDog(dog_id, owner_id)}}><i class="far fa-edit"></i></button>
                         <div >
                         </div>
-                        <div className='3'>
-                            <span className='OwnerProfileDogList'>Name:</span >
+                        
+                        <span className='OwnerProfileDogList'>Name:</span >
                             <span className='OwnerProfileDogText'>{dog_name}</span >
-                            <button className='OwnerProfileDogList' onClick={()=>{this.props.deleteDog(dog_id, owner_id)}}>X</button>
+                            
                             <span className='OwnerProfileDogList'>Age:</span >
                             <span className='OwnerProfileDogText'>{dog_age}</span >
                             <span className='OwnerProfileDogList'>Weight:</span >
@@ -30,19 +37,20 @@ class Dogs extends Component {
                             <span className='OwnerProfileDogText'>{dog_gender}</span >
                             <span className='OwnerProfileDogList'>Special Notes:</span >
                             <p className='OwnerProfileDogText'>{special_notes}</p >
-                        </div>
+                        
                         <div>
                             {/* <img src={dog_picture} alt=""/> */}
 
 
 
-
+</div>
 
 
                         </div>
-                    </div>
+                
                     {/* </div> */}
                  
+                </div>
                 </div>
             )
         })

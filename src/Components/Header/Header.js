@@ -22,16 +22,24 @@ const checkNewMessageCount = () => {
 
     if (props.location.pathname !== '/') {
     return (
-        <div className=' header dead-link'>
-            
+        <div className=' header '>
+        <Link to={`/home`}>
+             <img className='logo' src={require('../../img/paw-logo-white.png')} width="" height="" alt='dogs' />
             {/* <img className='logo' src={require('../../img/paw-rfect-logo.png')} width="" height="" alt='dogs' /> */}
+            </Link>
+            
+            <div>
             <h5>Welcome {props.name}</h5>
+            
             <Link to={`/inbox`}>
+            
             <div className='messageCount'>
             <i class="fas fa-inbox"></i>
             <span className='messageCount'>{newMessageCount.count} </span>
             </div>
+            
           </Link>
+          </div>
             
         </div>)} else return(null)
     

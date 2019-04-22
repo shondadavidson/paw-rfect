@@ -23,6 +23,9 @@ const Home = (props) => {
           <div>
             <h1>Dog Owners</h1>
           </div>
+          <Link to='/ownerprofile'>
+              <button className="">Owner Profile</button>
+            </Link>
           <div className='home-container'>
             <Link to='/searchproviders'><div className='home-inner-container'>Search for Providers</div></Link>
             <Link to='/serviceProviders'>
@@ -30,13 +33,14 @@ const Home = (props) => {
             </Link>
           </div>
           <div>
-            <Link to='/ownerprofile'>
-              <button className="btn btn-success">Owner Profile</button>
-            </Link>
+            
           </div>
           <div>
             <h1>Service Providers</h1>
           </div>
+          <Link to='/providerprofile'>
+              <button className="">Provider Profile</button>
+            </Link>
           <div className='home-container'>
           <Link to='/clientlist'>
             <div className='home-inner-container'>
@@ -49,9 +53,7 @@ const Home = (props) => {
             </Link>
           </div>
           <div>
-            <Link to='/providerprofile'>
-              <button className="btn btn-success">Provider Profile</button>
-            </Link>
+            
           </div>
         </div>
       </div>
