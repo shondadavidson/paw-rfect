@@ -11,6 +11,9 @@ Input {
   /* border-bottom: #111ba7 solid 1px; */
   height: 1.9em;
   margin: 0;
+  position: relative;
+    top: 4px;
+
 }
 
 Button {
@@ -102,9 +105,15 @@ span {
 .search-list {
   background-color: white;
   border: 1px solid rgba(0,0,0,.125);
+  margin: 5px;
+  border-radius: 20px;
   
   display: flex;
   /* margin: 8px; */
+}
+
+.mappedProviders {
+  /* background-color: grey; */
 }
 
 .list-name {
