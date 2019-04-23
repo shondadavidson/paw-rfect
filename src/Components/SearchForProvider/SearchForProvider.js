@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { zipResults } from '../../ducks/reducer'
 import MapContainer from '../Map/MapContainer';
 
 
@@ -14,6 +15,7 @@ const SearchForProvider = props => {
     await axios.get(`/api/searchProviders/${zip}`).then(res => {
       console.log(res);
       setProviders(res.data);
+      props.zipResults(res.data)
     });
   };
 
@@ -25,7 +27,7 @@ const SearchForProvider = props => {
       return (
         // <div className='container'>
         <div className="search-list col-12" key={i}>
-          <div className="row">
+        
             <Link to={`/detailedProvider/${provider.id}`} className="dead-link">
               <div className="profileImage">
                 <img
@@ -36,18 +38,15 @@ const SearchForProvider = props => {
               </div>
               <div className="">
                 <p className="list-name">{provider.name}</p>
-                <p>
-                  <small>Experience:</small>
-                  {provider.experience}
+                <p><small>Experience:</small></p>
+                 <p>{provider.experience}
                 </p>
-                <p>
-                  <small>About:</small>
-                  {provider.short_desc}
-                </p>
+                <p><small>About:</small></p>
+                 <p>{provider.short_desc}</p>
               </div>
             </Link>
           </div>
-        </div>
+    
         // </div>
       );
     });
@@ -63,10 +62,24 @@ const SearchForProvider = props => {
         <button>Search in Map</button>
       </Link>
       {/* <Link to='/map'><button >Search in Map</button></Link> */}
+      <div className='mappedProviders'>
       {mappedProviders}
+      </div>
       <div>{/* <MapContainer zip={zip}/> */}</div>
     </div>
   );
 };
 
-export default SearchForProvider;
+const mapStateToProps = reduxState => {
+  return {
+    searchedResults: reduxState.searchedResults
+  }
+}
+const mapDispatchToProps = {
+  zipResults
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchForProvider)
