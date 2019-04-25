@@ -25,11 +25,15 @@
     width: 80%;;
     border: 2px solid teal;
     /* padding: 50px; */
-    margin: 5px;
+    margin: 5px auto;
     color: #08756E;
     text-decoration: none;
     height: auto;
     align-content: flex-end;
+}
+
+.home-inner-container > p {
+    width: 70%;
 }
 
 .home-inner-container:hover{

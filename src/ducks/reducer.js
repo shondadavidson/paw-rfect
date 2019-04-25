@@ -3,6 +3,7 @@ const initialState = {
     name: '',
     ownersDogs: [],
     show: false,
+    searchedResults: []
 }
 
 const UPDATE_USER = 'UPDATE_USER'
@@ -10,6 +11,7 @@ const CLEAR_USER = 'CLEAR_USER'
 const UPDATE_OWNERS_DOGS = 'UPDATE_OWNERS_DOGS'
 const HIDE_MENU = 'HIDE_MENU'
 const TOGGLE_MENU = 'TOGGLE_MENU'
+const ZIP_RESULTS = 'ZIP_RESULTS'
 
 export function updateUser(user) {
     return {
@@ -24,7 +26,7 @@ export function clearUser() {
     }
 }
 
-export function updateOwnersDogs(dogs){
+export function updateOwnersDogs(dogs) {
     // console.log(dogs)
     return {
         type: UPDATE_OWNERS_DOGS,
@@ -32,15 +34,23 @@ export function updateOwnersDogs(dogs){
     }
 }
 
-export function hideMenu(){
+export function hideMenu() {
     return {
         type: HIDE_MENU
     }
 }
 
-export function toggleMenu(){
+export function toggleMenu() {
     return {
         type: TOGGLE_MENU
+    }
+}
+
+export function zipResults(results) {
+    console.log('hit')
+    return {
+        type: ZIP_RESULTS,
+        payload: results
     }
 }
 
@@ -51,15 +61,17 @@ export default function reducer(state = initialState, action) {
             const { id, name } = payload
             return { ...state, id, name }
         case CLEAR_USER:
-            return { ...state, id:null, name: ''}
+            return { ...state, id: null, name: '' }
         case UPDATE_OWNERS_DOGS:
             // console.log(payload)
-            return {...state, ownersDogs: payload }
-        case HIDE_MENU: 
-            return {...state, show: false}
+            return { ...state, ownersDogs: payload }
+        case HIDE_MENU:
+            return { ...state, show: false }
         case TOGGLE_MENU:
-            return {...state, show: !state.show}
-        default: 
+            return { ...state, show: !state.show }
+        case ZIP_RESULTS:
+            return { ...state, searchedResults: payload }
+        default:
             return state
     }
 }
