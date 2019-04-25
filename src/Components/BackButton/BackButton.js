@@ -20,7 +20,7 @@ const checkNewMessageCount = () => {
     })
   }
 
-    if (props.location.pathname !== '/') {
+    if (props.location.pathname !== '/' && props.location.pathname !== '/dashboard') {
     return (
         <div >
             <button id='backButton' onClick={() => props.history.goBack()}><i className="fas fa-chevron-circle-left"></i></button>

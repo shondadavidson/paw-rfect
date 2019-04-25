@@ -9,6 +9,19 @@
 .homeDog {
     width: 70vw;
 }
+.logo-container {
+    margin-top:-20px;
+    margin-left: -15px;
+    display: flex;
+    padding-top: 10px;
+    padding: 0 10px;
+    font-size: 1em;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: #08756E;
+    color: white;
+    width: 93.5vw;
+}
 
 .box-controller {
     visibility: visible;

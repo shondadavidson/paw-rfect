@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Geocode from 'react-geocode';
+import MapMarker from './MapMarker'
 
 const mapStyles = {
   width: '100vw',
@@ -63,17 +64,16 @@ export class MapContainer extends Component {
   };
 
   render() {
-    console.log('7777', this.props.zip);
     return (
       <div style={{ height: '100vh' }}>
         {this.state.address.lat && (
           <Map
-            google={this.props.google}
-            zoom={14}
-            // style={style}
-            // initialCenter={{ lat: 30.391617, lng: -81.850769 }}
-            initialCenter={this.state.address}
+          google={this.props.google}
+          zoom={14}
+          // initialCenter={{ lat: 30.391617, lng: -81.850769 }}
+          initialCenter={this.state.address}
           >
+            <MapMarker style={{zIndex:8, position:'relative'}}/>
             <Marker
               onClick={this.onMarkerClick}
               // name={'Kenyatta International Convention Centre'}
