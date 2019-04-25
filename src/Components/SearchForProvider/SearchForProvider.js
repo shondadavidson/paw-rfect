@@ -7,21 +7,19 @@ import MapContainer from '../Map/MapContainer';
 
 
 const SearchForProvider = props => {
-  const [providers, setProviders] = useState([]);
   const [zip, setZip] = useState('');
   // const [room, setRoom] = useState(null)
 
   const getProviders = async () => {
     await axios.get(`/api/searchProviders/${zip}`).then(res => {
       console.log(res);
-      setProviders(res.data);
       props.zipResults(res.data)
     });
   };
 
-  console.log(providers);
-  const mappedProviders = providers
-    .filter(obj => obj.id !== 6)
+
+  const mappedProviders = props.searchedResults
+    .filter(obj => obj.id !== props.id)
     .map((provider, i) => {
       console.log(provider);
       return (
