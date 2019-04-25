@@ -215,8 +215,7 @@ module.exports = {
     },
 
     removeProvider: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
+       
         let {id} = req.params
         let {owner_id }= req.body
         owner_id = parseInt(owner_id)
@@ -230,6 +229,20 @@ module.exports = {
             res.status(400).send(err)
         })
 
+    },
+
+    walkStatus: (req, res) => {
+        console.log('hit walkStatus', req.params)
+        const db = req.app.get('db')
+        let {id} = req.params
+        id = parseInt(id)
+        db.users.walk_status({owner_id: id }).then(
+            resp => {
+                console.log(resp[0])
+                res.status(200).send(resp[0])
+            }).catch(err => {
+            res.status(400).send(err)
+        })
     }
 
 

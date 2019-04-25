@@ -17,8 +17,8 @@ Input {
 }
 
 Button {
-  margin-top: 30px;
   padding: 10px 25px;
+  margin: 5px;
     cursor: pointer;
     background: #08756E;
     font-size: 12px;
@@ -29,8 +29,8 @@ Button {
 }
 
 Button:hover {
-  margin-top: 30px;
     padding: 10px 25px;
+    margin: 5px;
     cursor: pointer;
     background: #fff;
     font-size: 12px;
@@ -331,6 +331,29 @@ a:hover {
 }
 
 
+#call {
+  background-color: green;
+  margin: 0 10px;
+}
+
+#answer {
+  background-color: green;
+  margin: 0 10px;
+}
+
+#endCall {
+  background-color: red;
+  margin: 0 10px;
+}
+
+.videoButton {
+  color: white;
+}
+
+.onWalk {
+  border: 1px solid grey;
+  padding: 20px;
+}
 
 
 
