@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withStyles} from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateUser, clearUser, toggleMenu, hideMenu } from '../../ducks/reducer'
 import { Link } from 'react-router-dom'
 import { MenuList, MenuItem } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import '../Menu/Menu.css'
+import Dashboard from '../Dashboard/Dashboard';
+
+const styles = theme => ({
+  menu: {
+    color: 'white',
+    fontSize: '20px'
+  }
+})
 
 class Menu extends Component {
   constructor(props) {
@@ -49,39 +61,33 @@ class Menu extends Component {
   
 
   render() {
-    const { name } = this.props
+    const { name, classes } = this.props
     if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/dashboard') {
       return (
-        <div>
-          <div className='toggle'
-            // onClick={() => this.toggle()} //old toggle that uses state
-            onClick={() => this.props.toggleMenu()}
-          >
-            <i className="fa fa-bars"></i>
-          </div>
-          {/* <MenuList className={ this.state.show ? 'menu show': 'menu'}> // old menu that uses state
-                  <MenuItem component={ Link } to='/home'>Home</MenuItem>
-                  <MenuItem component={ Link } to='/ownerprofile'>Owner's Profile</MenuItem>
-                  <MenuItem component={ Link } to='/providerprofile'>Provider Profile</MenuItem>
-                  <MenuItem component={ Link } to='/contact'>Contact Us</MenuItem>
-                  <MenuItem component={ Link } to='/faq'>FAQ</MenuItem>
-                  <MenuItem><Button onClick={this.logout}>Log Out</Button></MenuItem>
-                </MenuList> */}
 
+<nav>
+        
+          <div className="sub-menu-parent" >
+            <span class="nav-show">Menu</span>
+            <div className="sub-menu">
+            <Link to='/home'><p>Home</p></Link>
+            <Link to='/ownerprofile'><p>Owner's Profile</p></Link>
+            <Link to='/providerprofile'><p>Provider's Profile</p></Link>
+            <Link to='/contact'><p>Contact Us</p></Link>
+            <Link to='/faq'><p>FAQs</p></Link>
+            <p><button onClick={this.logout}>Log Out</button></p>
+            </div>
+            </div>
+           
+         
+ </nav>
 
-          <MenuList className={this.props.show ? 'menu show' : 'menu'} onClick={() => this.props.toggleMenu()}>
-            <MenuItem component={Link} to='/home'>Home</MenuItem>
-            <MenuItem component={Link} to='/ownerprofile'>Owner's Profile</MenuItem>
-            <MenuItem component={Link} to='/providerprofile'>Provider Profile</MenuItem>
-            <MenuItem component={Link} to='/contact'>Contact Us</MenuItem>
-            <MenuItem component={Link} to='/faq'>FAQ</MenuItem>
-            <MenuItem><Button onClick={this.logout}>Log Out</Button></MenuItem>
-          </MenuList>
-          
-        </div>
       )
     } return null
   }
+}
+Menu.propTypes = {
+  classes: PropTypes.object.isRequired
 }
 
 const mapStateToProps = reduxState => {
@@ -96,4 +102,4 @@ const mapDispatchToProps = {
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Menu));
+)(withStyles(styles)(Menu)))

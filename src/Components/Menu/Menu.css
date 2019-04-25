@@ -1,0 +1,35 @@
+  .sub-menu-parent { 
+       position: relative; 
+       /* width: 80px; */
+    }
+
+.sub-menu { 
+  visibility: hidden; 
+  background: rgb(53, 117, 110);
+  opacity: 0.9;
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+}
+
+.sub-menu p {
+    color: white;
+}
+.sub-menu p:hover {
+    transform: scale(1.2);
+}
+
+.nav-show:hover + .sub-menu, .sub-menu:hover {
+  visibility: visible;
+}
+
+
+/* presentational */
+body { padding: 2%; font: 18px/1.4 sans-serif; }
+
+nav a { display: block; padding: 0.5em 1em; text-decoration: none; }
+
+/* nav > div { background: #EEE; text-align: center; } */
+/* nav > div > p { display: inlie-block; border-left: solid 1px #aaa; } */
+/* nav > div > p:first-child { border-left: none; } */
+

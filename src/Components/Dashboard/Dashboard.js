@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import Login from '../Login/Login'
 import Register from '../Register/Register'
 import { withRouter } from 'react-router-dom'
-import Dalmatian from '../Images/dalmatian.png'
-import Beagle from '../Images/beagle.png'
-import Rot from '../Images/rot.png'
 import '../CSS/Dashboard.css'
 
 class Dashboard extends Component {

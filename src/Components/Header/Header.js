@@ -34,7 +34,7 @@ const checkNewMessageCount = () => {
             <Link to={`/inbox`}>
             
             <div className='messageCount'>
-            <i class="fas fa-inbox"></i>
+            <i className="fas fa-inbox"></i>
             <span className='messageCount'>{newMessageCount.count} </span>
             </div>
             
