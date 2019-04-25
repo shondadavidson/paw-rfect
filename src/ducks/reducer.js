@@ -3,6 +3,7 @@ const initialState = {
     name: '',
     ownersDogs: [],
     show: false,
+    searchedZip: 0,
     searchedResults: []
 }
 
@@ -11,6 +12,7 @@ const CLEAR_USER = 'CLEAR_USER'
 const UPDATE_OWNERS_DOGS = 'UPDATE_OWNERS_DOGS'
 const HIDE_MENU = 'HIDE_MENU'
 const TOGGLE_MENU = 'TOGGLE_MENU'
+const ZIP_CODE = 'ZIP_CODE'
 const ZIP_RESULTS = 'ZIP_RESULTS'
 
 export function updateUser(user) {
@@ -46,6 +48,14 @@ export function toggleMenu() {
     }
 }
 
+export function zipCode(zip) {
+    console.log('hit')
+    return {
+        type: ZIP_CODE,
+        payload: zip
+    }
+}
+
 export function zipResults(results) {
     console.log('hit')
     return {
@@ -69,6 +79,8 @@ export default function reducer(state = initialState, action) {
             return { ...state, show: false }
         case TOGGLE_MENU:
             return { ...state, show: !state.show }
+            case ZIP_CODE:
+            return { ...state, searchedZip: payload }
         case ZIP_RESULTS:
             return { ...state, searchedResults: payload }
         default:
