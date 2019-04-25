@@ -58,9 +58,15 @@ const ClientList = (props) => {
     }
 
     const mappedWalking = walking.map(walk => {
+        console.log(walk)
         return (
-            <div key={walk.walk_id}>
-                <button onClick={() => dropOff(walk.walk_id)}>Dog drop off for:  {walk.owner_name}</button>
+            <div key={walk.walk_id} className='onWalk'>
+            <h4>{walk.owner_name}</h4>
+            <Link to={`/videocall/${props.id}/${walk.owner_id}`} className=""><button>
+                <i className="fas fa-video videoButton"></i>Video Call</button></Link>
+                <button className='videButton' onClick={() => dropOff(walk.walk_id)}>Dropoff</button>
+                
+
 
             </div>
         )
@@ -88,6 +94,8 @@ const ClientList = (props) => {
                 <p>test</p>
                 {client.clients.walk}
                 <button onClick={() => pickup(client.clients.id, client.clients.name)}>Pickup</button>
+                {/* <Link to={`/videocall/${props.id}/${client.clients.id}`} className="dead-link">
+                <i className="fas fa-video"></i></Link> */}
 
 
             </div>
@@ -99,15 +107,26 @@ const ClientList = (props) => {
     console.log(clientName)
     console.log('walking is', walking)
     return (
-        <div>
-            <div>
+        <div className='col-12'>
+            <div className='col-12'>
 
                 <Link to='/pendingclients'>
                 {requests > 0 ? <p>Pending Requests = {requests}</p> : <p></p>}
                 </Link>
+                </div>
+                <div className='col-12'>
+                <h2>On Walk</h2>
+                <div className='col-12'>
                 {mappedWalking}
-                <h4>Client List</h4>
+                </div>
+                <hr />
+                <div className='col-12'>
+                <h2>Client List</h2>
+                </div>
+                <div className='col-12'>
                 {mappedClients}
+                <hr />
+                </div>
             </div>
         </div>
 

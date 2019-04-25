@@ -18,6 +18,7 @@ import PendingClientList from '../Components/ClientList/PendingClientList'
 import Map from '../Components/Map/MapContainer'
 import ChatCenter from '../Components/ChatCenter/ChatCenter'
 import ChatSearch from '../Components/ChatSearch/ChatSearch'
+import VideoCall from '../Components/VideoCall/VideoCall'
 
 
 export default (
@@ -40,5 +41,6 @@ export default (
         <Route path='/chat/:room/:providerId' component={Chat} />
         <Route path='/inbox' component={ChatCenter} />
         <Route path='/chatsearch/:userId/:providerId' component={ChatSearch} />
+        <Route path='/videocall/:userId/:providerId' component={VideoCall} />
     </Switch>
 )

@@ -17,6 +17,8 @@ const AWS = require('aws-sdk');
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
+app.use(express.static(`${__dirname}/../build`))
+
 const pgPool = new pg.Pool({
   connectionString: CONNECTION_STRING
 })
@@ -156,6 +158,7 @@ app.get('/api/searchProviders/:zip', uc.searchProviders)
 app.post('/api/addProvider/:id', uc.addProvider)
 app.post('/api/dropoff/:id', pc.dropoff)
 app.post('/api/removeProvider/:id', uc.removeProvider)
+app.get('/api/dogStatus/:id', uc.walkStatus)
 
 app.post('/api/addDog/:id', uc.addDog)
 app.get('/api/getDogs/:id', uc.getDogs)
@@ -191,5 +194,25 @@ io.on('connection', function (socket) {
     io.to(data.room).emit('sendMsg', messages)
     console.log(messages)
   })
+
+  socket.on("videoRoom", function(roomNumber){
+    console.log('videoRoom', roomNumber)
+    socket.join(roomNumber)
+  })
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  })
+
+  socket.on('callPeer', function(data){
+    // console.log('hit callPeer', data)
+    io.to(data.room).emit('callPeer', data)
+  })
+
+  socket.on('answerPeer', function(data){
+    // console.log('hit answerPeer', data)
+    io.to(data.room).emit('answerPeer', data)
+  })
+  
 
 })

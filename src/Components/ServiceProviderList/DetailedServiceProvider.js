@@ -53,10 +53,9 @@ console.log(res.data)
 
     return (
       <div className="DetailedServiceProvider">
-        <h1>Welcome to detailed service provider</h1>
         <Link to={`/chatsearch/${this.props.id}/${user.id}`} className="dead-link">
         <i className="far fa-comment-dots" ></i></Link>
-          <p>name: {user.name}</p>
+          <h1>name: {user.name}</h1>
           <p>{user.short_desc}</p>
           <p>experience {user.experience}</p>
           <p>{user.bio}</p>
@@ -66,6 +65,10 @@ console.log(res.data)
           <p>{user.provider_walker ? "Walker" : '' }</p>
 
           {relation.provider_approve === 'approved' ? <i className="fas fa-user-slash" onClick={() => this.removeProvider(user.id)}></i> : relation.client_request === 'approved' ? 'request sent' : <button type='button' onClick={this.addProvider}>Hire</button>}
+          
+
+                <Link to={`/videocall/${this.props.id}/${user.id}`} className=""><button>
+                <i className="fas fa-video videoButton"></i>Video Call</button></Link>
 
           {/* <h6>Past Ratings</h6> */}
       </div>
