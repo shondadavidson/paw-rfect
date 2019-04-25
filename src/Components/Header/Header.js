@@ -46,7 +46,7 @@ const checkNewMessageCount = () => {
 
   console.log(walkStatus.walk_id)
 
-    if (props.location.pathname !== '/') {
+    if (props.location.pathname !== '/' && props.location.pathname !== '/dashboard') {
     return (
         <div className=' header '>
         <Link to={`/home`}>

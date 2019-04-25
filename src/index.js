@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { store, persistor } from './ducks/store';
 import * as serviceWorker from './serviceWorker';
 import { PersistGate } from 'redux-persist/integration/react'
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
     <Provider store={store}>

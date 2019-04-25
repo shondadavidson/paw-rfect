@@ -28,6 +28,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div className='container'>
+      <div className='logo-container'>
+      <img className='logo' src={'/img/paw-logo-white.png'} width="" height="" alt='dogs' />
+      </div>
         <div className='col-12 Dashboard'>
           <h1>Paw-rfect</h1>
           
