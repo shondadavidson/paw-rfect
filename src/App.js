@@ -16,6 +16,7 @@ class App extends Component {
             
             <BackButton location={this.props.location} />
             <Menu location={this.props.location} />
+            <hr />
             <div className='routes'>{routes}</div>
           </div>
         </div>

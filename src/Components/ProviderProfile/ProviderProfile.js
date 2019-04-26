@@ -122,7 +122,6 @@ class ProviderProfile extends Component{
     // when clicked it upload
     sendPhoto = event => {
         return axios.post('/api/uploadOwner', this.state).then(response => {
-            console.log(response.data)
             this.setState({ providerPicture: response.data.Location });
 
         });

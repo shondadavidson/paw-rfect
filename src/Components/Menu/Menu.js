@@ -68,7 +68,7 @@ class Menu extends Component {
 <nav>
         
           <div className="sub-menu-parent" >
-            <span class="nav-show">Menu</span>
+            <span className="nav-show">Menu</span>
             <div className="sub-menu">
             <Link to='/home'><p>Home</p></Link>
             <Link to='/ownerprofile'><p>Owner's Profile</p></Link>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Peer from 'simple-peer';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import Webcam from 'react-webcam'
 
 class VideoCall extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class VideoCall extends Component {
     this.state = {
       message: '',
       room: '',
-      whatIVideoCallening: ''
+      whatIVideoCallening: '',
+      otherUser: {}
     }
     this.initiator = false
     this.myIpData = {}
@@ -18,8 +20,12 @@ class VideoCall extends Component {
   componentDidMount(){
     this.setSocketListeners()
     this.joinChatRoom(this.props.match.params.userId, this.props.match.params.providerId)
-    
+    // this.getOtherUser()
   }
+
+  // getOtherUser = () => {
+  //   axios.get('/api/user/${this.props.match.params.provider_id')
+  // }
 
   joinChatRoom = async (myId, providerId) => {
     // console.log(myId, providerId)
@@ -46,9 +52,7 @@ class VideoCall extends Component {
     this.socket = io()
 
     this.socket.on('callPeer', (data) => {
-      console.log('hit')
       if(!this.initiator){
-        console.log(data)
         this.setState({whatIsHappening: "someone is calling you!"})
         this.gettingCall(data.ipData)
       }
@@ -66,12 +70,10 @@ class VideoCall extends Component {
     this.rtc.on('error', function (err) { console.log('error', err) })
 
     this.rtc.on('connect', () => {
-      console.log('CONNECT')
       this.rtc.send('whatever' + Math.random())
     })
 
     this.rtc.on('data', (data) => {
-      console.log(""+data.message)
       this.setState({whatIsHappening: ""+data.message})
     })
 
@@ -85,7 +87,6 @@ class VideoCall extends Component {
       this.initiator = false;
       this.myIpData = {}
       this.rtc.destroy((err) => {
-        console.log(err)
       })
     })
   }
@@ -95,7 +96,6 @@ class VideoCall extends Component {
   }
 
   call = () => {
-    console.log('call')
     this.initiator = true
     navigator.getUserMedia({video:true, audio:true}, this.gotMedia, function(){})
   }
@@ -138,7 +138,6 @@ class VideoCall extends Component {
 
   endCall = () => {
     this.rtc.destroy((err) => {
-      console.log(err)
     })
   }
 
@@ -153,14 +152,17 @@ class VideoCall extends Component {
         <button id='call' onClick={this.call}><i className="fas fa-phone-volume"></i> Call</button>
         <button id='answer' onClick={this.answer}><i className="fas fa-phone-volume"></i> Answer</button>
         <button id='endCall' onClick={this.endCall}><i className="fas fa-phone-slash"></i> End Call</button>
-        <div col-12>
-        <video></video>
+        <div className="col-12 videoScreen">
+          <video style={{width: "100%", minWidth:"320px", background:"#345"}}>
+          </video>
+          <div className='selfCam'>
+          {/* <Webcam audio={false} style={{width: "80", maxWidth:"200px"}}/> */}
+          </div>
         </div>
         <div className='col-12'>
         {/* <input onChange={(e) => this.setState({message: e.target.value})}/>
         <button onClick={this.sendMessage}>Send Message</button> */}
         </div>
-        
       </div>
     );
   }

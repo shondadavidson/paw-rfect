@@ -19,7 +19,6 @@ class ServiceProviderList extends Component {
     getMyProviders = () => {
         // console.log(this.props.id)
         axios.get(`/api/getMyProviders/${this.props.id}`).then(res => {
-            console.log(res.data)
             this.setState({
                 myProviders: res.data
             })
@@ -28,10 +27,7 @@ class ServiceProviderList extends Component {
 
 
     render() {
-        console.log(this.state.myProviders)
-        console.log(this.props)
         const mappedProviders = this.state.myProviders.map(provider => {
-            console.log(provider.id)
             return (
                 <div className='search-list ' key={provider.id}>
 

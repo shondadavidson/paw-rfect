@@ -11,7 +11,6 @@ module.exports = {
     },
 
     getClientRequests: (req, res) => {
-        console.log(req.params)
         const db = req.app.get('db')
         let { id } = req.params
         id = parseInt(id)
@@ -46,26 +45,20 @@ module.exports = {
     },
 
     pickup: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
         const db = req.app.get('db')
         let { id } = req.params
         let { ownerId } = req.body
         id = parseInt(id)
         ownerId = parseInt(ownerId)
-        console.log(id, ownerId)
         db.provider.pickup({ provider_id: id, owner_id: ownerId }).then(
             resp => {
                 res.status(200).send(resp)
-                console.log(resp)
             }
         )
 
     },
 
     dropoff: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
         const db = req.app.get('db')
         let { id } = req.params
         let {provider_id} = req.body
@@ -78,8 +71,6 @@ module.exports = {
         )
     },
     acceptRequest: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
         const db = req.app.get('db')
         let { id } = req.params
         let {owner_id} = req.body
@@ -92,8 +83,6 @@ module.exports = {
         ).catch(err => console.log(err))
     },
     denyRequest: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
         const db = req.app.get('db')
         let { id } = req.params
         let {owner_id} = req.body
