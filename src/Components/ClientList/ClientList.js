@@ -68,10 +68,11 @@ console.log(walking)
     const mappedWalking = walking.map(walk => {
         return (
             <div key={walk.walk_id} className='onWalk'>
-            <h4>{walk.owner_name}</h4>
+            <h1>{walk.owner_name}</h1>
             <Link to={`/videocall/${props.id}/${walk.owner_id}`} className=""><button>
                 <i className="fas fa-video videoButton"></i>Video Call</button></Link>
                 <button className='videButton' onClick={() => dropOff(walk.walk_id, walk.owner_id)}>Dropoff</button>
+                
                 
 
 
@@ -83,7 +84,7 @@ console.log(walking)
         const mappedDogs = client.clients.dogs.map((dog) => {
             return (
                 <div key={dog.dog_id}>
-                <img src={dog.dog_picture} alt="none" style={{'width':'40px', height: '40px', borderRadius:'50%'}}/>
+                <img src={dog.dog_picture} alt="none" style={{'width':'40px', height: '40px', 'object-fit': 'cover', borderRadius:'50%'}}/>
                     <p>{dog.dog_name}</p>
 
                 </div>
@@ -93,16 +94,16 @@ console.log(walking)
             <>
             
             <div key={client.clients.id}>
-            <img src={client.clients.picture} alt="none" style={{'width':'60px', height: 'auto', borderRadius:'50%'}}/>
-                <h4>{client.clients.name}</h4>
+            <img src={client.clients.picture} alt="none" style={{'width':'60px', height: '60px', 'object-fit': 'cover', borderRadius:'50%'}}/>
+                <h1>{client.clients.name}</h1>
                 <Link to={`/chatsearch/${props.id}/${client.clients.id}`} className="dead-link">
                     <i className="far fa-comment-dots" ></i></Link>
                 {mappedDogs}
                 <p>test</p>
                 {client.clients.walk}
                 <button onClick={() => pickup(client.clients.id, client.clients.name)}>Pickup</button>
-                {/* <Link to={`/videocall/${props.id}/${client.clients.id}`} className="dead-link">
-                <i className="fas fa-video"></i></Link> */}
+                <hr />
+  
 
 
             </div>

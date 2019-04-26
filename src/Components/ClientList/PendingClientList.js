@@ -30,7 +30,7 @@ const PendingClientList = (props) => {
         const mappedDogs = client.clients.dogs.map((dog, i) => {
             return (
                 <div key={i}>
-                    <img src={dog.dog_picture} alt="none" style={{'width':'3vw', height: '3vw', borderRadius:'50%'}}/>
+                    <img src={dog.dog_picture}  style={{'width':'3vw', height: '3vw', borderRadius:'50%'}}/>
                     <p>{dog.dog_name}</p>
 
                 </div>
@@ -38,7 +38,7 @@ const PendingClientList = (props) => {
         })
         return (
             <div key={i}>
-            <img src={client.clients.picture} alt="none" style={{'width':'5vw', height: '5vw', borderRadius:'50%'}}/>
+            <img src={client.clients.picture} style={{'width':'5vw', height: '5vw', borderRadius:'50%'}}/>
                 <h4>{client.clients.name}</h4>
                 <i className="far fa-comment-dots"></i>
                 {mappedDogs}
