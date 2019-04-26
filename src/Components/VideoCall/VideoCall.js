@@ -10,8 +10,9 @@ class VideoCall extends Component {
     this.state = {
       message: '',
       room: '',
-      whatIVideoCallening: '',
-      otherUser: {}
+      whatIVideoCallening: 'call',
+      otherUser: {},
+     callerImg: ''
     }
     this.initiator = false
     this.myIpData = {}
@@ -53,7 +54,8 @@ class VideoCall extends Component {
 
     this.socket.on('callPeer', (data) => {
       if(!this.initiator){
-        this.setState({whatIsHappening: "someone is calling you!"})
+        this.setState({whatIsHappening: "Clayton is calling you!"})
+        this.setState({callerImg: 'https://s3-us-west-2.amazonaws.com/pawrfect2/DMHeadshot1.jpg'})
         this.gettingCall(data.ipData)
       }
     })
@@ -61,6 +63,7 @@ class VideoCall extends Component {
     this.socket.on('answerPeer', (data) => {
       if(this.initiator){
         this.setState({whatIsHappening: "other party answered you!"})
+        this.setState({callerImg: ''})
         this.gettingAnswer(data.ipData)
       }
     })
@@ -74,7 +77,7 @@ class VideoCall extends Component {
     })
 
     this.rtc.on('data', (data) => {
-      this.setState({whatIsHappening: ""+data.message})
+      this.setState({whatIsHappening: "call"+data.message})
     })
 
     this.rtc.on('stream', function (stream) {
@@ -148,7 +151,9 @@ class VideoCall extends Component {
   render() {
     return (
       <div className="VideoCall col-12">
+        <img src={this.state.callerImg} alt="" style={{'width':'10vw', height: '10vw', borderRadius:'50%'}}/>
         <p>{this.state.whatIsHappening}</p>
+        
         <button id='call' onClick={this.call}><i className="fas fa-phone-volume"></i> Call</button>
         <button id='answer' onClick={this.answer}><i className="fas fa-phone-volume"></i> Answer</button>
         <button id='endCall' onClick={this.endCall}><i className="fas fa-phone-slash"></i> End Call</button>
