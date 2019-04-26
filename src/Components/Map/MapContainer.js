@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Geocode from 'react-geocode';
 import MapMarker from './MapMarker'
+import { Link } from 'react-router-dom'
 
 const mapStyles = {
   width: '100vw',
@@ -67,7 +68,7 @@ export class MapContainer extends Component {
     return (
       <div style={{ height: '100vh' }}>
         {this.state.address.lat && (
-          <Map
+          <Link to ='/detailedProvider/19'><Map
           google={this.props.google}
           zoom={14}
           // initialCenter={{ lat: 30.391617, lng: -81.850769 }}
@@ -76,14 +77,14 @@ export class MapContainer extends Component {
             <MapMarker style={{zIndex:8, position:'relative'}}/>
             <Marker
               onClick={this.onMarkerClick}
-              // name={'Kenyatta International Convention Centre'}
+              name={'Clayton Pabst'}
             />
             <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onClose}>
               <div>
                 <h4>{this.state.selectedPlace.name}</h4>
               </div>
             </InfoWindow>
-          </Map>
+          </Map></Link>
         )}
       </div>
     );
