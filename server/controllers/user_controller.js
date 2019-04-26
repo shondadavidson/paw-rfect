@@ -15,8 +15,6 @@ module.exports = {
     },
 
     provider: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
         const db = req.app.get('db')
         let { id } = req.params
         id = parseInt(id)
@@ -31,8 +29,6 @@ module.exports = {
         })
     },
     searchProviders: (req, res) => {
-        console.log('hit')
-        console.log(req.params)
         const db = req.app.get('db')
         let { zip } = req.params
         zip = parseInt(zip)
@@ -46,8 +42,6 @@ module.exports = {
     },
 
     addProvider: (req, res) => {
-        console.log('params', req.params)
-        console.log('body', req.body)
         const db = req.app.get('db')
         let { id } = req.params
         let { providerId } = req.body
@@ -55,7 +49,6 @@ module.exports = {
         providerId = parseInt(providerId)
         db.users.add_provider({ owner_id: id, provider_id: providerId }).then(
             resp => {
-                console.log(resp)
                 res.status(200).send(resp)
             }
         ).catch(err => {
@@ -215,8 +208,7 @@ module.exports = {
     },
 
     removeProvider: (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
+       
         let {id} = req.params
         let {owner_id }= req.body
         owner_id = parseInt(owner_id)
@@ -230,6 +222,18 @@ module.exports = {
             res.status(400).send(err)
         })
 
+    },
+
+    walkStatus: (req, res) => {
+        const db = req.app.get('db')
+        let {id} = req.params
+        id = parseInt(id)
+        db.users.walk_status({owner_id: id }).then(
+            resp => {
+                res.status(200).send(resp[0])
+            }).catch(err => {
+            res.status(400).send(err)
+        })
     }
 
 

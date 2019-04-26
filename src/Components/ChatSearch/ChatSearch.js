@@ -76,18 +76,7 @@ class ChatSearch extends Component {
         this.setState({ message: '' })
     }
     render() {
-        console.log(this.state.room, 
-            this.state.message, 
-            this.props.name,
-            this.props.id, 
-            this.props.match.params.providerId)
-        console.log(this.props.match.params.providerId)
-        // console.log(this.props.match.params)
-        // console.log(this.props.name)
-        // console.log('message', this.state.message)
-        // console.log('messages', this.state.messages)
-
-          const mappedMessages = this.state.messages.map((message, i) => {
+     const mappedMessages = this.state.messages.map((message, i) => {
               return (
                   <div key={i}>
                   <p>{message.user_name}: {message.message}</p>

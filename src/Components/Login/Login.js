@@ -38,7 +38,6 @@ class Login extends Component {
       }
 
     login = async (e) => {
-        console.log('click')
         e.preventDefault()
         let user = {
             email: this.state.email,

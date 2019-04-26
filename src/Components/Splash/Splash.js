@@ -13,7 +13,7 @@ function Splash() {
 
       <img className='' src={require('../../img/paw-rfect-logo.png')} width="" height="" alt='dogs' />
 
-        <p>The Paw-rfect way to find the best care for your good boy or girl.</p>
+        <p>The Paw-fect way to find the best care for your good boy or girl.</p>
 
         <div></div>
         <p>Connecting you to the best local dog walkers, sitters, and boarders.</p>

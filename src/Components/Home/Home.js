@@ -43,7 +43,7 @@ const Home = (props) => {
              <div className='col-12 col-md-6'>
       <Link to='/clientlist'>
         <div className='home-inner-container'>
-          <p>Dog pickup</p>
+          <p>Dog pickup/ Dropoff</p>
                   <img className='homeIcon' src={require('../../img/pickup.png')} width="" height="" alt='search' />
 
         </div>

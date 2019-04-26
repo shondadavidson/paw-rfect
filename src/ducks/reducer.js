@@ -49,7 +49,6 @@ export function toggleMenu() {
 }
 
 export function zipCode(zip) {
-    console.log('hit')
     return {
         type: ZIP_CODE,
         payload: zip
@@ -57,7 +56,6 @@ export function zipCode(zip) {
 }
 
 export function zipResults(results) {
-    console.log('hit')
     return {
         type: ZIP_RESULTS,
         payload: results
