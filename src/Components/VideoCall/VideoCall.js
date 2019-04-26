@@ -78,7 +78,7 @@ class VideoCall extends Component {
     })
 
     this.rtc.on('stream', function (stream) {
-      var video = document.querySelector('video')
+      let video = document.querySelector('video')
       video.srcObject = stream
       video.play()
     })
