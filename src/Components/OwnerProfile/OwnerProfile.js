@@ -131,13 +131,13 @@ class OwnerProfile extends Component {
         // console.log({ edited: this.state.edited })
         return (
 
-            <div className='OwnerProfile'>
+            <div className='OwnerProfile col-12'>
                 <div>
                     Welcome {this.state.ownerName}
                 </div>
                 {this.state.editing && <div >
 
-                    <div className='OwnerProfileImage'>
+                    <div className='OwnerProfileImage col-12'>
                     <div className='row ownerProfileDisplay'>
 
                         <ImageUpload
@@ -164,8 +164,9 @@ class OwnerProfile extends Component {
                 </div>}
 
                 {!this.state.editing && <div className='profileView'>
-                    <div className=''>
+                    <div className='col-12'>
                         <div className=''>
+                        
                             <img className='OwnerProfileImage' src={this.state.ownerPicture} alt='profile picture' />
                         </div>
                     </div>
@@ -192,8 +193,8 @@ class OwnerProfile extends Component {
                 </div>
                 </div>}
 
-
-                <div>
+<div className='row editButtons'>
+                <div col-12 >
                     {!this.state.editing &&
                         <Link to='/home'>
                             <button>Back</button>
@@ -201,10 +202,11 @@ class OwnerProfile extends Component {
                     }
                     {this.state.editing && <button onClick={() => (this.toggle('editing'))}>Back</button>}
                     {!this.state.editing && this.state.edited && save}
+                    <div col-12 editButtons>
                     <button onClick={() => this.toggle('editing')}> {this.state.editing ? 'Update' : 'Edit Profile'} </button>
-                    
+                    </div>
                 </div>
-                
+                </div>
 
             
             </div >

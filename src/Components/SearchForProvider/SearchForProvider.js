@@ -12,7 +12,6 @@ const SearchForProvider = props => {
 
   const getProviders = async () => {
     await axios.get(`/api/searchProviders/${zip}`).then(res => {
-      console.log(res);
       props.zipResults(res.data)
     });
   };
@@ -21,7 +20,6 @@ const SearchForProvider = props => {
   const mappedProviders = props.searchedResults
     .filter(obj => obj.id !== props.id)
     .map((provider, i) => {
-      console.log(provider);
       return (
         // <div className='container'>
         <div className="search-list col-12" key={i}>
@@ -49,7 +47,6 @@ const SearchForProvider = props => {
       );
     });
 
-  console.log(555, zip);
   return (
     <div className="SearchForProvider">
       <h1>Search For Provider</h1>

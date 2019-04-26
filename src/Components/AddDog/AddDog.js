@@ -29,7 +29,6 @@ class AddDog extends Component {
     }
 
     save = async() => { 
-        // console.log(this.props.id)
         const { id, updateOwnersDogs } = this.props;
         let newDog ={
             dogName: this.state.dogName,
@@ -70,18 +69,15 @@ class AddDog extends Component {
           const { file, filename, filetype, dogPicture } = this.state
           let s3file = {file, filename, filetype, dogPicture}
         return axios.post('/api/uploadDog', s3file).then(response => {
-          console.log(response.data)
           this.setState({ dogPicture: response.data.Location });
           
         });
       }
 
     render(){ 
-        // console.log(this.state.dogName, this.state.dogAge, this.state.dogWeight, this.state.dogBreed, this.state.dogGender,  this.state.dogSpecialNotes, this.state.dogPicture,{this:this}, {id:this.props.id})
         return(
             <>
-                <h1>AddDog</h1>
-                <h3>What's the puppy like?</h3>
+                <h1>Add A Dog</h1>
                 
                 <div style={{'display':'flex', 'flexDirection':"column", 'alignItems':'center'}}>
                     <input type='text' placeholder={'Name'} onChange={e=>{this.handleInput('dogName', e.target.value)}}/>

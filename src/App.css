@@ -170,8 +170,12 @@ span {
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  
- 
+}
+
+.ProviderProfilePlaceholder {
+  font-size: .9em;
+  color: #08756E;
+  font-family: 'Fresca', sans-serif;
 }
 
 .OwnerProfileImage {
@@ -353,6 +357,23 @@ a:hover {
 .onWalk {
   border: 1px solid grey;
   padding: 20px;
+}
+
+.videoScreen {
+  /* background: pink; */
+  position: relative;
+}
+
+.selfCam {
+  /* background:blue; */
+  height: 300px;
+  width: 10%;
+  position: absolute;
+  bottom: 30px;
+}
+
+.editButtons {
+  margin: 30px;
 }
 
 

@@ -32,7 +32,7 @@ class Dashboard extends Component {
       <img className='logo' src={'/img/paw-logo-white.png'} width="" height="" alt='dogs' />
       </div>
         <div className='col-12 Dashboard'>
-          <h1>Paw-rfect</h1>
+          <h1>Paw-fect</h1>
           
           <div className='col-12 col-md-6'>
           <div className='box-controller'>

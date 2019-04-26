@@ -12,9 +12,7 @@ const BackButton = (props) => {
         checkNewMessageCount()
     }, [])
 
-console.log(newMessageCount)
 const checkNewMessageCount = () => {
-    console.log('hit new message')
     axios.get(`/api/getNewMessageCount/${props.id}`).then(res => {
       setNewMessageCount(res.data )
     })

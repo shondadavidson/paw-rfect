@@ -14,15 +14,16 @@ const Header = (props) => {
     useEffect(() => {
         checkNewMessageCount()
         checkDogStatus()
-        // this.setSocketListeners()
+        setSocketListeners()
     }, [])
 
     const setSocketListeners = () => {
-      this.socket = io()
+      let socket = io()
 
-      this.socket.emit('joinRoom', props.id)
+      socket.emit('videoRoom', props.id)
 
-      this.socket.on('updateHeader', () => {
+      socket.on('reloadHeader', () => {
+        console.log('hit reloadHeader')
         checkDogStatus()
       })
 
@@ -31,20 +32,17 @@ const Header = (props) => {
 
 
 const checkNewMessageCount = () => {
-    console.log('hit new message')
     axios.get(`/api/getNewMessageCount/${props.id}`).then(res => {
       setNewMessageCount(res.data )
     })
   }
 
   const checkDogStatus = () => {
-    console.log('hit walk status')
     axios.get(`/api/dogStatus/${props.id}`).then(res => {
       setWalkStatus(res.data )
     })
   }
 
-  console.log(walkStatus.walk_id)
 
     if (props.location.pathname !== '/' && props.location.pathname !== '/dashboard') {
     return (
@@ -66,7 +64,9 @@ const checkNewMessageCount = () => {
           </Link>
 
           {walkStatus.walk_id > 1  ? <Link to={`/videocall/${props.id}/${walkStatus.provider_id}`} className=""><button>
-        <i className="fas fa-video videoButton"></i>Video Call</button></Link> : <div></div>  
+          <small>your dogs have been picked up</small>
+          <p>
+        <i className="fas fa-video videoButton"></i>Video Call</p></button></Link> : <div></div>  
         
         }
 

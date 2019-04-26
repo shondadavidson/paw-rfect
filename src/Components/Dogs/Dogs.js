@@ -5,7 +5,6 @@ import axios from "axios";
 class Dogs extends Component {
 
     render() {
-        console.log(this.props)
         const dogList = this.props.ownersDogs.map((dog, i) => {
             const { dog_picture, dog_name, dog_age, weight, breed, dog_gender, special_notes, dog_id, owner_id, deleteDog } = dog
             return (

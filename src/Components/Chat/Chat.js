@@ -29,7 +29,6 @@ class Chat extends Component {
         this.socket = io()
 
         this.socket.on('sendMsg', (messages) => {
-            // console.log('hit on', messages)
             this.setState({ messages: messages})
         })
         // this.joinChatRoom()
@@ -37,7 +36,6 @@ class Chat extends Component {
     }
 
     joinChatRoom = async () => {
-        console.log(this.props.match.params)
         await this.socket.emit('joinRoom', this.props.match.params.room)
         this.getChat()
     }
@@ -51,8 +49,6 @@ class Chat extends Component {
     }
 
     sendMessage = () => {
-        console.log(this.props.provider)
-        console.log(this.props.match.params.room)
         this.socket.emit('sendMsg', { 
             room: this.props.match.params.room, 
             msg: this.state.message, user: this.props.name, 

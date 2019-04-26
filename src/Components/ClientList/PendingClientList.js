@@ -17,12 +17,12 @@ const PendingClientList = (props) => {
     }
 
     const acceptRequest = (id) => {
-        console.log(id)
-        axios.put(`/api/acceptRequest/${id}`, {owner_id: props.id}).then(res => setClients(res.data))
+
+        axios.put(`/api/acceptRequest/${props.id}`, {owner_id: id}).then(res => setClients(res.data))
     }
 
     const declineRequest = (id) => {
-        console.log(id)
+
         axios.put(`/api/declineRequest/${id}`, {owner_id: props.id}).then(res => {setClients(res.data)})
     }
 
@@ -48,7 +48,6 @@ const PendingClientList = (props) => {
             </div>
         )
     })
-    console.log(clients, props.id)
     return (
         <div>
             <div>

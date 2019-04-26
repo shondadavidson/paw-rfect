@@ -14,13 +14,11 @@ const WalkStatus = (props) => {
 
 
 const checkDogStatus = () => {
-    console.log('hit walk status')
     axios.get(`/api/dogStatus/${props.id}`).then(res => {
       setWalkStatus(res.data )
     })
   }
 
-  console.log(walkStatus)
 
     return (
         <>

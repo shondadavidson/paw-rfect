@@ -213,6 +213,11 @@ io.on('connection', function (socket) {
     // console.log('hit answerPeer', data)
     io.to(data.room).emit('answerPeer', data)
   })
+
+  socket.on('reloadHeader', function(data){
+    console.log('hit reload', data)
+    io.to(data).emit('reloadHeader', data)
+  })
   
 
 })
