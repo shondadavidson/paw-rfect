@@ -77,7 +77,7 @@ class VideoCall extends Component {
     })
 
     this.rtc.on('data', (data) => {
-      this.setState({whatIsHappening: "call"+data.message})
+      this.setState({whatIsHappening: "Clayton"})
     })
 
     this.rtc.on('stream', function (stream) {
